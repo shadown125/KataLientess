@@ -8,14 +8,14 @@
     "lint": "next lint",
     "build": "npm-run-all --parallel copy:* build:*",
     "build:styles": "npm-run-all sass:build postcss:build",
-    "build:images": "imagemin src/pics/*.{jpg,png} --out-dir=build",
-    "copy:fonts": "copyfiles src/fonts/**/* build --flat",
+    "build:images": "imagemin src/pics/*.{jpg,png} --out-dir=public",
+    "copy:fonts": "copyfiles src/fonts/**/* public --flat",
     "watch": "npm-run-all --parallel watch:*",
     "watch:styles": "npm-run-all --parallel sass:watch postcss:watch",
-    "sass:build": "sass src/styles:build --no-source-map",
-    "sass:watch": "sass src/styles:build --no-source-map --watch",
-    "postcss:build": "postcss build/*.css --replace --env production",
-    "postcss:watch": "postcss build/*.css --watch --dir build --poll=1000"
+    "sass:build": "sass src/styles:public --no-source-map",
+    "sass:watch": "sass src/styles:public --no-source-map --watch",
+    "postcss:build": "postcss public/*.css --replace --env production",
+    "postcss:watch": "postcss public/*.css --watch --dir public --poll=1000"
   },
   "dependencies": {
     "next": "12.0.4",

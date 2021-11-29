@@ -3,12 +3,12 @@ module.exports = function (grunt) {
         copy: {
             cssFontDisplayBlock: {
                 expand: true,
-                cwd: 'build/',
+                cwd: 'public/',
                 src: [
                     '*.css',
                     '!*.font-display-block.css'
                 ],
-                dest: 'build/',
+                dest: 'public/',
                 options: {
                     process (content) {
                         return content.replace(/font-display:optional;/g, 'font-display:block;');
@@ -24,7 +24,7 @@ module.exports = function (grunt) {
                 options: {
                     length: 16,
                     algorithm: 'md5',
-                    baseDir: './build/',
+                    baseDir: './public/',
                     assets: ['*', '!**/*.*.*', '!manifest.json'],
                     deleteOriginals: true,
                     jsonOutput: true,
@@ -33,7 +33,7 @@ module.exports = function (grunt) {
                     clearOutputDir: true
                 },
                 src: [
-                    'build/main.css',
+                    'public/main.css',
                 ]
             }
         }
