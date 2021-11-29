@@ -1,6 +1,6 @@
 {
   "name": "katalientess",
-  "private": true,
+  "description": "KataLientesS App",
   "scripts": {
     "dev": "next dev",
     "nextbuild": "next build",
@@ -17,6 +17,14 @@
     "postcss:build": "postcss public/*.css --replace --env production",
     "postcss:watch": "postcss public/*.css --watch --dir public --poll=1000"
   },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "private": true,
+  "browserslist": [
+    "> 0.5%",
+    "not ie <= 11"
+  ],
   "dependencies": {
     "next": "12.0.4",
     "react": "17.0.2",
