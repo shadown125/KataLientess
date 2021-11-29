@@ -1,0 +1,19 @@
+@use 'variables';
+
+a {
+    display: block;
+    text: {
+        decoration: none;
+    }
+}
+
+.link {
+    color: variables.$links-color;
+    transition: color 0.2s linear;
+    &:hover {
+        color: variables.$links-hover-color;
+    }
+    &:focus:not(:focus-visible) {
+        outline: none;
+    }
+}
