@@ -1,5 +1,6 @@
 @use '../susanoo';
 @use 'variables';
+@use '../main-navigation/variables' as navigation;
 
 .page-body {
     display: flex;
@@ -10,6 +11,11 @@
         }
         * {
             color: variables.$color;
+        }
+        @media only screen and (max-width: 940px) {
+            margin: {
+                left: calc(#{navigation.$navigation-width } / -1);
+            }
         }
     }
 }
