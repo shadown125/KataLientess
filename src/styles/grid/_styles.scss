@@ -14,19 +14,18 @@ body {
 }
 
 .app-container {
-    background: {
-        image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
-    }
     margin: {
         top: susanoo.rem-calc(48);
         bottom: susanoo.rem-calc(48);
     }
-    min: {
-        height: susanoo.rem-calc(700);
+}
+
+main {
+    background: {
+        image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
     }
-    border: {
-        radius: variables.$border-radius;
-    }
+    border-bottom-left-radius: variables.$border-radius;
+    border-bottom-right-radius: variables.$border-radius;
 }
 
 .wrapper {
