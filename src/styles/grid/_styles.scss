@@ -11,13 +11,6 @@ body {
     min: {
         height: 100vh;
     }
-    display: flex;
-    align: {
-        items: center;
-    }
-    justify: {
-        content: center;
-    }
 }
 
 .app-container {
@@ -30,7 +23,6 @@ body {
     }
     min: {
         height: susanoo.rem-calc(700);
-        width: susanoo.rem-calc(1200);
     }
     border: {
         radius: susanoo.rem-calc(24);
