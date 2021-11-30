@@ -1,4 +1,19 @@
-function PageHeader () {
+import { useState } from "react";
+
+function PageHeader (props) {
+    const [ navigationIsOpen, setNavigationIsOpen ] = useState(false);
+
+    function setOpenNavigation() {
+        if (navigationIsOpen === false) {
+            setNavigationIsOpen(true);
+            props.onSettingMainNavigationState(navigationIsOpen);
+            return
+        }
+        setNavigationIsOpen(false);
+
+        props.onSettingMainNavigationState(navigationIsOpen);
+    }
+
     return (
         <header className="page-header">
             <div className="container">
@@ -13,7 +28,7 @@ function PageHeader () {
                         </button>
                     </li>
                 </ul>
-                <button className="button button--medium icon-menu" type="button">
+                <button className="button button--medium icon-menu" type="button" onClick={setOpenNavigation}>
                     <span>Menu</span>
                 </button>
             </div>

@@ -1,0 +1,81 @@
+@use '../susanoo';
+@use '../grid/variables' as grid;
+@use '../lists';
+
+.main-navigation {
+    padding: susanoo.rem-calc(24);
+    background: {
+        image: linear-gradient(to right top, #5fd1ce, #65aaec);
+    }
+    border-bottom-left-radius: grid.$border-radius;
+    max: {
+        width: susanoo.rem-calc(300);
+    }
+    height: 100%;
+    transition: transform 0.2s linear;
+    color: white;
+    @media only screen and (max-width: 640px) {
+        transform: translateX(#{susanoo.rem-calc(-300)});
+    }
+    z-index: 2;
+    &.is-active {
+        transform: translateX(0);
+    }
+    .profile {
+        display: flex;
+        align-items: center;
+        .content {
+            margin: {
+                left: susanoo.rem-calc(12);
+            }
+        }
+    }
+    .image-wrapper {
+        --circle: #{susanoo.rem-calc(100)};
+
+        width: var(--circle);
+        height: var(--circle);
+    }
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border: {
+            radius: 50%;
+        }
+    }
+    .actions {
+        @include lists.reset-list();
+        display: flex;
+        flex: {
+            direction: column;
+        }
+        margin: {
+            top: susanoo.rem-calc(24);
+        }
+        gap: susanoo.rem-calc(24);
+        span {
+            display: block;
+            margin: {
+                left: susanoo.rem-calc(24);
+            }
+        }
+        button {
+            margin: {
+                right: susanoo.rem-calc(24);
+            }
+            > span {
+                display: inline-block;
+            }
+        }
+    }
+    li {
+        display: flex;
+        align-items: center;
+    }
+    .credits {
+        margin: {
+            top: susanoo.rem-calc(48);
+        }
+    }
+}
