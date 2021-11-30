@@ -1,4 +1,6 @@
 @use 'variables';
+@use '../susanoo';
+@use '../icons';
 
 a {
     display: block;
@@ -15,5 +17,58 @@ a {
     }
     &:focus:not(:focus-visible) {
         outline: none;
+    }
+}
+
+.icon-link {
+    position: relative;
+    padding: {
+        top: susanoo.rem-calc(8);
+        bottom: susanoo.rem-calc(8);
+        left: susanoo.rem-calc(40);
+    }
+    &::before {
+        --circle: #{susanoo.rem-calc(40)};
+
+        @include susanoo.icon(null, true);
+        padding: susanoo.rem-calc(10);
+        font: {
+            size: map-get(icons.$icon-sizes, "default");
+        }
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: var(--circle);
+        height: var(--circle);
+        background: {
+            color: #6cdbeb;
+        }
+        border: {
+            radius: 50%;
+        }
+        transition: background-color 0.2s linear;
+    }
+    &.icon-note {
+        &::before {
+            @include susanoo.icon(icons.$icon-sticky-note, false);
+        }
+    }
+    &.icon-note-checked {
+        &::before {
+            padding: susanoo.rem-calc(8);
+            @include susanoo.icon(icons.$icon-note-checked, false);
+        }
+    }
+    &.icon-configs {
+        &::before {
+            padding: susanoo.rem-calc(9);
+            @include susanoo.icon(icons.$icon-cog, false);
+        }
+    }
+    &.icon-logout {
+        &::before {
+            @include susanoo.icon(icons.$icon-log-out, false);
+        }
     }
 }
