@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function PageHeader (props) {
-    const [ navigationIsOpen, setNavigationIsOpen ] = useState(false);
+    const [ navigationIsOpen, setNavigationIsOpen ] = useState(true);
 
     function setOpenNavigation() {
         if (navigationIsOpen === false) {
