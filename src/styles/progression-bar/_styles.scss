@@ -1,0 +1,75 @@
+@use '../susanoo';
+@use '../grid/variables' as grid;
+@use 'variables';
+
+.progression-bar {
+    background: {
+        image: linear-gradient(to right bottom, grid.$main-linear-gradient-color-1, grid.$main-linear-gradient-color-2);
+    }
+    border: {
+        radius: grid.$border-radius;
+    }
+    display: flex;
+    padding: susanoo.rem-calc(24) susanoo.rem-calc(42);
+    gap: susanoo.rem-calc(64);
+    @media only screen and (max-width: 640px) {
+        gap: susanoo.rem-calc(24);
+    }
+    * {
+        span {
+            display: block;
+        }
+    }
+    .date {
+        display: flex;
+        flex: {
+            direction: column;
+        }
+        justify-content: center;
+        align-items: center;
+        .day {
+            font: {
+                size: susanoo.rem-calc(64);
+            }
+        }
+    }
+    .content {
+        display: flex;
+        flex: {
+            direction: column;
+        }
+        flex: {
+            grow: 1;
+        }
+    }
+    .descriptions {
+        display: flex;
+        justify-content: space-between;
+        @media only screen and (max-width: 640px) {
+            flex:  {
+                direction: column;
+            }
+        }
+    }
+    .bar {
+        height: susanoo.rem-calc(10);
+        background: {
+            color: #ececec;
+        }
+        margin: {
+            bottom: susanoo.rem-calc(14);
+        }
+        border: {
+            radius: grid.$border-radius;
+        }
+    }
+    .progressed-bar {
+        height: 100%;
+        width: 50%;
+        background: {
+            color: #68ddd5;
+        }
+        border-bottom-right-radius: grid.$border-radius;
+        border-top-right-radius: grid.$border-radius;
+    }
+}
