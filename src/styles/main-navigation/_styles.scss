@@ -22,7 +22,7 @@
     transition: transform 0.2s linear;
     color: white;
     @media only screen and (max-width: 940px) {
-        transform: translateX(#{susanoo.rem-calc(-300)});
+        transform: translateX(calc(#{variables.$navigation-width} / -1));
     }
     &.is-active {
         transform: translateX(0);
