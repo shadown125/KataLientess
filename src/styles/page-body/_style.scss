@@ -1,0 +1,15 @@
+@use '../susanoo';
+@use 'variables';
+
+.page-body {
+    display: flex;
+    .todos-container {
+        padding: susanoo.rem-calc(24);
+        flex: {
+            grow: 1;
+        }
+        * {
+            color: variables.$color;
+        }
+    }
+}
