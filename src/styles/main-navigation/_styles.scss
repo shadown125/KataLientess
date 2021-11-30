@@ -3,6 +3,10 @@
 @use '../lists';
 @use 'variables';
 
+.nav-aside {
+    z-index: 1;
+}
+
 .main-navigation {
     display: flex;
     flex: {
@@ -20,7 +24,6 @@
     @media only screen and (max-width: 940px) {
         transform: translateX(#{susanoo.rem-calc(-300)});
     }
-    z-index: 2;
     &.is-active {
         transform: translateX(0);
     }

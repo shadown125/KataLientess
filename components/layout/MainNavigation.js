@@ -7,7 +7,7 @@ function MainNavigation(props) {
     }
 
     return (
-        <aside>
+        <aside className="nav-aside">
             <nav className={`main-navigation${props.currentMainNavigationState ? ' is-active' : ''}`}>
                 <div className="profile">
                     <div className="image-wrapper">
