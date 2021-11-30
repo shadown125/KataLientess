@@ -1,6 +1,7 @@
 @use '../susanoo';
 @use '../grid/variables' as grid;
 @use '../lists';
+@use 'variables';
 
 .main-navigation {
     padding: susanoo.rem-calc(24);
@@ -8,13 +9,11 @@
         image: linear-gradient(to right top, #5fd1ce, #65aaec);
     }
     border-bottom-left-radius: grid.$border-radius;
-    max: {
-        width: susanoo.rem-calc(300);
-    }
+    width: variables.$navigation-width;
     height: 100%;
     transition: transform 0.2s linear;
     color: white;
-    @media only screen and (max-width: 640px) {
+    @media only screen and (max-width: 940px) {
         transform: translateX(#{susanoo.rem-calc(-300)});
     }
     z-index: 2;
