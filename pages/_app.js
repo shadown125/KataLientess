@@ -1,10 +1,10 @@
-import Layout from '../components/layout/HeadPage';
+import HeadPage from '../components/layout/HeadPage';
 import {Fragment} from "react";
 
 function MyApp({ Component, pageProps }) {
     return (
         <Fragment>
-            <Layout></Layout>
+            <HeadPage />
             <Component {...pageProps} />
         </Fragment>
     );
