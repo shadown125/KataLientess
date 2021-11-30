@@ -1,0 +1,57 @@
+@use '../susanoo';
+@use '../icons';
+
+button {
+    background: {
+        color: unset;
+    }
+    border: unset;
+    cursor: pointer;
+}
+
+.button {
+    --circle: #{susanoo.rem-calc(20)};
+
+    position: relative;
+    width: var(--circle);
+    height: var(--circle);
+    background: {
+        color: #6cdbeb;
+    }
+    border: {
+        radius: 50%;
+    }
+    transition: background-color 0.2s linear;
+    &:hover,
+    &--big:hover {
+        background: {
+            color: #65dfc9;
+        }
+    }
+    &::before {
+        @include susanoo.icon(null, true);
+        @include susanoo.absolute-center();
+        color: #62b4e6;
+        font: {
+            size: map-get(icons.$icon-sizes, 'big');
+        }
+    }
+    &.icon-configs {
+        &::before {
+            @include susanoo.icon(icons.$icon-cog, false);
+        }
+    }
+    &.icon-menu {
+        &::before {
+            @include susanoo.icon(icons.$icon-menu, false);
+        }
+    }
+    &--medium {
+        width: calc(var(--circle) * 2);
+        height: calc(var(--circle) * 2);
+    }
+    &--big {
+        width: calc(var(--circle) * 3);
+        height: calc(var(--circle) * 3);
+    }
+}
