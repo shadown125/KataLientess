@@ -4,6 +4,10 @@
 @use 'variables';
 
 .main-navigation {
+    display: flex;
+    flex: {
+        direction: column;
+    }
     padding: susanoo.rem-calc(24);
     background: {
         image: linear-gradient(to right top, #5fd1ce, #65aaec);
@@ -51,6 +55,7 @@
         }
         margin: {
             top: susanoo.rem-calc(24);
+            bottom: susanoo.rem-calc(48);
         }
         gap: susanoo.rem-calc(24);
         span {
@@ -74,7 +79,7 @@
     }
     .credits {
         margin: {
-            top: susanoo.rem-calc(48);
+            top: auto;
         }
     }
 }
