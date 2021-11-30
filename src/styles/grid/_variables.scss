@@ -1,1 +1,4 @@
+@use '../susanoo';
+
 $font-family: "Noto Sans JP", sans-serif;
+$border-radius: susanoo.rem-calc(24);

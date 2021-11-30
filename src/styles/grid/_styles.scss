@@ -25,7 +25,7 @@ body {
         height: susanoo.rem-calc(700);
     }
     border: {
-        radius: susanoo.rem-calc(24);
+        radius: variables.$border-radius;
     }
 }
 
