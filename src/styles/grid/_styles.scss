@@ -6,7 +6,7 @@ body {
         family: variables.$font-family;
     }
     background: {
-        image: linear-gradient(to right top, #65dfc9, #6cdbeb);
+        image: linear-gradient(to right top, variables.$body-linear-gradient-color-1, variables.$body-linear-gradient-color-2);
     }
     min: {
         height: 100vh;
@@ -22,7 +22,7 @@ body {
 
 main {
     background: {
-        image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
+        image: linear-gradient(to right bottom, variables.$main-linear-gradient-color-1, variables.$main-linear-gradient-color-2);
     }
     border-bottom-left-radius: variables.$border-radius;
     border-bottom-right-radius: variables.$border-radius;
