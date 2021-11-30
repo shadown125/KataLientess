@@ -1,7 +1,7 @@
 function PageBody (props) {
     return (
-        <main className="page-body">
-            <div className="container">
+        <main>
+            <div className="page-body">
                 {props.children}
             </div>
         </main>
