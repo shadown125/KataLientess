@@ -1,0 +1,52 @@
+@use '../susanoo';
+@use '../grid/variables' as grid;
+@use '../lists';
+
+.page-header {
+    background: {
+        image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
+    }
+    border-top-left-radius: grid.$border-radius;
+    border-top-right-radius: grid.$border-radius;
+    padding: 0 susanoo.rem-calc(24);
+    .icon-menu {
+        display: none;
+    }
+    @media only screen and (max-width: 640px) {
+        padding: {
+            top: susanoo.rem-calc(8);
+            bottom: susanoo.rem-calc(8);
+        }
+        .actions {
+            display: none;
+        }
+        .icon-menu {
+            display: block;
+        }
+        .headline {
+            display: none;
+        }
+    }
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .image-wrapper {
+        height: susanoo.rem-calc(74);
+        width: susanoo.rem-calc(74);
+    }
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    ul {
+        @include lists.reset-list();
+    }
+    button {
+        > span {
+            display: none;
+        }
+    }
+}
