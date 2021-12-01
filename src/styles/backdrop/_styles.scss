@@ -16,4 +16,8 @@
     &.is-active {
         opacity: 1;
     }
+    &.is-active-full {
+        opacity: 1;
+        z-index: 1;
+    }
 }
