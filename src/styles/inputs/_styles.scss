@@ -1,0 +1,41 @@
+@use '../susanoo';
+
+label {
+    margin: {
+        bottom: susanoo.rem-calc(8);
+    }
+}
+
+input,
+textarea {
+    border: {
+        style: unset;
+        width: unset;
+        color: unset;
+    }
+    &:focus,
+    &:focus-within {
+        outline: {
+            color: #5fd1ce;
+        }
+    }
+}
+
+input {
+    margin: {
+        bottom: susanoo.rem-calc(32);
+    }
+    border: {
+        radius: susanoo.rem-calc(50);
+    }
+    padding: 4px susanoo.rem-calc(12);
+}
+
+textarea {
+    border: {
+        radius: susanoo.rem-calc(10);
+    }
+    resize: none;
+    height: susanoo.rem-calc(100);
+    padding: susanoo.rem-calc(6) susanoo.rem-calc(12);
+}
