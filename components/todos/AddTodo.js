@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import Notification from "../elements/Notification";
 
 function AddTodo (props) {
     const [notActive, setNotActive] = useState(false);
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredDescription, setEnteredDescription] = useState('');
+    const [submitted, setSubmitted] = useState(false);
 
     function onRemovingActive() {
         setNotActive(false);
@@ -13,15 +15,18 @@ function AddTodo (props) {
 
     const titleChangeHandler = (event) => {
         setEnteredTitle(event.target.value);
+        setSubmitted(false);
     }
 
     const descriptionChangeHandler = (event) => {
         setEnteredDescription(event.target.value);
+        setSubmitted(false);
     }
 
     const submitHandler = (event) => {
         event.preventDefault();
 
+        setSubmitted(true);
         const todoData = {
             title: enteredTitle,
             description: enteredDescription,
@@ -34,6 +39,7 @@ function AddTodo (props) {
 
     return (
         <section className={`new-todo${props.activeTodo ? ' is-active' : ''}`}>
+            <Notification successMessage={submitted} />
             <div className="container">
                 <button className="button button--medium icon-cross" onClick={onRemovingActive}>
                     <span>Close button</span>
