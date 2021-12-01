@@ -1,5 +1,6 @@
 @use '../susanoo';
 @use '../icons';
+@use 'variables';
 
 button {
     background: {
@@ -11,13 +12,13 @@ button {
 
 .button {
     --circle: #{susanoo.rem-calc(26)};
-    --background-color: #65dfc9;
+    --background-color: #{variables.$background-hover-color};
 
     position: relative;
     width: var(--circle);
     height: var(--circle);
     background: {
-        color: #6cdbeb;
+        color: variables.$background-color;
     }
     border: {
         radius: 50%;
@@ -40,7 +41,7 @@ button {
     &::before {
         @include susanoo.icon(null, true);
         @include susanoo.absolute-center();
-        color: #62b4e6;
+        color: variables.$before-color;
         font: {
             size: map-get(icons.$icon-sizes, 'big');
         }
