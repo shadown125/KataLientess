@@ -1,0 +1,142 @@
+@use '../susanoo';
+@use '../lists';
+@use '../grid/variables' as grid;
+@use 'variables';
+
+.todos {
+    background: {
+        image: linear-gradient(to right bottom, grid.$main-linear-gradient-color-1, grid.$main-linear-gradient-color-2);
+    }
+    border: {
+        radius: grid.$border-radius;
+    }
+    margin: {
+        top: susanoo.rem-calc(24);
+    }
+    padding: susanoo.rem-calc(24);
+    height: susanoo.rem-calc(550);
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+        width: susanoo.rem-calc(36);
+    }
+    &::-webkit-scrollbar-thumb {
+        border: susanoo.rem-calc(12) solid rgba(0, 0, 0, 0);
+        background-clip: padding-box;
+        background: {
+            color: variables.$scrollbar-background-color;
+        }
+        border: {
+            radius: susanoo.rem-calc(30);
+        }
+        &:hover {
+            background: {
+                color: variables.$scrollbar-hover-background-color;
+            }
+        }
+    }
+    ul {
+        @include lists.reset-list();
+    }
+    .head-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: {
+            bottom: susanoo.rem-calc(12);
+        }
+        border: {
+            bottom: {
+                style: solid;
+                width: 2px;
+                color: #68ddd5;
+            }
+        }
+        .headline {
+            margin: {
+                bottom: unset;
+            }
+        }
+        ul {
+            display: flex;
+            gap: susanoo.rem-calc(16);
+        }
+    }
+    .todo-list {
+        --circle: #{susanoo.rem-calc(20)};
+
+        > li {
+            margin: {
+                top: susanoo.rem-calc(24);
+            }
+            &:first-child {
+                .header,
+                .main {
+                    &::before {
+                        background: {
+                            color: #68ddd5;
+                        }
+                    }
+                }
+            }
+        }
+        .header {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: {
+                bottom: susanoo.rem-calc(16);
+            }
+            @include susanoo.breakpoint(medium) {
+                padding: {
+                    left: susanoo.rem-calc(32);
+                }
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    transform: translateY(-50%);
+                    height: var(--circle);
+                    width: var(--circle);
+                    background: {
+                        color: #999;
+                    }
+                    border: {
+                        radius: 50%;
+                    }
+                }
+            }
+            .headline {
+                margin: {
+                    bottom: unset;
+                }
+            }
+            .actions {
+                display: flex;
+                gap: susanoo.rem-calc(16);
+            }
+        }
+        .main {
+            position: relative;
+            @include susanoo.breakpoint(medium) {
+                padding: {
+                    left: susanoo.rem-calc(34);
+                }
+                &::before {
+                    --offset-top: #{susanoo.rem-calc(10)};
+
+                    content: "";
+                    position: absolute;
+                    top: calc(var(--offset-top) / -1);
+                    left: susanoo.rem-calc(9);
+                    height: calc(100% + var(--offset-top));
+                    width: 2px;
+                    background: {
+                        color: #999;
+                    }
+                }
+            }
+        }
+    }
+}
