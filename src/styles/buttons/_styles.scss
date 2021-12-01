@@ -65,6 +65,7 @@ button {
 
         width: unset;
         height: unset;
+        color: variables.$primary-color;
         padding: susanoo.rem-calc(8) susanoo.rem-calc(16);
         border: {
             radius: var(--border-radius);
