@@ -9,6 +9,7 @@ function AddTodo (props) {
 
     function onRemovingActive() {
         setNotActive(false);
+        setSubmitted(false);
 
         props.removeActive(notActive);
     }
