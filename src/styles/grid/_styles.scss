@@ -1,5 +1,25 @@
 @use "../susanoo";
 @use "variables";
+@use '../todos/variables' as todos;
+
+html {
+    &::-webkit-scrollbar {
+        width: susanoo.rem-calc(14);
+    }
+    &::-webkit-scrollbar-thumb {
+        background: {
+            color: todos.$scrollbar-hover-background-color;
+        }
+        border: {
+            radius: susanoo.rem-calc(15);
+        }
+        &:hover {
+            background: {
+                color: variables.$html-scrollbar-hover-background-color;
+            }
+        }
+    }
+}
 
 body {
     font: {
