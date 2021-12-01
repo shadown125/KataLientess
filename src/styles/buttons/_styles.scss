@@ -81,6 +81,11 @@ button {
         }
     }
     &.icon-menu {
+        &.is-active {
+            &::before {
+                @include susanoo.icon(icons.$icon-cross, false);
+            }
+        }
         &::before {
             @include susanoo.icon(icons.$icon-menu, false);
         }

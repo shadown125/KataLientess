@@ -28,7 +28,7 @@ function PageHeader (props) {
                         </button>
                     </li>
                 </ul>
-                <button className="button button--medium icon-menu" type="button" onClick={setOpenNavigation}>
+                <button className={`button button--medium icon-menu${!navigationIsOpen ? ' is-active' : ''}`} type="button" onClick={setOpenNavigation}>
                     <span>Menu</span>
                 </button>
             </div>
