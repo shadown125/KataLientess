@@ -31,10 +31,6 @@
 
         align-self: flex-end;
     }
-    .buttons-container {
-        display: flex;
-        justify-content: space-between;
-    }
     ul {
         @include lists.reset-list();
     }

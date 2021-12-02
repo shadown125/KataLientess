@@ -124,3 +124,8 @@ button {
         height: calc(var(--circle) * 2.5);
     }
 }
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+}
