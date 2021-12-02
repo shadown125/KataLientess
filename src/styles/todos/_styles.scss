@@ -63,7 +63,18 @@
     }
     .todo-list {
         --circle: #{susanoo.rem-calc(20)};
-
+        &.is-done {
+            > li {
+                .header,
+                .main {
+                    &::before {
+                        background: {
+                            color: #68ddd5;
+                        }
+                    }
+                }
+            }
+        }
         > li {
             margin: {
                 top: susanoo.rem-calc(24);
