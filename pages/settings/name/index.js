@@ -1,31 +1,26 @@
 import HomePage from "../../index";
 import FullActiveBackdrop from "../../../components/layout/FullActiveBackdrop";
-import {Fragment, useState} from "react";
+import {Fragment, useRef} from "react";
 import Link from "next/link";
 import Profile from "../../../components/elements/Profile";
 
 function SettingsName() {
-    const [enteredName, setEnteredName] = useState('');
-    const [enteredLastName, setEnteredLastName] = useState('');
-
-    const nameChangeHandler = (event) => {
-        setEnteredName(event.target.value);
-    }
-
-    const lastNameChangeHandler = (event) => {
-        setEnteredLastName(event.target.value);
-    }
+    const nameRef = useRef();
+    const lastNameRef = useRef();
     
     const submitHandler = (event) => {
         event.preventDefault();
+
+        const enteredName = nameRef.current.value;
+        const enteredLastName = lastNameRef.current.value;
 
         const nameData = {
             firstName: enteredName,
             LastName: enteredLastName,
             id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
         }
-        setEnteredName('');
-        setEnteredLastName('');
+        nameRef.current.value = '';
+        lastNameRef.current.value = '';
     }
     
     return (
@@ -38,9 +33,9 @@ function SettingsName() {
                 <Profile />
                 <form onSubmit={submitHandler}>
                     <label htmlFor="first-name">Change first name:</label>
-                    <input type="text" name="first-name" id="first-name" placeholder="Your new name" value={enteredName} onChange={nameChangeHandler}/>
+                    <input type="text" name="first-name" id="first-name" placeholder="Your new name" ref={nameRef}/>
                     <label htmlFor="last-name">Change last name:</label>
-                    <input type="text" name="last-name" id="last-name" placeholder="Your new last name" value={enteredLastName} onChange={lastNameChangeHandler}/>
+                    <input type="text" name="last-name" id="last-name" placeholder="Your new last name" ref={lastNameRef}/>
                     <div className="buttons-container">
                         <Link href="/settings">
                             <a className="button button-primary">Back</a>
