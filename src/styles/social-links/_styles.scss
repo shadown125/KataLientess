@@ -1,0 +1,18 @@
+@use '../susanoo';
+@use '../lists';
+
+.social-links {
+    @include lists.reset-list();
+    display: flex;
+    justify-content: center;
+    gap: susanoo.rem-calc(24);
+    margin: {
+        bottom: susanoo.rem-calc(12);
+    }
+    li {
+        height: susanoo.rem-calc(40);
+    }
+    span {
+        display: none;
+    }
+}
