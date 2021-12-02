@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Profile from "../elements/Profile";
 
 function MainNavigation(props) {
 
@@ -9,15 +10,7 @@ function MainNavigation(props) {
     return (
         <aside className="nav-aside">
             <nav className={`main-navigation${props.currentMainNavigationState ? ' is-active' : ''}`}>
-                <div className="profile">
-                    <div className="image-wrapper">
-                        <img src="dummyProfileImage.jpg" alt="Profile Image"/>
-                    </div>
-                    <div className="content">
-                        <div>Dawid</div>
-                        <div>Ol</div>
-                    </div>
-                </div>
+                <Profile />
                 <ul className="actions">
                     <li>
                         <Link href="/">
@@ -34,9 +27,11 @@ function MainNavigation(props) {
                         </Link>
                     </li>
                     <li>
-                        <button className="link icon-link icon-configs" type="button">
-                            <span>Settings</span>
-                        </button>
+                        <Link href="/settings">
+                            <a className="link icon-link icon-configs">
+                                <span>Settings</span>
+                            </a>
+                        </Link>
                     </li>
                     <li>
                         <button className="link icon-link icon-logout" type="button">
