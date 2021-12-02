@@ -1,9 +1,8 @@
 import HomePage from "../../index";
 import FullActiveBackdrop from "../../../components/layout/FullActiveBackdrop";
-import {Fragment} from "react";
+import {Fragment, useState} from "react";
 import Link from "next/link";
 import Profile from "../../../components/elements/Profile";
-import {useState} from 'react';
 
 function SettingsName() {
     const [enteredName, setEnteredName] = useState('');
