@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 
 function PageHeader (props) {
     const [ navigationIsOpen, setNavigationIsOpen ] = useState(true);
@@ -23,9 +24,9 @@ function PageHeader (props) {
                 <h1 className="headline h1">KataLientesS</h1>
                 <ul className="actions">
                     <li>
-                        <button className="button button--big icon-configs" type="button">
-                            <span>Options</span>
-                        </button>
+                        <Link href="/settings">
+                            <a className="button button--big icon-configs" type="button" />
+                        </Link>
                     </li>
                 </ul>
                 <button className={`button button--medium icon-menu${!navigationIsOpen ? ' is-active' : ''}`} type="button" onClick={setOpenNavigation}>
