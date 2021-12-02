@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Notification from "../elements/Notification";
 
 function AddTodo (props) {
     const [notActive, setNotActive] = useState(false);
-    const [enteredTitle, setEnteredTitle] = useState('');
-    const [enteredDescription, setEnteredDescription] = useState('');
     const [submitted, setSubmitted] = useState(false);
+
+    const titleInputRef = useRef();
+    const descriptionInputRef = useRef();
 
     function onRemovingActive() {
         setNotActive(false);
@@ -14,28 +15,21 @@ function AddTodo (props) {
         props.removeActive(notActive);
     }
 
-    const titleChangeHandler = (event) => {
-        setEnteredTitle(event.target.value);
-        setSubmitted(false);
-    }
-
-    const descriptionChangeHandler = (event) => {
-        setEnteredDescription(event.target.value);
-        setSubmitted(false);
-    }
-
     const submitHandler = (event) => {
         event.preventDefault();
-
         setSubmitted(true);
+
+        const enteredTitle = titleInputRef.current.value;
+        const enteredDescription = descriptionInputRef.current.value;
+
         const todoData = {
             title: enteredTitle,
             description: enteredDescription,
             id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
         }
         props.onSaveTodoData(todoData);
-        setEnteredTitle('');
-        setEnteredDescription('');
+        titleInputRef.current.value = '';
+        descriptionInputRef.current.value = '';
     }
 
     return (
@@ -47,9 +41,9 @@ function AddTodo (props) {
                 </button>
                 <form onSubmit={submitHandler}>
                     <label htmlFor="title">Title:*</label>
-                    <input type="text" name="title" className="title" id="title" value={enteredTitle} placeholder="Title for your task" onChange={titleChangeHandler} />
+                    <input type="text" name="title" className="title" id="title" placeholder="Title for your task" ref={titleInputRef} />
                     <label htmlFor="description">Description:</label>
-                    <textarea name="description" id="description" placeholder="Description text for your Task (optional)" value={enteredDescription}  onChange={descriptionChangeHandler} />
+                    <textarea name="description" id="description" placeholder="Description text for your Task (optional)" ref={descriptionInputRef} />
                     <button className="button button-primary" type="submit">Add Todo</button>
                 </form>
             </div>
