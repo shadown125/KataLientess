@@ -1,0 +1,50 @@
+@use '../susanoo';
+@use '../grid/variables' as grid;
+
+.login {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: {
+        image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
+    }
+    width: susanoo.rem-calc(700);
+    max: {
+        width: susanoo.rem-calc(1440);
+    }
+    padding: susanoo.rem-calc(24) susanoo.rem-calc(80);
+    border: {
+        radius: grid.$border-radius;
+    }
+    @media only screen and (max-width: 940px) {
+        width: 80vw;
+    }
+    @media only screen and (max-width: 640px) {
+        width: 90vw;
+        padding: susanoo.rem-calc(12) susanoo.rem-calc(24);
+    }
+    .login-input {
+        margin: {
+            bottom: susanoo.rem-calc(16);
+        }
+    }
+    .headline {
+        color: #65aaec;
+        text-align: center;
+    }
+    form {
+        display: flex;
+        flex: {
+            direction: column;
+        }
+    }
+    .footer {
+        margin: {
+            top: susanoo.rem-calc(24);
+        }
+        text: {
+            align: center;
+        }
+    }
+}
