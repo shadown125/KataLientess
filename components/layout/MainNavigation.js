@@ -8,8 +8,8 @@ function MainNavigation(props) {
     }
 
     return (
-        <aside className="nav-aside">
-            <nav className={`main-navigation${props.currentMainNavigationState ? ' is-active' : ''}`}>
+        <aside className={`nav-aside${props.currentMainNavigationState ? ' is-active' : ''}`}>
+            <nav className="main-navigation">
                 <Profile />
                 <ul className="actions">
                     <li>
