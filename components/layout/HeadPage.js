@@ -22,7 +22,7 @@ function HeadPage () {
 
             <title>KataLientesS</title>
 
-            <link rel="stylesheet" href="main.css"/>
+            <link rel="stylesheet" href="/main.css"/>
         </Head>
     );
 }
