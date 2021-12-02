@@ -1,0 +1,78 @@
+@use '../susanoo';
+@use '../lists';
+@use '../grid/variables' as grid;
+@use 'variables';
+
+.settings {
+    --border-radius: calc(#{grid.$border-radius} / 2);
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: {
+        image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
+    }
+    width: 90vw;
+    max: {
+        width: susanoo.rem-calc(600);
+    }
+    border: {
+        radius: var(--border-radius);
+    }
+    padding: susanoo.rem-calc(24);
+    z-index: 2;
+    .icon-cross {
+        position: absolute;
+        top: susanoo.rem-calc(-16);
+        right: susanoo.rem-calc(-16);
+    }
+    .button-primary {
+
+        align-self: flex-end;
+    }
+    .buttons-container {
+        display: flex;
+        justify-content: space-between;
+    }
+    ul {
+        @include lists.reset-list();
+    }
+    li {
+        &:first-child {
+            a {
+                border-top-left-radius: var(--border-radius);
+            }
+        }
+        &:last-child {
+            a {
+                border-bottom-right-radius: var(--border-radius);
+                border-bottom-left-radius: var(--border-radius);
+            }
+        }
+    }
+    a {
+        &:not(.button) {
+            padding: susanoo.rem-calc(16);
+        }
+        text-align: center;
+        transition: color 0.2s linear, background-color 0.2s linear;
+        &:hover {
+            background: {
+                color: variables.$anchor-background-color;
+            }
+        }
+    }
+    .profile {
+        justify-content: center;
+        margin: {
+            bottom: susanoo.rem-calc(24);
+        }
+    }
+    form {
+        display: flex;
+        flex: {
+            direction: column;
+        }
+    }
+}
