@@ -18,6 +18,9 @@ a {
     &:focus:not(:focus-visible) {
         outline: none;
     }
+    &.is-active {
+        color: variables.$links-hover-color;
+    }
 }
 
 .icon-link {

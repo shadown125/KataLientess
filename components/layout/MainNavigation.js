@@ -1,7 +1,31 @@
 import Link from "next/link";
 import Profile from "../elements/Profile";
+import {useRouter} from "next/router";
 
 function MainNavigation(props) {
+    const router = useRouter();
+    const navLinks = [
+        {
+            title: 'Today',
+            path: '/',
+            icon: 'icon-note',
+        },
+        {
+            title: 'Done todos',
+            path: '/done-todos',
+            icon: 'icon-note-checked'
+        },
+        {
+            title: 'Settings',
+            path: '/settings',
+            icon: 'icon-configs',
+        },
+        {
+            title: 'Logout',
+            path: '/login',
+            icon: 'icon-logout',
+        }
+    ]
 
     function getFullYear() {
         return new Date().getFullYear();
@@ -12,32 +36,15 @@ function MainNavigation(props) {
             <nav className="main-navigation">
                 <Profile />
                 <ul className="actions">
-                    <li>
-                        <Link href="/">
-                            <a className="link icon-link icon-note">
-                                <span>Today</span>
-                            </a>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/done-todos">
-                            <a className="link icon-link icon-note-checked">
-                                <span>Done Todos</span>
-                            </a>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/settings">
-                            <a className="link icon-link icon-configs">
-                                <span>Settings</span>
-                            </a>
-                        </Link>
-                    </li>
-                    <li>
-                        <button className="link icon-link icon-logout" type="button">
-                            <span>Logout</span>
-                        </button>
-                    </li>
+                    {navLinks.map((item, index) => (
+                        <li key={index}>
+                            <Link href={item.path}>
+                                <a className={`link icon-link ${item.icon}${router.pathname === item.path ? ' is-active' : ''}`}>
+                                    <span>{item.title}</span>
+                                </a>
+                            </Link>
+                        </li>
+                    ))}
                 </ul>
                 <div className="credits">&copy; {getFullYear()} All rights reserved by Dawid Oleksiuk</div>
             </nav>
