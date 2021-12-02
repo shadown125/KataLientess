@@ -38,24 +38,14 @@
     ul {
         @include lists.reset-list();
     }
-    li {
-        &:first-child {
-            a {
-                border-top-left-radius: var(--border-radius);
-            }
-        }
-        &:last-child {
-            a {
-                border-bottom-right-radius: var(--border-radius);
-                border-bottom-left-radius: var(--border-radius);
-            }
-        }
-    }
     a {
         &:not(.button) {
             padding: susanoo.rem-calc(16);
         }
         text-align: center;
+        border: {
+            radius: var(--border-radius);
+        }
         transition: color 0.2s linear, background-color 0.2s linear;
         &:hover {
             background: {
