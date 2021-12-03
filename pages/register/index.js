@@ -46,19 +46,19 @@ function Register() {
                     <div className="row">
                         <div className="col-half">
                             <label htmlFor="first-name">First name:*</label>
-                            <input type="text" name="first-name" id="first-name" ref={firstNameInputRef}/>
+                            <input type="text" name="first-name" id="first-name" ref={firstNameInputRef} placeholder="Name"/>
                         </div>
                         <div className="col-half">
                             <label htmlFor="last-name">Last name:</label>
-                            <input type="text" name="last-name" id="last-name" ref={lastNameInputRef}/>
+                            <input type="text" name="last-name" id="last-name" ref={lastNameInputRef} placeholder="Last name"/>
                         </div>
                     </div>
                     <label htmlFor="email">E-Mail:*</label>
-                    <input type="email" name="email" id="email" ref={emailInputRef}/>
+                    <input type="email" name="email" id="email" ref={emailInputRef} placeholder="E-Mail"/>
                     <label htmlFor="password">Password:*</label>
-                    <input type="password" name="password" id="password" ref={passwordInputRef}/>
+                    <input type="password" name="password" id="password" ref={passwordInputRef} placeholder="Password"/>
                     <label htmlFor="repeat-password">Repeat password:*</label>
-                    <input type="password" name="repeat-password" id="repeat-password" ref={repeatPasswordInputRef}/>
+                    <input type="password" name="repeat-password" id="repeat-password" ref={repeatPasswordInputRef} placeholder="Repeat the entered password"/>
                     <div className="buttons-container">
                         <Link href="/login">
                             <a className="button button-primary">Back to login</a>
