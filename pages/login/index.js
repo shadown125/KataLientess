@@ -14,7 +14,7 @@ function LoginPage () {
 
     return (
         <main>
-            <section className="login">
+            <section className="intro-panel">
                 <div className="container">
                     <h1 className="headline h2">Login</h1>
                     <form onSubmit={submitHandler}>
