@@ -44,3 +44,31 @@ textarea {
     height: susanoo.rem-calc(100);
     padding: susanoo.rem-calc(6) susanoo.rem-calc(12);
 }
+
+form {
+    .col-half {
+        display: flex;
+        flex: {
+            direction: column;
+            grow: 1;
+        }
+        max: {
+            width: 50%;
+        }
+        @media only screen and (max-width: 940px) {
+            max: {
+                width: unset;
+            }
+        }
+    }
+    .row {
+        display: flex;
+        gap: susanoo.rem-calc(20);
+        @media only screen and (max-width: 940px) {
+            gap: unset;
+            flex: {
+                direction: column;
+            }
+        }
+    }
+}
