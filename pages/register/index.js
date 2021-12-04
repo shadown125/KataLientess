@@ -1,12 +1,9 @@
 import Link from "next/link";
-import {useRef} from 'react';
+import {Formik, Form, useField} from "formik";
+import * as yup from 'yup';
+import {Fragment} from "react";
 
 function Register() {
-    const firstNameInputRef = useRef();
-    const lastNameInputRef = useRef();
-    const emailInputRef = useRef();
-    const passwordInputRef = useRef();
-    const repeatPasswordInputRef = useRef();
 
     /**
      * @returns {number}
@@ -15,57 +12,143 @@ function Register() {
         return new Date().getFullYear();
     }
 
-    const submitHandler = (event) => {
-        event.preventDefault();
+    const NameField = (props) => {
+        const [field, meta] = useField(props);
+        const errorText = meta.error && meta.touched ? meta.error : '';
+        if (errorText) {
+            return (
+                <Fragment>
+                    <label htmlFor="firstName">Change first name:</label>
+                    <input id="firstName" className="is-invalid" placeholder="Name" {...field}/>
+                    <div className="error-message">{errorText}</div>
+                </Fragment>
+            );
+        }
 
-        const enteredFirstName = firstNameInputRef.current.value;
-        const enteredLastName = lastNameInputRef.current.value;
-        const enteredEmail = emailInputRef.current.value;
-        const enteredPassword = passwordInputRef.current.value;
-        const enteredRepeatPassword = repeatPasswordInputRef.current.value;
+        return (
+            <Fragment>
+                <label htmlFor="firstName">First name:*</label>
+                <input id="firstName" placeholder="Name" {...field}/>
+            </Fragment>
+        );
+    }
+
+    const LastNameField = (props) => {
+        const [field] = useField(props);
+        return (
+            <Fragment>
+                <label htmlFor="lastName">Last name:</label>
+                <input type="input" placeholder="Last name" id="lastName" {...field} />
+            </Fragment>
+        );
+    }
+
+    const EmailField = (props) => {
+        const [field, meta] = useField(props);
+        const errorText = meta.error && meta.touched ? meta.error : '';
+        if (errorText) {
+            return (
+                <Fragment>
+                    <label htmlFor="email">E-Mail:*</label>
+                    <input type="email" id="email" className="is-invalid" placeholder="E-Mail" {...field}/>
+                    <div className="error-message">{errorText}</div>
+                </Fragment>
+            );
+        }
+
+        return (
+            <Fragment>
+                <label htmlFor="email">E-Mail:*</label>
+                <input type="email" id="email" placeholder="E-Mail" {...field}/>
+            </Fragment>
+        );
+    }
+
+    const PasswordField = (props) => {
+        const [field, meta] = useField(props);
+        const errorText = meta.error && meta.touched ? meta.error : '';
+        if (errorText) {
+            return (
+                <Fragment>
+                    <label htmlFor="password">Password:</label>
+                    <input type="password" id="password" className="is-invalid" placeholder="Password" {...field} />
+                    <div className="error-message">{errorText}</div>
+                </Fragment>
+            );
+        }
+        return (
+            <Fragment>
+                <label htmlFor="password">Password:</label>
+                <input type="password" id="password" placeholder="Password" {...field} />
+            </Fragment>
+        );
+    }
+
+    const RepeatedPassword = (props) => {
+        const [field, meta] = useField(props);
+        const errorText = meta.error && meta.touched ? meta.error : '';
+        if (errorText) {
+            return (
+                <Fragment>
+                    <label htmlFor="repeatedPassword">Repeat password:</label>
+                    <input type="password" className="is-invalid" id="repeatedPassword" placeholder="Repeat password" {...field} />
+                    <div className="error-message">{errorText}</div>
+                </Fragment>
+            );
+        }
+        return (
+            <Fragment>
+                <label htmlFor="repeatedPassword">Repeat password:</label>
+                <input type="password" id="repeatedPassword" placeholder="Repeat password" {...field} />
+            </Fragment>
+        );
+    }
+
+    const validationSchema = yup.object({
+        firstName: yup.string().required("First name is a required field").max(30, "First name must be at most 30 characters"),
+        email: yup.string().email("Email must be a valid").required("Email is a required field"),
+        password: yup.string().required("Password is a required field").max(50, "Password must be at most 50 characters").min(6, "Password must be at least 6 characters"),
+        repeatedPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match'),
+    })
+
+    const submitHandler = (data, {setSubmitting, resetForm}) => {
+        setSubmitting(true);
 
         const userData = {
-            firstName: enteredFirstName,
-            lastName: enteredLastName,
-            email: enteredEmail,
-            password: enteredPassword,
-            repeatPassword: enteredRepeatPassword,
+            ...data,
         }
-        firstNameInputRef.current.value = '';
-        lastNameInputRef.current.value = '';
-        emailInputRef.current.value = '';
-        passwordInputRef.current.value = '';
-        repeatPasswordInputRef.current.value = '';
+
+        setSubmitting(false);
+        resetForm(true);
     }
 
     return (
         <section className="intro-panel register">
             <div className="container">
-                <h1 className="headline h2">Login</h1>
-                <form onSubmit={submitHandler}>
-                    <div className="row">
-                        <div className="col-half">
-                            <label htmlFor="first-name">First name:*</label>
-                            <input type="text" name="first-name" id="first-name" ref={firstNameInputRef} placeholder="Name"/>
-                        </div>
-                        <div className="col-half">
-                            <label htmlFor="last-name">Last name:</label>
-                            <input type="text" name="last-name" id="last-name" ref={lastNameInputRef} placeholder="Last name"/>
-                        </div>
-                    </div>
-                    <label htmlFor="email">E-Mail:*</label>
-                    <input type="email" name="email" id="email" ref={emailInputRef} placeholder="E-Mail"/>
-                    <label htmlFor="password">Password:*</label>
-                    <input type="password" name="password" id="password" ref={passwordInputRef} placeholder="Password"/>
-                    <label htmlFor="repeat-password">Repeat password:*</label>
-                    <input type="password" name="repeat-password" id="repeat-password" ref={repeatPasswordInputRef} placeholder="Repeat the entered password"/>
-                    <div className="buttons-container">
-                        <Link href="/login">
-                            <a className="button button-primary">Back to login</a>
-                        </Link>
-                        <button className="button button-primary" type="submit">Submit</button>
-                    </div>
-                </form>
+                <h1 className="headline h2">Register</h1>
+                <Formik initialValues={{ firstName: '', lastName: '', email: '', password: '', repeatedPassword: '', }} onSubmit={submitHandler} validationSchema={validationSchema}>
+                    {({ isSubmitting }) => (
+                        <Form>
+                            <div className="row">
+                                <div className="col-half">
+                                    <NameField name="firstName" />
+                                </div>
+                                <div className="col-half">
+                                    <LastNameField name="lastName" />
+                                </div>
+                            </div>
+                            <EmailField name="email" />
+                            <PasswordField name="password" />
+                            <RepeatedPassword name="repeatedPassword" />
+                            <div className="buttons-container">
+                                <Link href="/login">
+                                    <a className="button button-primary">Back to login</a>
+                                </Link>
+                                <button className="button button-primary" disabled={isSubmitting} type="submit">Submit</button>
+                            </div>
+                        </Form>
+                    )}
+                </Formik>
                 <div className="footer">
                     <ul className="social-links">
                         <li>
