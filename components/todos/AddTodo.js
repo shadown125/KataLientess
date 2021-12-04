@@ -1,12 +1,11 @@
-import { useState, useRef } from 'react';
+import {useState, Fragment} from 'react';
 import Notification from "../elements/Notification";
+import {Formik, Form, useField} from "formik";
+import * as yup from 'yup';
 
 function AddTodo (props) {
     const [notActive, setNotActive] = useState(false);
     const [submitted, setSubmitted] = useState(false);
-
-    const titleInputRef = useRef();
-    const descriptionInputRef = useRef();
 
     function onRemovingActive() {
         setNotActive(false);
@@ -15,21 +14,53 @@ function AddTodo (props) {
         props.removeActive(notActive);
     }
 
-    const submitHandler = (event) => {
-        event.preventDefault();
-        setSubmitted(true);
+    const TitleField = (props) => {
+        const [field, meta] = useField(props);
+        const errorText = meta.error && meta.touched ? meta.error : '';
+        if (errorText) {
+            return (
+                <Fragment>
+                    <label htmlFor="title">Title:*</label>
+                    <input placeholder="Title for your task" className="title is-invalid" id="title" {...field} />
+                    <div className="error-message">{errorText}</div>
+                </Fragment>
+            );
+        }
+        return (
+            <Fragment>
+                <label htmlFor="title">Title:*</label>
+                <input placeholder="Title for your task" id="title" {...field} />
+            </Fragment>
+        );
+    }
 
-        const enteredTitle = titleInputRef.current.value;
-        const enteredDescription = descriptionInputRef.current.value;
+    const TextareaField = (props) => {
+        const [field] = useField(props);
+        return (
+            <Fragment>
+                <label htmlFor="description">Description:</label>
+                <textarea id="description" placeholder="Description text for your Task (optional)" {...field} />
+            </Fragment>
+        );
+    }
+
+    const validationSchema = yup.object({
+        title: yup.string().required().max(50),
+    })
+
+    const submitHandler = (data, {setSubmitting, resetForm}) => {
+        setSubmitted(true);
+        setSubmitting(true);
 
         const todoData = {
-            title: enteredTitle,
-            description: enteredDescription,
+            ...data,
             id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
         }
+
         props.onSaveTodoData(todoData);
-        titleInputRef.current.value = '';
-        descriptionInputRef.current.value = '';
+
+        setSubmitting(false);
+        resetForm(true);
     }
 
     return (
@@ -39,13 +70,15 @@ function AddTodo (props) {
                 <button className="button button--medium icon-cross" onClick={onRemovingActive}>
                     <span>Close button</span>
                 </button>
-                <form onSubmit={submitHandler}>
-                    <label htmlFor="title">Title:*</label>
-                    <input type="text" name="title" className="title" id="title" placeholder="Title for your task" ref={titleInputRef} />
-                    <label htmlFor="description">Description:</label>
-                    <textarea name="description" id="description" placeholder="Description text for your Task (optional)" ref={descriptionInputRef} />
-                    <button className="button button-primary" type="submit">Add Todo</button>
-                </form>
+                <Formik initialValues={{ title: '', description: '' }} onSubmit={submitHandler} validationSchema={validationSchema}>
+                    {({ isSubmitting }) => (
+                        <Form>
+                            <TitleField type="input" name="title" />
+                            <TextareaField name="description" />
+                            <button className="button button-primary" disabled={isSubmitting} type="submit">Add Todo</button>
+                        </Form>
+                    )}
+                </Formik>
             </div>
         </section>
     );
