@@ -1,4 +1,7 @@
 import Link from "next/link";
+import {Formik, Form, useField} from "formik";
+import * as yup from 'yup';
+import {Fragment} from "react";
 
 function LoginPage () {
     /**
@@ -8,8 +11,61 @@ function LoginPage () {
         return new Date().getFullYear();
     }
 
-    const submitHandler = (event) => {
-        event.preventDefault();
+    const EmailField = (props) => {
+        const [field, meta] = useField(props);
+        const errorText = meta.error && meta.touched ? meta.error : '';
+        if (errorText) {
+            return (
+                <Fragment>
+                    <label htmlFor="login">Login:</label>
+                    <input type="email" className="login-input is-invalid" name="login" id="login" placeholder="E-Mail" {...field}/>
+                    <div className="error-message">{errorText}</div>
+                </Fragment>
+            );
+        }
+
+        return (
+            <Fragment>
+                <label htmlFor="login">Login:</label>
+                <input type="email" className="login-input" name="login" id="login" placeholder="E-Mail" {...field}/>
+            </Fragment>
+        );
+    }
+
+    const PasswordField = (props) => {
+        const [field, meta] = useField(props);
+        const errorText = meta.error && meta.touched ? meta.error : '';
+        if (errorText) {
+            return (
+                <Fragment>
+                    <label htmlFor="password">Password:</label>
+                    <input type="password" id="password" className="is-invalid" placeholder="Password" {...field} />
+                    <div className="error-message">{errorText}</div>
+                </Fragment>
+            );
+        }
+        return (
+            <Fragment>
+                <label htmlFor="password">Password:</label>
+                <input type="password" id="password" placeholder="Password" {...field} />
+            </Fragment>
+        );
+    }
+
+    const validationSchema = yup.object({
+        email: yup.string().email("Email must be a valid").required("Email is a required field"),
+        password: yup.string().required("Password is a required field"),
+    })
+
+    const submitHandler = (data, {setSubmitting, resetForm}) => {
+        setSubmitting(true);
+
+        const loginData = {
+            ...data,
+        }
+
+        setSubmitting(false);
+        resetForm(true);
     }
 
     return (
@@ -17,18 +73,20 @@ function LoginPage () {
             <section className="intro-panel">
                 <div className="container">
                     <h1 className="headline h2">Login</h1>
-                    <form onSubmit={submitHandler}>
-                        <label htmlFor="login">Login:</label>
-                        <input type="email" className="login-input" name="login" id="login" placeholder="E-Mail"/>
-                        <label htmlFor="password">Password</label>
-                        <input type="password" name="password" id="password" placeholder="Password"/>
-                        <div className="buttons-container">
-                            <Link href="/register">
-                                <a className="button button-primary">Register</a>
-                            </Link>
-                            <button className="button button-primary" type="submit">Login</button>
-                        </div>
-                    </form>
+                    <Formik initialValues={{ email: '', password: '' }} onSubmit={submitHandler} validationSchema={validationSchema}>
+                        {({ isSubmitting }) => (
+                            <Form>
+                                <EmailField name="email" />
+                                <PasswordField name="password" />
+                                <div className="buttons-container">
+                                    <Link href="/register">
+                                        <a className="button button-primary">Register</a>
+                                    </Link>
+                                    <button className="button button-primary" disabled={isSubmitting} type="submit">Login</button>
+                                </div>
+                            </Form>
+                        )}
+                    </Formik>
                     <div className="footer">
                         <ul className="social-links">
                             <li>
