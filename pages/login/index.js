@@ -18,7 +18,7 @@ function LoginPage () {
             return (
                 <Fragment>
                     <label htmlFor="login">Login:</label>
-                    <input type="email" className="login-input is-invalid" name="login" id="login" placeholder="E-Mail" {...field}/>
+                    <input type="email" className="login-input is-invalid" id="login" placeholder="E-Mail" {...field}/>
                     <div className="error-message">{errorText}</div>
                 </Fragment>
             );
@@ -27,7 +27,7 @@ function LoginPage () {
         return (
             <Fragment>
                 <label htmlFor="login">Login:</label>
-                <input type="email" className="login-input" name="login" id="login" placeholder="E-Mail" {...field}/>
+                <input type="email" className="login-input" id="login" placeholder="E-Mail" {...field}/>
             </Fragment>
         );
     }
