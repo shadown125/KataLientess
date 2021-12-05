@@ -1,12 +1,12 @@
 import HeadPage from '../components/layout/HeadPage';
-import {Fragment} from "react";
+import {SessionProvider} from "next-auth/react";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: {session, ...pageProps} }) {
     return (
-        <Fragment>
+        <SessionProvider session={session}>
             <HeadPage />
             <Component {...pageProps} />
-        </Fragment>
+        </SessionProvider>
     );
 }
 

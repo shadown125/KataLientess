@@ -1,10 +1,11 @@
 import HomePage from "../../index";
 import FullActiveBackdrop from "../../../components/layout/FullActiveBackdrop";
-import {Fragment, useRef} from "react";
+import {Fragment} from "react";
 import Link from "next/link";
 import Profile from "../../../components/elements/Profile";
 import {Formik, Form, useField} from "formik";
 import * as yup from 'yup';
+import {getSession} from "next-auth/react";
 
 function SettingsName() {
 
@@ -84,3 +85,22 @@ function SettingsName() {
 }
 
 export default SettingsName;
+
+export async function getServerSideProps(context) {
+    const session = await getSession({
+        req: context.req,
+    })
+
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/login',
+                permanent: false,
+            }
+        }
+    }
+
+    return {
+        props: { session },
+    }
+}

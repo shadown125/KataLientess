@@ -5,6 +5,7 @@ import TodosLayout from "../components/todos/TodosLayout";
 import Backdrop from "../components/layout/Backdrop";
 import AddTodo from "../components/todos/AddTodo";
 import {Fragment, useState} from "react";
+import {getSession, useSession} from "next-auth/react";
 
 function HomePage () {
     const [state, setState] = useState(false);
@@ -51,3 +52,22 @@ function HomePage () {
 }
 
 export default HomePage;
+
+export async function getServerSideProps(context) {
+    const session = await getSession({
+        req: context.req,
+    })
+
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/login',
+                permanent: false,
+            }
+        }
+    }
+
+    return {
+        props: { session },
+    }
+}
