@@ -2,8 +2,10 @@
 
 .intro-panel {
     .login-input {
-        margin: {
-            bottom: susanoo.rem-calc(16);
+        &:not(&.is-invalid) {
+            margin: {
+                bottom: susanoo.rem-calc(16);
+            }
         }
     }
     .headline {
