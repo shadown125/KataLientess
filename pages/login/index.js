@@ -2,8 +2,11 @@ import Link from "next/link";
 import {Formik, Form, useField} from "formik";
 import * as yup from 'yup';
 import {Fragment} from "react";
+import {getSession, signIn} from "next-auth/react";
+import {useRouter} from "next/router";
 
 function LoginPage () {
+    const router = useRouter();
     /**
      * @returns {number}
      */
@@ -57,11 +60,21 @@ function LoginPage () {
         password: yup.string().required("Password is a required field"),
     })
 
-    const submitHandler = (data, {setSubmitting, resetForm}) => {
+    const submitHandler = async (data, {setSubmitting, resetForm}) => {
         setSubmitting(true);
 
         const loginData = {
             ...data,
+        }
+
+        const result = await signIn('credentials', {
+            redirect: false,
+            email: loginData.email,
+            password: loginData.password,
+        })
+
+        if (!result.error) {
+            await router.replace('/');
         }
 
         setSubmitting(false);
@@ -114,3 +127,22 @@ function LoginPage () {
 }
 
 export default LoginPage;
+
+export async function getServerSideProps(context) {
+    const session = await getSession({
+        req: context.req,
+    })
+
+    if (session) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            }
+        }
+    }
+
+    return {
+        props: { session },
+    }
+}
