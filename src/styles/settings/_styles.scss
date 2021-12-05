@@ -34,7 +34,8 @@
     ul {
         @include lists.reset-list();
     }
-    a {
+    a,
+    button {
         &:not(.button) {
             padding: susanoo.rem-calc(16);
             border: {
@@ -47,6 +48,11 @@
             background: {
                 color: variables.$anchor-background-color;
             }
+        }
+    }
+    button {
+        &.link {
+            width: 100%;
         }
     }
     .profile {
