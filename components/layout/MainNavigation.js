@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Profile from "../elements/Profile";
 import {useRouter} from "next/router";
+import {signOut} from "next-auth/react";
 
 function MainNavigation(props) {
     const router = useRouter();
@@ -19,13 +20,13 @@ function MainNavigation(props) {
             title: 'Settings',
             path: '/settings',
             icon: 'icon-configs',
-        },
-        {
-            title: 'Logout',
-            path: '/login',
-            icon: 'icon-logout',
         }
     ]
+
+    const logoutHandler = async () => {
+        await router.push('/login');
+        await signOut();
+    }
 
     function getFullYear() {
         return new Date().getFullYear();
@@ -45,6 +46,11 @@ function MainNavigation(props) {
                             </Link>
                         </li>
                     ))}
+                    <li>
+                        <button className="link icon-link icon-logout" onClick={logoutHandler}>
+                            <span>Logout</span>
+                        </button>
+                    </li>
                 </ul>
                 <div className="credits">&copy; {getFullYear()} All rights reserved by Dawid Oleksiuk</div>
             </nav>

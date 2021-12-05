@@ -1,7 +1,17 @@
 import Link from "next/link";
 import Profile from "../elements/Profile";
+import {signOut} from "next-auth/react";
+import {useRouter} from "next/router";
 
 function SettingPanel() {
+
+    const router = useRouter();
+
+    const logoutHandler = async () => {
+        await router.push('/login');
+        await signOut();
+    }
+
     return (
         <section className="settings">
             <Link href='/'>
@@ -26,7 +36,7 @@ function SettingPanel() {
                 </li>
                 <li>
                     <Link href='/login'>
-                        <a className="link">Logout</a>
+                        <button className="link" onClick={logoutHandler}>Logout</button>
                     </Link>
                 </li>
             </ul>
