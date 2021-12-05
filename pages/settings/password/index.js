@@ -5,6 +5,7 @@ import Link from "next/link";
 import Profile from "../../../components/elements/Profile";
 import {Formik, Form, useField} from "formik";
 import * as yup from 'yup';
+import {getSession} from "next-auth/react";
 
 function SettingsPassword() {
 
@@ -48,21 +49,43 @@ function SettingsPassword() {
         );
     }
 
+    const changeExistingPassword = async (passwordData) => {
+        const response = await fetch('/api/user/changePassword', {
+            method: 'PATCH',
+            body: JSON.stringify(passwordData),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || 'Something went wrong!');
+        }
+
+        return data;
+    }
+
     const validationSchema = yup.object({
         password: yup.string().required("Password is a required field").max(50, "Password must be at most 50 characters").min(6, "Password must be at least 6 characters"),
-        repeatedPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match')
+        repeatedPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match').required("Repeat password is a required field"),
     })
 
-    const submitHandler = (data, {setSubmitting, resetForm}) => {
+    const submitHandler = async (data, {setSubmitting, resetForm}) => {
         setSubmitting(true);
 
         const passwordData = {
-            ...data,
-            id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
+            ...data
         }
 
-        setSubmitting(false);
-        resetForm(true);
+        try {
+            await changeExistingPassword(passwordData);
+            setSubmitting(false);
+            resetForm(true);
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 
     return (
@@ -94,3 +117,22 @@ function SettingsPassword() {
 }
 
 export default SettingsPassword;
+
+export async function getServerSideProps(context) {
+    const session = await getSession({
+        req: context.req,
+    })
+
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/login',
+                permanent: false,
+            }
+        }
+    }
+
+    return {
+        props: { session },
+    }
+}
