@@ -2,6 +2,7 @@ import Link from "next/link";
 import {Formik, Form, useField} from "formik";
 import * as yup from 'yup';
 import {Fragment} from "react";
+import {getSession} from "next-auth/react";
 
 function Register() {
 
@@ -108,18 +109,47 @@ function Register() {
         firstName: yup.string().required("First name is a required field").max(30, "First name must be at most 30 characters"),
         email: yup.string().email("Email must be a valid").required("Email is a required field"),
         password: yup.string().required("Password is a required field").max(50, "Password must be at most 50 characters").min(6, "Password must be at least 6 characters"),
-        repeatedPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match'),
-    })
+        repeatedPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match').required("Repeat password is a required field"),
+    });
 
-    const submitHandler = (data, {setSubmitting, resetForm}) => {
+    const createUser = async (email, password, firstName, lastName) => {
+        const response = await fetch('/api/auth/signup', {
+            method: 'POST',
+            body: JSON.stringify({
+                email,
+                password,
+                firstName,
+                lastName,
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || 'Something went wrong!');
+        }
+
+        return data;
+    }
+
+    const submitHandler = async (data, {setSubmitting, resetForm}) => {
         setSubmitting(true);
 
         const userData = {
             ...data,
         }
 
-        setSubmitting(false);
-        resetForm(true);
+        try {
+            await createUser(userData.email, userData.password, userData.firstName, userData.lastName);
+
+            setSubmitting(false);
+            resetForm(true);
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 
     return (
@@ -175,3 +205,22 @@ function Register() {
 }
 
 export default Register;
+
+export async function getServerSideProps(context) {
+    const session = await getSession({
+        req: context.req,
+    })
+
+    if (session) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            }
+        }
+    }
+
+    return {
+        props: { session },
+    }
+}
