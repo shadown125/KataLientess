@@ -6,47 +6,17 @@ import Profile from "../../../components/elements/Profile";
 import {Formik, Form, useField} from "formik";
 import * as yup from 'yup';
 import {getSession} from "next-auth/react";
+import PasswordField from "../../../components/inputs/PasswordField";
+import RepeatedPassword from "../../../components/inputs/RepeatedPassword";
 
 function SettingsPassword() {
 
-    const PasswordField = (props) => {
-        const [field, meta] = useField(props);
-        const errorText = meta.error && meta.touched ? meta.error : '';
-        if (errorText) {
-            return (
-                <Fragment>
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" id="password" className="is-invalid" placeholder="New password" {...field} />
-                    <div className="error-message">{errorText}</div>
-                </Fragment>
-            );
-        }
-        return (
-            <Fragment>
-                <label htmlFor="password">Password:</label>
-                <input type="password" id="password" placeholder="New password" {...field} />
-            </Fragment>
-        );
+    const PasswordFieldCustom = (props) => {
+        return PasswordField(props, {placeholder: 'New password'})
     }
 
-    const RepeatedPassword = (props) => {
-        const [field, meta] = useField(props);
-        const errorText = meta.error && meta.touched ? meta.error : '';
-        if (errorText) {
-            return (
-                <Fragment>
-                    <label htmlFor="repeatedPassword">Repeat new password:</label>
-                    <input type="password" className="is-invalid" id="repeatedPassword" placeholder="Repeat new password" {...field} />
-                    <div className="error-message">{errorText}</div>
-                </Fragment>
-            );
-        }
-        return (
-            <Fragment>
-                <label htmlFor="repeatedPassword">Repeat new password:</label>
-                <input type="password" id="repeatedPassword" placeholder="Repeat new password" {...field} />
-            </Fragment>
-        );
+    const RepeatedPasswordCustom = (props) => {
+        return RepeatedPassword(props, {placeholder: "Repeat new password"})
     }
 
     const changeExistingPassword = async (passwordData) => {
@@ -99,8 +69,8 @@ function SettingsPassword() {
                 <Formik initialValues={{ password: '', repeatedPassword: '' }} onSubmit={submitHandler} validationSchema={validationSchema} >
                     {({ isSubmitting }) => (
                         <Form>
-                            <PasswordField name="password" />
-                            <RepeatedPassword name="repeatedPassword" />
+                            <PasswordFieldCustom name="password" />
+                            <RepeatedPasswordCustom name="repeatedPassword" />
                             <div className="buttons-container">
                                 <Link href="/settings">
                                     <a className="button button-primary">Back</a>
