@@ -7,6 +7,7 @@ import LastNameField from "../../components/inputs/LastNameField";
 import EmailField from "../../components/inputs/EmailField";
 import PasswordField from "../../components/inputs/PasswordField";
 import RepeatedPassword from "../../components/inputs/RepeatedPassword";
+import ImageField from "../../components/inputs/ImageField";
 
 function Register() {
 
@@ -15,6 +16,10 @@ function Register() {
      */
     function getFullYear() {
         return new Date().getFullYear();
+    }
+
+    const ImageFieldCustom = (props) => {
+        return ImageField(props, {label: 'Profile image'});
     }
 
     const validationSchema = yup.object({
@@ -68,7 +73,7 @@ function Register() {
         <section className="intro-panel register">
             <div className="container">
                 <h1 className="headline h2">Register</h1>
-                <Formik initialValues={{ firstName: '', lastName: '', email: '', password: '', repeatedPassword: '', }} onSubmit={submitHandler} validationSchema={validationSchema}>
+                <Formik initialValues={{ firstName: '', lastName: '', email: '', image: '', password: '', repeatedPassword: '', }} onSubmit={submitHandler} validationSchema={validationSchema}>
                     {({ isSubmitting }) => (
                         <Form>
                             <div className="row">
@@ -79,7 +84,14 @@ function Register() {
                                     <LastNameField name="lastName" />
                                 </div>
                             </div>
-                            <EmailField name="email" />
+                            <div className="row">
+                                <div className="col-half">
+                                    <EmailField name="email" />
+                                </div>
+                                <div className="col-half">
+                                    <ImageFieldCustom name="image" />
+                                </div>
+                            </div>
                             <PasswordField name="password" />
                             <RepeatedPassword name="repeatedPassword" />
                             <div className="buttons-container">
