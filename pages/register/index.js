@@ -1,8 +1,12 @@
 import Link from "next/link";
-import {Formik, Form, useField} from "formik";
+import {Formik, Form} from "formik";
 import * as yup from 'yup';
-import {Fragment} from "react";
 import {getSession} from "next-auth/react";
+import NameField from "../../components/inputs/NameField";
+import LastNameField from "../../components/inputs/LastNameField";
+import EmailField from "../../components/inputs/EmailField";
+import PasswordField from "../../components/inputs/PasswordField";
+import RepeatedPassword from "../../components/inputs/RepeatedPassword";
 
 function Register() {
 
@@ -11,98 +15,6 @@ function Register() {
      */
     function getFullYear() {
         return new Date().getFullYear();
-    }
-
-    const NameField = (props) => {
-        const [field, meta] = useField(props);
-        const errorText = meta.error && meta.touched ? meta.error : '';
-        if (errorText) {
-            return (
-                <Fragment>
-                    <label htmlFor="firstName">Change first name:</label>
-                    <input id="firstName" className="is-invalid" placeholder="Name" {...field}/>
-                    <div className="error-message">{errorText}</div>
-                </Fragment>
-            );
-        }
-
-        return (
-            <Fragment>
-                <label htmlFor="firstName">First name:*</label>
-                <input id="firstName" placeholder="Name" {...field}/>
-            </Fragment>
-        );
-    }
-
-    const LastNameField = (props) => {
-        const [field] = useField(props);
-        return (
-            <Fragment>
-                <label htmlFor="lastName">Last name:</label>
-                <input type="input" placeholder="Last name" id="lastName" {...field} />
-            </Fragment>
-        );
-    }
-
-    const EmailField = (props) => {
-        const [field, meta] = useField(props);
-        const errorText = meta.error && meta.touched ? meta.error : '';
-        if (errorText) {
-            return (
-                <Fragment>
-                    <label htmlFor="email">E-Mail:*</label>
-                    <input type="email" id="email" className="is-invalid" placeholder="E-Mail" {...field}/>
-                    <div className="error-message">{errorText}</div>
-                </Fragment>
-            );
-        }
-
-        return (
-            <Fragment>
-                <label htmlFor="email">E-Mail:*</label>
-                <input type="email" id="email" placeholder="E-Mail" {...field}/>
-            </Fragment>
-        );
-    }
-
-    const PasswordField = (props) => {
-        const [field, meta] = useField(props);
-        const errorText = meta.error && meta.touched ? meta.error : '';
-        if (errorText) {
-            return (
-                <Fragment>
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" id="password" className="is-invalid" placeholder="Password" {...field} />
-                    <div className="error-message">{errorText}</div>
-                </Fragment>
-            );
-        }
-        return (
-            <Fragment>
-                <label htmlFor="password">Password:</label>
-                <input type="password" id="password" placeholder="Password" {...field} />
-            </Fragment>
-        );
-    }
-
-    const RepeatedPassword = (props) => {
-        const [field, meta] = useField(props);
-        const errorText = meta.error && meta.touched ? meta.error : '';
-        if (errorText) {
-            return (
-                <Fragment>
-                    <label htmlFor="repeatedPassword">Repeat password:</label>
-                    <input type="password" className="is-invalid" id="repeatedPassword" placeholder="Repeat password" {...field} />
-                    <div className="error-message">{errorText}</div>
-                </Fragment>
-            );
-        }
-        return (
-            <Fragment>
-                <label htmlFor="repeatedPassword">Repeat password:</label>
-                <input type="password" id="repeatedPassword" placeholder="Repeat password" {...field} />
-            </Fragment>
-        );
     }
 
     const validationSchema = yup.object({
