@@ -56,14 +56,16 @@ textarea {
 }
 
 form {
+    --gap: #{susanoo.rem-calc(20)};
+
     .col-half {
         display: flex;
         flex: {
             direction: column;
-            grow: 1;
         }
-        max: {
-            width: 50%;
+        width: 100%;
+        min: {
+            width: calc(50% - var(--gap));
         }
         @media only screen and (max-width: 940px) {
             max: {
@@ -73,7 +75,7 @@ form {
     }
     .row {
         display: flex;
-        gap: susanoo.rem-calc(20);
+        gap: var(--gap);
         @media only screen and (max-width: 940px) {
             gap: unset;
             flex: {
