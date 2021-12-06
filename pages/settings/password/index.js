@@ -4,10 +4,10 @@ import {Fragment} from "react";
 import Link from "next/link";
 import Profile from "../../../components/elements/Profile";
 import {Formik, Form, useField} from "formik";
-import * as yup from 'yup';
 import {getSession} from "next-auth/react";
 import PasswordField from "../../../components/inputs/PasswordField";
 import RepeatedPassword from "../../../components/inputs/RepeatedPassword";
+import {settingsPasswordValidationSchema} from "../../../components/validationSchemas/settingsPasswordValidationSchema";
 
 function SettingsPassword() {
 
@@ -37,11 +37,6 @@ function SettingsPassword() {
         return data;
     }
 
-    const validationSchema = yup.object({
-        password: yup.string().required("Password is a required field").max(50, "Password must be at most 50 characters").min(6, "Password must be at least 6 characters"),
-        repeatedPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match').required("Repeat password is a required field"),
-    })
-
     const submitHandler = async (data, {setSubmitting, resetForm}) => {
         setSubmitting(true);
 
@@ -66,7 +61,7 @@ function SettingsPassword() {
                     <a className="button button--medium icon-cross" />
                 </Link>
                 <Profile />
-                <Formik initialValues={{ password: '', repeatedPassword: '' }} onSubmit={submitHandler} validationSchema={validationSchema} >
+                <Formik initialValues={{ password: '', repeatedPassword: '' }} onSubmit={submitHandler} validationSchema={settingsPasswordValidationSchema} >
                     {({ isSubmitting }) => (
                         <Form>
                             <PasswordFieldCustom name="password" />
