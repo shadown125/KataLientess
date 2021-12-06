@@ -1,9 +1,10 @@
 import Link from "next/link";
-import {Formik, Form, useField} from "formik";
+import {Formik, Form} from "formik";
 import * as yup from 'yup';
-import {Fragment} from "react";
 import {getSession, signIn} from "next-auth/react";
 import {useRouter} from "next/router";
+import EmailField from "../../components/inputs/EmailField";
+import PasswordField from "../../components/inputs/PasswordField";
 
 function LoginPage () {
     const router = useRouter();
@@ -12,47 +13,6 @@ function LoginPage () {
      */
     function getFullYear() {
         return new Date().getFullYear();
-    }
-
-    const EmailField = (props) => {
-        const [field, meta] = useField(props);
-        const errorText = meta.error && meta.touched ? meta.error : '';
-        if (errorText) {
-            return (
-                <Fragment>
-                    <label htmlFor="login">Login:</label>
-                    <input type="email" className="login-input is-invalid" id="login" placeholder="E-Mail" {...field}/>
-                    <div className="error-message">{errorText}</div>
-                </Fragment>
-            );
-        }
-
-        return (
-            <Fragment>
-                <label htmlFor="login">Login:</label>
-                <input type="email" className="login-input" id="login" placeholder="E-Mail" {...field}/>
-            </Fragment>
-        );
-    }
-
-    const PasswordField = (props) => {
-        const [field, meta] = useField(props);
-        const errorText = meta.error && meta.touched ? meta.error : '';
-        if (errorText) {
-            return (
-                <Fragment>
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" id="password" className="is-invalid" placeholder="Password" {...field} />
-                    <div className="error-message">{errorText}</div>
-                </Fragment>
-            );
-        }
-        return (
-            <Fragment>
-                <label htmlFor="password">Password:</label>
-                <input type="password" id="password" placeholder="Password" {...field} />
-            </Fragment>
-        );
     }
 
     const validationSchema = yup.object({
