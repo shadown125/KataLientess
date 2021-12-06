@@ -3,41 +3,20 @@ import FullActiveBackdrop from "../../../components/layout/FullActiveBackdrop";
 import {Fragment} from "react";
 import Link from "next/link";
 import Profile from "../../../components/elements/Profile";
-import {Formik, Form, useField} from "formik";
+import {Formik, Form} from "formik";
 import * as yup from 'yup';
 import {getSession} from "next-auth/react";
+import NameField from "../../../components/inputs/NameField";
+import LastNameField from "../../../components/inputs/LastNameField";
 
 function SettingsName() {
 
-    const NameField = (props) => {
-        const [field, meta] = useField(props);
-        const errorText = meta.error && meta.touched ? meta.error : '';
-        if (errorText) {
-            return (
-                <Fragment>
-                    <label htmlFor="firstName">Change first name:</label>
-                    <input id="firstName" className="is-invalid" placeholder="Your new name" {...field}/>
-                    <div className="error-message">{errorText}</div>
-                </Fragment>
-            );
-        }
-
-        return (
-            <Fragment>
-                <label htmlFor="firstName">Change first name:</label>
-                <input id="firstName" placeholder="Your new name" {...field}/>
-            </Fragment>
-        );
+    const NameFieldCustom = (props) => {
+        return NameField(props, {placeholder: 'Your new name', label: 'Change name:*'});
     }
 
-    const LastNameField = (props) => {
-        const [field] = useField(props);
-        return (
-            <Fragment>
-                <label htmlFor="lastName">Change last name:</label>
-                <input type="input" placeholder="Your new last name" id="lastName" {...field} />
-            </Fragment>
-        );
+    const LastNameFieldCustom = (props) => {
+        return LastNameField(props, {placeholder: 'Your new last name', label: 'Change last name:'})
     }
 
     const validationSchema = yup.object({
@@ -67,8 +46,8 @@ function SettingsName() {
                 <Formik initialValues={{ firstName: '', lastName: '' }} onSubmit={submitHandler} validationSchema={validationSchema} >
                     {({ isSubmitting }) => (
                         <Form>
-                            <NameField type="input" name="firstName" />
-                            <LastNameField name="lastName" />
+                            <NameFieldCustom name="firstName" />
+                            <LastNameFieldCustom name="lastName" />
                             <div className="buttons-container">
                                 <Link href="/settings">
                                     <a className="button button-primary">Back</a>
