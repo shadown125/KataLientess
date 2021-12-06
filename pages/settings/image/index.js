@@ -4,15 +4,11 @@ import {Fragment} from "react";
 import Link from "next/link";
 import Profile from "../../../components/elements/Profile";
 import {Formik, Form, useField} from "formik";
-import * as yup from 'yup';
 import {getSession} from "next-auth/react";
 import ImageField from "../../../components/inputs/ImageField";
+import {settingsImageValidationSchema} from "../../../components/validationSchemas/settingsImageValidationSchema";
 
 function SettingsImage() {
-
-    const validationSchema = yup.object({
-        image: yup.string().required(),
-    })
 
     const submitHandler = (data, {setSubmitting, resetForm}) => {
         setSubmitting(true);
@@ -34,7 +30,7 @@ function SettingsImage() {
                     <a className="button button--medium icon-cross" />
                 </Link>
                 <Profile />
-                <Formik initialValues={{ image: ''}} onSubmit={submitHandler} validationSchema={validationSchema}>
+                <Formik initialValues={{ image: ''}} onSubmit={submitHandler} validationSchema={settingsImageValidationSchema}>
                     {({ isSubmitting }) => (
                         <Form>
                             <ImageField name="image" />
