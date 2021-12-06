@@ -1,10 +1,10 @@
 import Link from "next/link";
 import {Formik, Form} from "formik";
-import * as yup from 'yup';
 import {getSession, signIn} from "next-auth/react";
 import {useRouter} from "next/router";
 import EmailField from "../../components/inputs/EmailField";
 import PasswordField from "../../components/inputs/PasswordField";
+import {loginValidationSchema} from "../../components/validationSchemas/loginValidationSchema";
 
 function LoginPage () {
     const router = useRouter();
@@ -14,11 +14,6 @@ function LoginPage () {
     function getFullYear() {
         return new Date().getFullYear();
     }
-
-    const validationSchema = yup.object({
-        email: yup.string().email("Email must be a valid").required("Email is a required field"),
-        password: yup.string().required("Password is a required field"),
-    })
 
     const submitHandler = async (data, {setSubmitting, resetForm}) => {
         setSubmitting(true);
@@ -46,7 +41,7 @@ function LoginPage () {
             <section className="intro-panel">
                 <div className="container">
                     <h1 className="headline h2">Login</h1>
-                    <Formik initialValues={{ email: '', password: '' }} onSubmit={submitHandler} validationSchema={validationSchema}>
+                    <Formik initialValues={{ email: '', password: '' }} onSubmit={submitHandler} validationSchema={loginValidationSchema}>
                         {({ isSubmitting }) => (
                             <Form>
                                 <EmailField name="email" />
