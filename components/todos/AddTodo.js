@@ -1,9 +1,9 @@
 import {useState} from 'react';
 import Notification from "../elements/Notification";
 import {Formik, Form} from "formik";
-import * as yup from 'yup';
 import TitleField from "../inputs/TitleField";
 import TextareaField from "../inputs/TextareaField";
+import {addTodoValidationSchema} from "../validationSchemas/addTodoValidationSchema";
 
 function AddTodo (props) {
     const [notActive, setNotActive] = useState(false);
@@ -15,10 +15,6 @@ function AddTodo (props) {
 
         props.removeActive(notActive);
     }
-
-    const validationSchema = yup.object({
-        title: yup.string().required().max(50),
-    })
 
     const submitHandler = (data, {setSubmitting, resetForm}) => {
         setSubmitted(true);
@@ -42,7 +38,7 @@ function AddTodo (props) {
                 <button className="button button--medium icon-cross" onClick={onRemovingActive}>
                     <span>Close button</span>
                 </button>
-                <Formik initialValues={{ title: '', description: '' }} onSubmit={submitHandler} validationSchema={validationSchema}>
+                <Formik initialValues={{ title: '', description: '' }} onSubmit={submitHandler} validationSchema={addTodoValidationSchema}>
                     {({ isSubmitting }) => (
                         <Form>
                             <TitleField name="title" />
