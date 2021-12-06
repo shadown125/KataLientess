@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {Formik, Form} from "formik";
-import * as yup from 'yup';
 import {getSession} from "next-auth/react";
 import NameField from "../../components/inputs/NameField";
 import LastNameField from "../../components/inputs/LastNameField";
@@ -8,6 +7,7 @@ import EmailField from "../../components/inputs/EmailField";
 import PasswordField from "../../components/inputs/PasswordField";
 import RepeatedPassword from "../../components/inputs/RepeatedPassword";
 import ImageField from "../../components/inputs/ImageField";
+import {registerValidationSchema} from "../../components/validationSchemas/registerValidationSchema";
 
 function Register() {
 
@@ -21,13 +21,6 @@ function Register() {
     const ImageFieldCustom = (props) => {
         return ImageField(props, {label: 'Profile image'});
     }
-
-    const validationSchema = yup.object({
-        firstName: yup.string().required("First name is a required field").max(30, "First name must be at most 30 characters"),
-        email: yup.string().email("Email must be a valid").required("Email is a required field"),
-        password: yup.string().required("Password is a required field").max(50, "Password must be at most 50 characters").min(6, "Password must be at least 6 characters"),
-        repeatedPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match').required("Repeat password is a required field"),
-    });
 
     const createUser = async (email, password, firstName, lastName) => {
         const response = await fetch('/api/auth/signup', {
@@ -73,7 +66,7 @@ function Register() {
         <section className="intro-panel register">
             <div className="container">
                 <h1 className="headline h2">Register</h1>
-                <Formik initialValues={{ firstName: '', lastName: '', email: '', image: '', password: '', repeatedPassword: '', }} onSubmit={submitHandler} validationSchema={validationSchema}>
+                <Formik initialValues={{ firstName: '', lastName: '', email: '', image: '', password: '', repeatedPassword: '', }} onSubmit={submitHandler} validationSchema={registerValidationSchema}>
                     {({ isSubmitting }) => (
                         <Form>
                             <div className="row">
