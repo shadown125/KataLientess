@@ -4,10 +4,10 @@ import {Fragment} from "react";
 import Link from "next/link";
 import Profile from "../../../components/elements/Profile";
 import {Formik, Form} from "formik";
-import * as yup from 'yup';
 import {getSession} from "next-auth/react";
 import NameField from "../../../components/inputs/NameField";
 import LastNameField from "../../../components/inputs/LastNameField";
+import {settingsNameValidationSchema} from "../../../components/validationSchemas/settingsNameValidationSchema";
 
 function SettingsName() {
 
@@ -18,10 +18,6 @@ function SettingsName() {
     const LastNameFieldCustom = (props) => {
         return LastNameField(props, {placeholder: 'Your new last name', label: 'Change last name:'})
     }
-
-    const validationSchema = yup.object({
-        firstName: yup.string().required("First name is a required field").max(30, "First name must be at most 30 characters"),
-    })
     
     const submitHandler = (data, {setSubmitting, resetForm}) => {
         setSubmitting(true);
@@ -43,7 +39,7 @@ function SettingsName() {
                     <a className="button button--medium icon-cross" />
                 </Link>
                 <Profile />
-                <Formik initialValues={{ firstName: '', lastName: '' }} onSubmit={submitHandler} validationSchema={validationSchema} >
+                <Formik initialValues={{ firstName: '', lastName: '' }} onSubmit={submitHandler} validationSchema={settingsNameValidationSchema} >
                     {({ isSubmitting }) => (
                         <Form>
                             <NameFieldCustom name="firstName" />
