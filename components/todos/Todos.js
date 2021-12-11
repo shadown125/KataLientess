@@ -11,8 +11,9 @@ function Todos(props) {
     useEffect(() => {
         if (data) {
             setNewTodos(data.todos);
+            props.todosAmount(data.todos.length);
         }
-    }, [data])
+    }, [data, props])
 
     function setActiveAddTodo() {
         setIsActiveAddTodo(true);

@@ -8,12 +8,20 @@ function TodosLayout(props) {
     const [activeAddTodo, setIsActiveAddTodo] = useState(true);
     const router = useRouter();
     const routerPath = router.pathname;
+    const [todosLength, setTodosLength] = useState();
 
     function onSettingActiveAddTodo() {
         setIsActiveAddTodo(true);
 
         props.onSettingActiveAddTodo(activeAddTodo);
     }
+
+    const todosAmount = (data) => {
+        setTodosLength(() => {
+            return data;
+        });
+    }
+
     if (routerPath === '/done-todos') {
         return (
             <section className="todos-container">
@@ -25,8 +33,8 @@ function TodosLayout(props) {
 
     return (
         <section className="todos-container">
-            <ProgressionBar />
-            <Todos onSettingActiveAddTodo={onSettingActiveAddTodo} />
+            <ProgressionBar todosAmount={todosLength} />
+            <Todos onSettingActiveAddTodo={onSettingActiveAddTodo} todosAmount={todosAmount} />
         </section>
     );
 }

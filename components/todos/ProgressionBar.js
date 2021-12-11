@@ -1,4 +1,4 @@
-function ProgressionBar() {
+function ProgressionBar(props) {
     const date = new Date();
 
     /**
@@ -28,7 +28,7 @@ function ProgressionBar() {
                 </div>
                 <div className="descriptions">
                     <span className="done-todos">Done Todos: 4</span>
-                    <span className="in-progress-todos">In progress Todos: 2</span>
+                    <span className="in-progress-todos">In progress Todos: {props.todosAmount}</span>
                 </div>
             </div>
         </div>
