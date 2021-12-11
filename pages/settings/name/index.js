@@ -11,6 +11,27 @@ import {settingsNameValidationSchema} from "../../../components/validationSchema
 
 function SettingsName() {
 
+    const changeUsername = async (firstName, lastName) => {
+        const response = await fetch('/api/user/changeUsername', {
+            method: 'PATCH',
+            body: JSON.stringify({
+                firstName,
+                lastName,
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || 'Something went wrong!');
+        }
+
+        return data;
+    }
+
     const NameFieldCustom = (props) => {
         return NameField(props, {placeholder: 'Your new name', label: 'Change name:*'});
     }
@@ -19,16 +40,21 @@ function SettingsName() {
         return LastNameField(props, {placeholder: 'Your new last name', label: 'Change last name:'})
     }
     
-    const submitHandler = (data, {setSubmitting, resetForm}) => {
+    const submitHandler = async (data, {setSubmitting, resetForm}) => {
         setSubmitting(true);
 
         const nameData = {
-            ...data,
-            id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
+            ...data
         }
 
-        setSubmitting(false);
-        resetForm(true);
+        try {
+            await changeUsername(nameData.firstName, nameData.lastName);
+
+            setSubmitting(false);
+            resetForm(true);
+        } catch (error) {
+            throw new Error(error);
+        }
     }
     
     return (
