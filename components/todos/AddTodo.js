@@ -4,10 +4,13 @@ import {Formik, Form} from "formik";
 import TitleField from "../inputs/TitleField";
 import TextareaField from "../inputs/TextareaField";
 import {addTodoValidationSchema} from "../validationSchemas/addTodoValidationSchema";
+import {useSession} from "next-auth/react";
 
 function AddTodo (props) {
     const [notActive, setNotActive] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const isUpdated = useState(true);
+    const { data: session, status } = useSession();
 
     function onRemovingActive() {
         setNotActive(false);
@@ -16,19 +19,50 @@ function AddTodo (props) {
         props.removeActive(notActive);
     }
 
-    const submitHandler = (data, {setSubmitting, resetForm}) => {
-        setSubmitted(true);
+    function onCreatedTodo() {
+        isUpdated.current = true;
+        props.onCreatedTodo(isUpdated);
+    }
+
+    const createTodo = async (email, title, description) => {
+        const response = await fetch('/api/user/addTodo', {
+            method: 'POST',
+            body: JSON.stringify({
+                email,
+                title,
+                description,
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || 'Something went wrong!');
+        }
+
+        return data;
+    }
+
+    const submitHandler = async (data, {setSubmitting, resetForm}) => {
         setSubmitting(true);
 
         const todoData = {
             ...data,
-            id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
         }
 
-        props.onSaveTodoData(todoData);
+        try {
+            await createTodo(session.user.email, todoData.title, todoData.description);
 
-        setSubmitting(false);
-        resetForm(true);
+            onCreatedTodo();
+            setSubmitted(true);
+            setSubmitting(false);
+            resetForm(true);
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 
     return (
