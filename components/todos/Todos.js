@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import TodoItem from "./TodoItem";
-import useSWR from "swr"
+import useSWR from "swr";
 
 function Todos(props) {
     const [activeAddTodo, setIsActiveAddTodo] = useState(true);
