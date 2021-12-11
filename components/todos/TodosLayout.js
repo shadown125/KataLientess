@@ -26,7 +26,7 @@ function TodosLayout(props) {
     return (
         <section className="todos-container">
             <ProgressionBar />
-            <Todos todosItems={props.todoData} onSettingActiveAddTodo={onSettingActiveAddTodo} />
+            <Todos isCreated={props.isCreated} onSettingActiveAddTodo={onSettingActiveAddTodo} />
         </section>
     );
 }

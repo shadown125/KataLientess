@@ -1,8 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TodoItem from "./TodoItem";
 
 function Todos(props) {
     const [activeAddTodo, setIsActiveAddTodo] = useState(true);
+    const [newTodos, setNewTodos] = useState([]);
+    const isUpdated = props.isCreated;
+
+    useEffect(() => {
+        if (isUpdated.current) {
+            fetch('/api/user/getAllTodos')
+                .then((response) => response.json())
+                .then((data) => {
+                    setNewTodos(data.todos);
+                });
+            isUpdated.current = false;
+        }
+    })
 
     function setActiveAddTodo() {
         setIsActiveAddTodo(true);
@@ -22,8 +35,8 @@ function Todos(props) {
             </div>
             <div className="main-container">
                 <ul className="todo-list">
-                    {props.todosItems.map((todo) => (
-                        <TodoItem key={todo.id} title={todo.title} description={todo.description} />
+                    {newTodos.map((todo, index) => (
+                        <TodoItem key={index} title={todo.title} description={todo.description} />
                     ))}
                 </ul>
             </div>
