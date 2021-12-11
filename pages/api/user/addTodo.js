@@ -1,4 +1,5 @@
 import {connectToDatabase} from "../../../lib/db";
+import {ObjectId} from "mongodb";
 
 async function addTodoHandler (req, res) {
     if (req.method !== 'POST') {
@@ -19,7 +20,7 @@ async function addTodoHandler (req, res) {
 
     await db.collection('users').updateOne({email: email}, {
         $push: {"todos": {
-                title: title, description: description
+                id: new ObjectId(), title: title, description: description
             }}
     });
 
