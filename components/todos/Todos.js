@@ -1,21 +1,18 @@
 import { useEffect, useState } from 'react';
 import TodoItem from "./TodoItem";
+import useSWR from "swr"
 
 function Todos(props) {
     const [activeAddTodo, setIsActiveAddTodo] = useState(true);
     const [newTodos, setNewTodos] = useState([]);
-    const isUpdated = props.isCreated;
+
+    const {data, error} = useSWR('/api/user/getAllTodos', (url) => fetch(url).then(res => res.json()), { refreshInterval: 10 });
 
     useEffect(() => {
-        if (isUpdated.current) {
-            fetch('/api/user/getAllTodos')
-                .then((response) => response.json())
-                .then((data) => {
-                    setNewTodos(data.todos);
-                });
-            isUpdated.current = false;
+        if (data) {
+            setNewTodos(data.todos);
         }
-    })
+    }, [data])
 
     function setActiveAddTodo() {
         setIsActiveAddTodo(true);

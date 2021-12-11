@@ -9,7 +9,6 @@ import {useSession} from "next-auth/react";
 function AddTodo (props) {
     const [notActive, setNotActive] = useState(false);
     const [submitted, setSubmitted] = useState(false);
-    const isUpdated = useState(true);
     const { data: session, status } = useSession();
 
     function onRemovingActive() {
@@ -17,11 +16,6 @@ function AddTodo (props) {
         setSubmitted(false);
 
         props.removeActive(notActive);
-    }
-
-    function onCreatedTodo() {
-        isUpdated.current = true;
-        props.onCreatedTodo(isUpdated);
     }
 
     const createTodo = async (email, title, description) => {
@@ -56,7 +50,6 @@ function AddTodo (props) {
         try {
             await createTodo(session.user.email, todoData.title, todoData.description);
 
-            onCreatedTodo();
             setSubmitted(true);
             setSubmitting(false);
             resetForm(true);

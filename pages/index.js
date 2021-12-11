@@ -4,14 +4,13 @@ import MainNavigation from "../components/layout/MainNavigation";
 import TodosLayout from "../components/todos/TodosLayout";
 import Backdrop from "../components/layout/Backdrop";
 import AddTodo from "../components/todos/AddTodo";
-import {Fragment, useState, useRef} from "react";
+import {Fragment, useState} from "react";
 import {getSession} from "next-auth/react";
 
-function HomePage (props) {
+function HomePage () {
     const [state, setState] = useState(false);
     const [addTodoState, setAddTodoState] = useState(false);
     const [todos, setTodos] = useState([]);
-    const createTodo= useRef(true);
 
     const onSettingMainNavigationState = (state) => {
         setState(() => {
@@ -31,10 +30,6 @@ function HomePage (props) {
         })
     }
 
-    function onCreatedTodo(state) {
-        createTodo.current = state;
-    }
-
     const saveTodoDataHandler = (enteredTodoData) => {
         setTodos([enteredTodoData, ...todos])
     }
@@ -46,11 +41,11 @@ function HomePage (props) {
                     <PageHeader onSettingMainNavigationState={onSettingMainNavigationState} />
                     <PageBody>
                         <MainNavigation currentMainNavigationState={state}/>
-                        <TodosLayout onSettingActiveAddTodo={onSettingActiveAddTodoState} isCreated={createTodo} />
+                        <TodosLayout onSettingActiveAddTodo={onSettingActiveAddTodoState} />
                     </PageBody>
                 </div>
             </div>
-            <AddTodo onSaveTodoData={saveTodoDataHandler} removeActive={onRemoveActive} onCreatedTodo={onCreatedTodo} activeTodo={addTodoState} />
+            <AddTodo onSaveTodoData={saveTodoDataHandler} removeActive={onRemoveActive} activeTodo={addTodoState} />
             <Backdrop activeTodo={addTodoState} currentMainNavigationState={state} />
         </Fragment>
     );
