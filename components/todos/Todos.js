@@ -34,7 +34,7 @@ function Todos(props) {
             <div className="main-container">
                 <ul className="todo-list">
                     {newTodos.map((todo, index) => (
-                        <TodoItem key={index} title={todo.title} description={todo.description} />
+                        <TodoItem id={todo.id} key={index} title={todo.title} description={todo.description} />
                     ))}
                 </ul>
             </div>
