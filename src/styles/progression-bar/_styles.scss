@@ -65,11 +65,12 @@
     }
     .progressed-bar {
         height: 100%;
-        width: 50%;
+        width: 0;
         background: {
             color: #68ddd5;
         }
         border-bottom-right-radius: grid.$border-radius;
         border-top-right-radius: grid.$border-radius;
+        transition: width 0.5s linear;
     }
 }
