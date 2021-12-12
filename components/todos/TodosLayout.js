@@ -11,14 +11,14 @@ function TodosLayout(props) {
     const routerPath = router.pathname;
     const [todosLength, setTodosLength] = useState();
     const [doneTodos, setDoneTodos] = useState([]);
-    let doneTodosLength = 0;
+    const [doneTodosLength, setDoneTodosLength] = useState();
 
     const {data, error} = useSWR('/api/user/getDoneTodos', (url) => fetch(url).then(res => res.json()), { refreshInterval: 10 });
 
     useEffect(() => {
         if (data) {
             setDoneTodos(data.doneTodos);
-            doneTodosLength = data.doneTodos.length
+            setDoneTodosLength(data.doneTodos.length);
         }
     }, [data, props]);
 
@@ -38,7 +38,7 @@ function TodosLayout(props) {
         return (
             <section className="todos-container">
                 <ProgressionBar doneTodosLength={doneTodosLength} />
-                <DoneTodos />
+                <DoneTodos doneTodos={doneTodos}/>
             </section>
         );
     }

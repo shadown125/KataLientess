@@ -1,6 +1,6 @@
 import DoneTodoItem from "./DoneTodoItem";
 
-function DoneTodos() {
+function DoneTodos(props) {
     return (
         <div className="todos">
             <div className="head-container">
@@ -8,8 +8,9 @@ function DoneTodos() {
             </div>
             <div className="main-container">
                 <ul className="todo-list is-done">
-                    <DoneTodoItem key={1} title={'Lorem Ipsum'} description={'Lorem ipsum dolor'} />
-                    <DoneTodoItem key={2} title={'Lorem Ipsum'} description={'Lorem ipsum dolor'} />
+                    {props.doneTodos.map((todo, index) => (
+                        <DoneTodoItem id={todo.id} key={index} title={todo.title} description={todo.description} />
+                    ))}
                 </ul>
             </div>
         </div>
