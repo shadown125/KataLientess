@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import {useState, useEffect} from "react";
+import Image from "next/image";
 
 function Profile() {
     const [username, setUsername] = useState([]);
@@ -15,7 +16,7 @@ function Profile() {
     return (
         <div className="profile">
             <div className="image-wrapper">
-                <img src="/dummyProfileImage.jpg" alt="Profile Image"/>
+                <Image src="/dummyProfileImage.jpg" alt="Profile Image" width={200} height={200}/>
             </div>
             <div className="content">
                 <div>{username.firstName}</div>
