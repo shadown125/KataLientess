@@ -27,7 +27,7 @@ function ProgressionBar(props) {
                     <div className="progressed-bar" />
                 </div>
                 <div className="descriptions">
-                    <span className="done-todos">Done Todos: 4</span>
+                    <span className="done-todos">Done Todos: {props.doneTodosLength}</span>
                     <span className="in-progress-todos">In progress Todos: {props.todosAmount}</span>
                 </div>
             </div>
