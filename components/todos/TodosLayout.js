@@ -37,15 +37,15 @@ function TodosLayout(props) {
     if (routerPath === '/done-todos') {
         return (
             <section className="todos-container">
-                <ProgressionBar doneTodosLength={doneTodosLength} />
-                <DoneTodos doneTodos={doneTodos}/>
+                <ProgressionBar doneTodosLength={doneTodosLength} todoPage={false}/>
+                <DoneTodos doneTodos={doneTodos} />
             </section>
         );
     }
 
     return (
         <section className="todos-container">
-            <ProgressionBar todosAmount={todosLength} doneTodosLength={doneTodosLength} />
+            <ProgressionBar todosAmount={todosLength} doneTodosLength={doneTodosLength} todoPage={true}/>
             <Todos onSettingActiveAddTodo={onSettingActiveAddTodo} todosAmount={todosAmount} />
         </section>
     );

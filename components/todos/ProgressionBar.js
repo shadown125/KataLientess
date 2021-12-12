@@ -1,5 +1,12 @@
 function ProgressionBar(props) {
     const date = new Date();
+    const doneTodosCounter = props.doneTodosLength;
+    const todosCounter = props.todosAmount;
+    const total = doneTodosCounter + todosCounter;
+    let percent = doneTodosCounter * 100 / total;
+    if (!props.todoPage) {
+        percent = 100;
+    }
 
     /**
      * @returns {number}
@@ -24,11 +31,13 @@ function ProgressionBar(props) {
             <div className="content">
                 <h2 className="headline h4">Today Tasks</h2>
                 <div className="bar">
-                    <div className="progressed-bar" />
+                    <div className="progressed-bar" style={{width: `${percent}%`}}/>
                 </div>
                 <div className="descriptions">
                     <span className="done-todos">Done Todos: {props.doneTodosLength}</span>
-                    <span className="in-progress-todos">In progress Todos: {props.todosAmount}</span>
+                    {props.todoPage && (
+                        <span className="in-progress-todos">In progress Todos: {props.todosAmount}</span>
+                    )}
                 </div>
             </div>
         </div>
