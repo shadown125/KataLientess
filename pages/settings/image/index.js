@@ -27,7 +27,6 @@ function SettingsImage() {
             }).then(async response => response.json()).then(async (data) => {
                 const image = data.secure_url;
                 setImageSource(image);
-                console.log();
                 return await fetch('/api/user/uploadImage', {
                     method: 'POST',
                     body: JSON.stringify({image}),
