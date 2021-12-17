@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {Formik, Form} from "formik";
-import {getSession} from "next-auth/react";
+import {getSession, signIn} from "next-auth/react";
 import NameField from "../../components/inputs/NameField";
 import LastNameField from "../../components/inputs/LastNameField";
 import EmailField from "../../components/inputs/EmailField";
@@ -10,9 +10,12 @@ import ImageFieldRegister from "../../components/inputs/ImageFieldRegister";
 import {registerValidationSchema} from "../../components/validationSchemas/registerValidationSchema";
 import {useState} from "react";
 import {name, url} from "../../lib/cloudinaryApi";
+import {useRouter} from "next/router";
 
 function Register() {
     const [currentImage, setCurrentImage] = useState('');
+    const router = useRouter();
+
     /**
      * @returns {number}
      */
@@ -54,6 +57,16 @@ function Register() {
                 throw new Error(data.message || 'Something went wrong!');
             }
 
+            const result = await signIn('credentials', {
+                redirect: false,
+                email: email,
+                password: password,
+            })
+
+            if (!result.error) {
+                await router.replace('/');
+            }
+
             return data;
         }
 
@@ -76,6 +89,16 @@ function Register() {
 
         if (!response.ok) {
             throw new Error(data.message || 'Something went wrong!');
+        }
+
+        const result = await signIn('credentials', {
+            redirect: false,
+            email: email,
+            password: password,
+        })
+
+        if (!result.error) {
+            await router.replace('/');
         }
 
         return data;
