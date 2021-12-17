@@ -1,25 +1,47 @@
 import HomePage from "../../index";
 import FullActiveBackdrop from "../../../components/layout/FullActiveBackdrop";
-import {Fragment} from "react";
+import {Fragment, useState} from "react";
 import Link from "next/link";
 import Profile from "../../../components/elements/Profile";
 import {Formik, Form} from "formik";
 import {getSession} from "next-auth/react";
 import ImageField from "../../../components/inputs/ImageField";
 import {settingsImageValidationSchema} from "../../../components/validationSchemas/settingsImageValidationSchema";
+import {url, name} from "../../../lib/cloudinaryApi";
 
 function SettingsImage() {
+    const [currentImage, setCurrentImage] = useState('');
+    const [imageSource, setImageSource] = useState('');
 
-    const submitHandler = (data, {setSubmitting, resetForm}) => {
+    const submitHandler = async (data, {setSubmitting, resetForm}) => {
         setSubmitting(true);
 
-        const imageData = {
-            ...data,
-            id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
-        }
+        try {
+            const image = new FormData();
+            image.append("file", currentImage);
+            image.append('upload_preset', name);
 
-        setSubmitting(false);
-        resetForm(true);
+            await fetch(url, {
+                method: 'POST',
+                body: image,
+            }).then(async response => response.json()).then(async (data) => {
+                const image = data.secure_url;
+                setImageSource(image);
+                console.log();
+                return await fetch('/api/user/uploadImage', {
+                    method: 'POST',
+                    body: JSON.stringify({image}),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+            });
+
+            setSubmitting(false);
+            resetForm(true);
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 
     return (
@@ -29,11 +51,18 @@ function SettingsImage() {
                 <Link href='/'>
                     <a className="button button--medium icon-cross" />
                 </Link>
-                <Profile />
-                <Formik initialValues={{ image: ''}} onSubmit={submitHandler} validationSchema={settingsImageValidationSchema}>
-                    {({ isSubmitting }) => (
+                <Profile imagePreview={imageSource} />
+                <Formik initialValues={{ image: ''}} enableReinitialize={true} onSubmit={submitHandler} validationSchema={settingsImageValidationSchema}>
+                    {({ isSubmitting , setFieldValue}) => (
                         <Form>
-                            <ImageField name="image" />
+                            <ImageField name="image" onChange={async (event) => {
+                                setFieldValue("image", event.target.files);
+                                if (event.target.files && event.target.files[0]) {
+                                    const file = event.target.files[0];
+
+                                    setCurrentImage(file);
+                                }
+                            }} />
                             <div className="buttons-container">
                                 <Link href="/settings">
                                     <a className="button button-primary">Back</a>
