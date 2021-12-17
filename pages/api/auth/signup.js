@@ -7,7 +7,7 @@ async function handler (req, res) {
     }
     const data = req.body;
 
-    const { email, password, firstName, lastName } = data;
+    const { email, password, firstName, lastName, image } = data;
 
     if (!email || !email.includes('@') || !password || password.trim().length < 5) {
         res.status(422).json({message: 'Invalid input'})
@@ -35,6 +35,7 @@ async function handler (req, res) {
         password: hashedPassword,
         firstName: firstName,
         lastName: lastName,
+        image: image,
         todos: [],
         doneTodos: []
     });
