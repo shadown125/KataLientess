@@ -4,28 +4,36 @@ import Image from "next/image";
 
 function Profile() {
     const [username, setUsername] = useState([]);
+    const [image, setImage] = useState('');
 
-    const {data, error} = useSWR('/api/user/getUsername', (url) => fetch(url).then(res => res.json()), { refreshInterval: 10 });
+    const {data, error} = useSWR('/api/user/getProfile', async (url) => await fetch(url).then(async res => await res.json()), { refreshInterval: 10 });
 
     useEffect(() => {
         if (data) {
             setUsername(data);
+            setImage(data.image);
         }
-    }, [data])
+    }, [data]);
 
-    return (
-        <div className="profile">
-            <div className="image-wrapper">
-                <Image src="/dummyProfileImage.jpg" alt="Profile Image" width={200} height={200}/>
+    if (image) {
+        return (
+            <div className="profile">
+                <div className="image-wrapper">
+                    <Image src={image} alt="Profile Image" width={200} height={200}/>
+                </div>
+                <div className="content">
+                    <div>{username.firstName}</div>
+                    {username.lastName && (
+                        <div>{username.lastName}</div>
+                    )}
+                </div>
             </div>
-            <div className="content">
-                <div>{username.firstName}</div>
-                {username.lastName && (
-                    <div>{username.lastName}</div>
-                )}
-            </div>
-        </div>
-    );
+        );
+    } else {
+        return (
+            <div>Loading...</div>
+        )
+    }
 }
 
 export default Profile;
