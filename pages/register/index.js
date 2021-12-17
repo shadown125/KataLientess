@@ -6,11 +6,13 @@ import LastNameField from "../../components/inputs/LastNameField";
 import EmailField from "../../components/inputs/EmailField";
 import PasswordField from "../../components/inputs/PasswordField";
 import RepeatedPassword from "../../components/inputs/RepeatedPassword";
-import ImageField from "../../components/inputs/ImageField";
+import ImageFieldRegister from "../../components/inputs/ImageFieldRegister";
 import {registerValidationSchema} from "../../components/validationSchemas/registerValidationSchema";
+import {useState} from "react";
+import {name, url} from "../../lib/cloudinaryApi";
 
 function Register() {
-
+    const [currentImage, setCurrentImage] = useState('');
     /**
      * @returns {number}
      */
@@ -18,11 +20,44 @@ function Register() {
         return new Date().getFullYear();
     }
 
-    const ImageFieldCustom = (props) => {
-        return ImageField(props, {label: 'Profile image'});
-    }
-
     const createUser = async (email, password, firstName, lastName) => {
+        let image = '';
+
+        if (currentImage !== '') {
+            image = new FormData();
+            image.append("file", currentImage);
+            image.append('upload_preset', name);
+
+            const response = await fetch(url, {
+                method: 'POST',
+                body: image,
+            }).then(async response => response.json()).then(async (data) => {
+                const image = data.secure_url;
+                return await fetch('/api/auth/signup', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        email,
+                        password,
+                        firstName,
+                        lastName,
+                        image
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Something went wrong!');
+            }
+
+            return data;
+        }
+
+        image = '/dummyProfileImage.jpg';
         const response = await fetch('/api/auth/signup', {
             method: 'POST',
             body: JSON.stringify({
@@ -30,6 +65,7 @@ function Register() {
                 password,
                 firstName,
                 lastName,
+                image
             }),
             headers: {
                 'Content-Type': 'application/json',
@@ -67,7 +103,7 @@ function Register() {
             <div className="container">
                 <h1 className="headline h2">Register</h1>
                 <Formik initialValues={{ firstName: '', lastName: '', email: '', image: '', password: '', repeatedPassword: '', }} onSubmit={submitHandler} validationSchema={registerValidationSchema}>
-                    {({ isSubmitting }) => (
+                    {({ isSubmitting , setFieldValue}) => (
                         <Form>
                             <div className="row">
                                 <div className="col-half">
@@ -82,7 +118,14 @@ function Register() {
                                     <EmailField name="email" />
                                 </div>
                                 <div className="col-half">
-                                    <ImageFieldCustom name="image" />
+                                    <ImageFieldRegister name="image" onChange={async (event) => {
+                                        setFieldValue("image", event.target.files);
+                                        if (event.target.files && event.target.files[0]) {
+                                            const file = event.target.files[0];
+
+                                            setCurrentImage(file);
+                                        }
+                                    }} />
                                 </div>
                             </div>
                             <PasswordField name="password" />
