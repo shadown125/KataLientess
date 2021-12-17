@@ -28,9 +28,9 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "formik": "^2.2.9",
-    "mongodb": "^4.2.1",
+    "mongodb": "^4.2.2",
     "next": "12.0.4",
-    "next-auth": "^4.0.2",
+    "next-auth": "^4.0.5",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "swr": "^1.1.1",
@@ -39,17 +39,17 @@
   "devDependencies": {
     "autoprefixer": "^10.3.1",
     "copyfiles": "^2.4.1",
+    "cssnano": "^5.0.13",
+    "eslint": "7.32.0",
+    "eslint-config-next": "12.0.4",
     "imagemin": "^7.0.1",
     "imagemin-cli": "^6.0.0",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.3.6",
+    "postcss": "^8.4.5",
     "postcss-cli": "^8.3.1",
     "postcss-csso": "^5.0.0",
-    "sass": "^1.38.0",
+    "sass": "^1.45.0",
     "stylelint": "^13.13.1",
-    "svgo": "^2.4.0",
-    "cssnano": "^5.0.8",
-    "eslint": "7.32.0",
-    "eslint-config-next": "12.0.4"
+    "svgo": "^2.4.0"
   }
 }
