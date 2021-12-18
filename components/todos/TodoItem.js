@@ -1,3 +1,5 @@
+import {Form, Formik} from "formik";
+
 function TodoItem (props) {
 
     const deleteTodo = async () => {
@@ -36,6 +38,18 @@ function TodoItem (props) {
         }
     }
 
+    const submitDeleteHandler = async (data, {setSubmitting}) => {
+        setSubmitting(true);
+
+        try {
+            await deleteTodo();
+            setSubmitting(false);
+
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
     return (
         <li>
             <div className="header">
@@ -48,7 +62,13 @@ function TodoItem (props) {
                         <button className="button icon-bubble" type="button" />
                     </li>
                     <li>
-                        <button className="button icon-cross" type="button" onClick={deleteTodo} />
+                        <Formik initialValues={{ }} onSubmit={submitDeleteHandler} >
+                            {({ isSubmitting }) => (
+                                <Form>
+                                    <button className="button icon-cross" disabled={isSubmitting} type="submit" />
+                                </Form>
+                            )}
+                        </Formik>
                     </li>
                 </ul>
             </div>
