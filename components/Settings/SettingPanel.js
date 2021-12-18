@@ -20,22 +20,22 @@ function SettingPanel() {
             <Profile />
             <ul>
                 <li>
-                    <Link href='/settings/name'>
+                    <Link href='/settings/name' passHref>
                         <a className="link">Change name</a>
                     </Link>
                 </li>
                 <li>
-                    <Link href='/settings/password'>
+                    <Link href='/settings/password' passHref>
                         <a className="link">Change password</a>
                     </Link>
                 </li>
                 <li>
-                    <Link href='/settings/image'>
+                    <Link href='/settings/image' passHref>
                         <a className="link">Change image</a>
                     </Link>
                 </li>
                 <li>
-                    <Link href='/login'>
+                    <Link href='/login' passHref>
                         <button className="link" onClick={logoutHandler}>Logout</button>
                     </Link>
                 </li>
