@@ -77,9 +77,6 @@ function TodoItem (props) {
                         </Formik>
                     </li>
                     <li>
-                        <button className="button icon-bubble" type="button" />
-                    </li>
-                    <li>
                         <Formik initialValues={{ }} onSubmit={submitDeleteHandler} >
                             {({ isSubmitting }) => (
                                 <Form>
