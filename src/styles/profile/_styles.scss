@@ -1,11 +1,34 @@
 @use '../susanoo';
+@use '../loading-states' as loading;
 
 .profile {
     display: flex;
     align-items: center;
+    &.is-loading {
+        .image {
+            @include loading.loading-content(50%);
+        }
+        .content {
+            flex: {
+                grow: 1
+            }
+            div {
+                display: inline-block;
+                width: 100%;
+                height: susanoo.rem-calc(20);
+                @include loading.loading-content();
+            }
+        }
+    }
     .content {
+        max: {
+            width: 50%;
+        }
         margin: {
             left: susanoo.rem-calc(12);
+        }
+        word: {
+            break: break-word;
         }
     }
     .image-wrapper {
@@ -14,7 +37,8 @@
         width: var(--circle);
         height: var(--circle);
     }
-    img {
+    img,
+    .image {
         width: 100%;
         height: 100%;
         object-fit: cover;

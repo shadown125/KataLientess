@@ -29,11 +29,18 @@ function Profile() {
                 </div>
             </div>
         );
-    } else {
-        return (
-            <div>Loading...</div>
-        )
     }
+    return (
+        <div className="profile is-loading">
+            <div className="image-wrapper">
+                <div className="image" />
+            </div>
+            <div className="content">
+                <div />
+                <div />
+            </div>
+        </div>
+    )
 }
 
 export default Profile;
