@@ -157,7 +157,9 @@ function Register() {
                                 <Link href="/login">
                                     <a className="button button-primary">Back to login</a>
                                 </Link>
-                                <button className="button button-primary" disabled={isSubmitting} type="submit">Submit</button>
+                                <button className="button button-primary" disabled={isSubmitting} type="submit">
+                                    <span>Submit</span>
+                                </button>
                             </div>
                         </Form>
                     )}

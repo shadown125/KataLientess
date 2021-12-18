@@ -27,7 +27,11 @@ function Todos(props) {
                 <h2 className="headline h5">In Progression</h2>
                 <ul>
                     <li className="add-todo">
-                        <button className="button button-primary" type="button" onClick={setActiveAddTodo}>Add Todo</button>
+                        <button className="button button-primary" type="button" onClick={setActiveAddTodo}>
+                            <span>
+                                Add Todo
+                            </span>
+                        </button>
                     </li>
                 </ul>
             </div>

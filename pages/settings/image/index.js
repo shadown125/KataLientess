@@ -66,7 +66,9 @@ function SettingsImage() {
                                 <Link href="/settings">
                                     <a className="button button-primary">Back</a>
                                 </Link>
-                                <button className="button button-primary" disabled={isSubmitting} type="submit">Save</button>
+                                <button className="button button-primary" disabled={isSubmitting} type="submit">
+                                    <span>Save</span>
+                                </button>
                             </div>
                         </Form>
                     )}

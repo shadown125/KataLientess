@@ -70,7 +70,9 @@ function AddTodo (props) {
                         <Form>
                             <TitleField name="title" />
                             <TextareaField name="description" />
-                            <button className="button button-primary" disabled={isSubmitting} type="submit">Add Todo</button>
+                            <button className="button button-primary" disabled={isSubmitting} type="submit">
+                                <span>Add Todo</span>
+                            </button>
                         </Form>
                     )}
                 </Formik>
