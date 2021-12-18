@@ -51,6 +51,11 @@
                 color: #68ddd5;
             }
         }
+        .button {
+            > span {
+                color: white;
+            }
+        }
         .headline {
             margin: {
                 bottom: unset;
