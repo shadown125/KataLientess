@@ -38,6 +38,9 @@ body {
         top: susanoo.rem-calc(48);
         bottom: susanoo.rem-calc(48);
     }
+    @media only screen and (max-width: 640px) {
+        margin: unset;
+    }
 }
 
 main {
@@ -46,6 +49,11 @@ main {
     }
     border-bottom-left-radius: variables.$border-radius;
     border-bottom-right-radius: variables.$border-radius;
+    @media only screen and (max-width: 640px) {
+        border: {
+            radius: unset;
+        }
+    }
 }
 
 .wrapper {

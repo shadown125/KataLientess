@@ -27,6 +27,11 @@
             display: none;
         }
     }
+    @media only screen and (max-width: 640px) {
+        border: {
+            radius: unset;
+        }
+    }
     .headline {
         color: #65aaec;
     }
