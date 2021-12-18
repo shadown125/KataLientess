@@ -41,8 +41,5 @@
             top: calc(#{grid.$border-radius} * -1.75);
             right: calc(#{grid.$border-radius} * -0.5);
         }
-        > span {
-            display: none;
-        }
     }
 }
