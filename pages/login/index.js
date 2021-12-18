@@ -50,7 +50,9 @@ function LoginPage () {
                                     <Link href="/register">
                                         <a className="button button-primary">Register</a>
                                     </Link>
-                                    <button className="button button-primary" disabled={isSubmitting} type="submit">Login</button>
+                                    <button className="button button-primary" disabled={isSubmitting} type="submit">
+                                        <span>Login</span>
+                                    </button>
                                 </div>
                             </Form>
                         )}
