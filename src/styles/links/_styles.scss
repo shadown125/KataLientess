@@ -1,6 +1,7 @@
 @use 'variables';
 @use '../susanoo';
 @use '../icons';
+@use 'mixins';
 
 a {
     display: block;
@@ -79,17 +80,20 @@ a {
             @include susanoo.icon(icons.$icon-github, false);
             padding: susanoo.rem-calc(8);
         }
+        @include mixins.glowing-hover();
     }
     &.icon-linkedin {
         &::before {
             @include susanoo.icon(icons.$icon-linkedin, false);
             padding: susanoo.rem-calc(8);
         }
+        @include mixins.glowing-hover();
     }
     &.icon-twitter {
         &::before {
             @include susanoo.icon(icons.$icon-twitter, false);
             padding: susanoo.rem-calc(8);
         }
+        @include mixins.glowing-hover();
     }
 }
