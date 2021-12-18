@@ -3,10 +3,10 @@
   "description": "KataLientesS App",
   "scripts": {
     "dev": "next dev",
-    "nextbuild": "next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "build": "npm-run-all --parallel copy:* build:*",
+    "stylebuild": "npm-run-all --parallel copy:* build:*",
     "build:styles": "npm-run-all sass:build postcss:build",
     "build:images": "imagemin src/pics/*.{jpg,png} --out-dir=public",
     "copy:fonts": "copyfiles src/fonts/**/* public --flat",
