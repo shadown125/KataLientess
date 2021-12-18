@@ -38,7 +38,7 @@ function LoginPage () {
 
     return (
         <main>
-            <section className="intro-panel">
+            <section className="intro-panel login">
                 <div className="container">
                     <h1 className="headline h2">Login</h1>
                     <Formik initialValues={{ email: '', password: '' }} onSubmit={submitHandler} validationSchema={loginValidationSchema}>
