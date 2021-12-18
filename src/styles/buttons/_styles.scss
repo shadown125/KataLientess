@@ -46,6 +46,13 @@ button {
         span {
             visibility: hidden;
         }
+        &[class*='icon'] {
+            &::before {
+                content: "";
+                width: calc(var(--circle) / 2);
+                height: calc(var(--circle) / 2);
+            }
+        }
         &::before {
             content: "";
             @include susanoo.absolute-center();
