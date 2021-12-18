@@ -39,3 +39,6 @@ yarn-error.log*
 #lib
 lib/db.js
 lib/cloudinaryApi.js
+
+#next
+next.config.js
