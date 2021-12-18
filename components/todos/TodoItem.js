@@ -50,13 +50,31 @@ function TodoItem (props) {
         }
     }
 
+    const submitCompleteHandler = async (data, {setSubmitting}) => {
+        setSubmitting(true);
+
+        try {
+            await completeTodo();
+            setSubmitting(false);
+
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
     return (
         <li>
             <div className="header">
                 <h3 className="headline h5">{props.title}</h3>
                 <ul className="actions">
                     <li>
-                        <button className="button icon-check" type="button" onClick={completeTodo} />
+                        <Formik initialValues={{ }} onSubmit={submitCompleteHandler} >
+                            {({ isSubmitting }) => (
+                                <Form>
+                                    <button className="button icon-check" disabled={isSubmitting} type="submit" />
+                                </Form>
+                            )}
+                        </Formik>
                     </li>
                     <li>
                         <button className="button icon-bubble" type="button" />
