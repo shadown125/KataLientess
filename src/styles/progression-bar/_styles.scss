@@ -1,6 +1,7 @@
 @use '../susanoo';
 @use '../grid/variables' as grid;
 @use 'variables';
+@use '../loading-states' as loading;
 
 .progression-bar {
     background: {
@@ -14,6 +15,23 @@
     gap: susanoo.rem-calc(64);
     @media only screen and (max-width: 640px) {
         gap: susanoo.rem-calc(24);
+    }
+    &.is-loading {
+        .progressed-bar {
+            @include loading.loading-content();
+        }
+        .done-todos {
+            @include loading.loading-content();
+            span {
+                visibility: hidden;
+            }
+        }
+        .in-progress-todos {
+            @include loading.loading-content();
+            span {
+                visibility: hidden;
+            }
+        }
     }
     * {
         span {

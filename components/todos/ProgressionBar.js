@@ -1,3 +1,5 @@
+import LoadingProgressionBar from "../loading-skeletons/LoadingProgressionBar";
+
 function ProgressionBar(props) {
     const date = new Date();
     const doneTodosCounter = props.doneTodosLength;
@@ -20,6 +22,12 @@ function ProgressionBar(props) {
      */
     function getCurrentMonth() {
         return date.toLocaleString('default', { month: 'long' }).substring(0, 3);
+    }
+
+    if (!props.doneTodosData) {
+        return (
+            <LoadingProgressionBar todoPage={props.todoPage} />
+        )
     }
 
     return (
