@@ -35,7 +35,7 @@ function TodosLayout(props) {
         });
     }
 
-    if (!data) {
+    if (!data && routerPath === '/done-todos') {
         return (
             <section className="todos-container">
                 <ProgressionBar doneTodosLength={doneTodosLength} todoPage={false}/>
