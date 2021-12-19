@@ -4,6 +4,7 @@ import DoneTodos from "./DoneTodos";
 import {useState, useEffect} from "react";
 import {useRouter} from "next/router";
 import useSWR from "swr";
+import LoadingDoneTodos from "../loading-skeletons/LoadingDoneTodos";
 
 function TodosLayout(props) {
     const [activeAddTodo, setIsActiveAddTodo] = useState(true);
@@ -13,7 +14,7 @@ function TodosLayout(props) {
     const [doneTodos, setDoneTodos] = useState([]);
     const [doneTodosLength, setDoneTodosLength] = useState();
 
-    const {data, error} = useSWR('/api/user/getDoneTodos', (url) => fetch(url).then(res => res.json()), { refreshInterval: 10 });
+    const {data, error} = useSWR('/api/user/getDoneTodos', (url) => fetch(url).then(res => res.json()));
 
     useEffect(() => {
         if (data) {
@@ -32,6 +33,15 @@ function TodosLayout(props) {
         setTodosLength(() => {
             return data;
         });
+    }
+
+    if (!data) {
+        return (
+            <section className="todos-container">
+                <ProgressionBar doneTodosLength={doneTodosLength} todoPage={false}/>
+                <LoadingDoneTodos />
+            </section>
+        )
     }
 
     if (routerPath === '/done-todos') {
