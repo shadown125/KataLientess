@@ -1,6 +1,6 @@
 import HomePage from "../../index";
 import FullActiveBackdrop from "../../../components/layout/FullActiveBackdrop";
-import {Fragment} from "react";
+import {Fragment, useState} from "react";
 import Link from "next/link";
 import Profile from "../../../components/elements/Profile";
 import {Formik, Form} from "formik";
@@ -10,6 +10,7 @@ import LastNameField from "../../../components/inputs/LastNameField";
 import {settingsNameValidationSchema} from "../../../components/validationSchemas/settingsNameValidationSchema";
 
 function SettingsName() {
+    const [profileData, setProfileData] = useState();
 
     const changeUsername = async (firstName, lastName) => {
         const response = await fetch('/api/user/changeUsername', {
@@ -21,9 +22,12 @@ function SettingsName() {
             headers: {
                 'Content-Type': 'application/json',
             }
+        }).then(async response => response.json()).then(async () => {
+            return await fetch('/api/user/getProfile');
         });
 
         const data = await response.json();
+        setProfileData(data);
 
         if (!response.ok) {
             throw new Error(data.message || 'Something went wrong!');
@@ -64,7 +68,7 @@ function SettingsName() {
                 <Link href='/'>
                     <a className="button button--medium icon-cross" />
                 </Link>
-                <Profile />
+                <Profile profileData={profileData} />
                 <Formik initialValues={{ firstName: '', lastName: '' }} onSubmit={submitHandler} validationSchema={settingsNameValidationSchema} >
                     {({ isSubmitting }) => (
                         <Form>
