@@ -6,7 +6,6 @@ import LoadingTodos from "../loading-skeletons/LoadingTodos";
 function Todos(props) {
     const [activeAddTodo, setIsActiveAddTodo] = useState(true);
     const [newTodos, setNewTodos] = useState([]);
-    const [updatedTodosLength, setUpdatedTodosLength] = useState();
 
     const {data, error} = useSWR('/api/user/getAllTodos', (url) => fetch(url).then(res => res.json()));
 
