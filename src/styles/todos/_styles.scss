@@ -2,6 +2,7 @@
 @use '../lists';
 @use '../grid/variables' as grid;
 @use 'variables';
+@use '../loading-states' as loading;
 
 .todos {
     background: {
@@ -16,6 +17,38 @@
     padding: susanoo.rem-calc(24);
     height: susanoo.rem-calc(550);
     overflow-y: auto;
+    &.is-loading {
+        .header {
+            .headline-loading {
+                @include loading.loading-content();
+            }
+            .headline {
+                visibility: hidden;
+            }
+            &::before {
+                @include loading.loading-content();
+            }
+            .button {
+                @include loading.loading-content();
+            }
+        }
+        .todo-list {
+            .main {
+                p {
+                    @include loading.loading-content();
+                    margin: {
+                        top: susanoo.rem-calc(10);
+                    }
+                    span {
+                        visibility: hidden;
+                    }
+                }
+                &::before {
+                    content: unset;
+                }
+            }
+        }
+    }
     &::-webkit-scrollbar {
         width: susanoo.rem-calc(36);
     }

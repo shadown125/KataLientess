@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import TodoItem from "./TodoItem";
 import useSWR from "swr";
+import LoadingTodos from "../loading-skeletons/LoadingTodos";
 
 function Todos(props) {
     const [activeAddTodo, setIsActiveAddTodo] = useState(true);
@@ -19,6 +20,11 @@ function Todos(props) {
         setIsActiveAddTodo(true);
 
         props.onSettingActiveAddTodo(activeAddTodo);
+    }
+    if (!data) {
+        return (
+            <LoadingTodos addTodo={setActiveAddTodo} />
+        )
     }
 
     return (
