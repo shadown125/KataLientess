@@ -11,9 +11,12 @@ function DoneTodoItem(props) {
             headers: {
                 'Content-Type': 'application/json',
             }
+        }).then(async response => response.json()).then(async () => {
+            return await fetch('/api/user/getDoneTodos');
         });
 
         const data = await response.json();
+        props.allDoneTodosAfterDeletingDoneTodo(data.doneTodos);
 
         if (!response.ok) {
             throw new Error(data.message || 'Something went wrong!');

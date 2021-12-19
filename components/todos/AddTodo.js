@@ -29,9 +29,12 @@ function AddTodo (props) {
             headers: {
                 'Content-Type': 'application/json',
             }
+        }).then(async response => response.json()).then(async () => {
+            return await fetch('/api/user/getAllTodos');
         });
 
         const data = await response.json();
+        props.allTodosAfterAddingTodo(data.todos);
 
         if (!response.ok) {
             throw new Error(data.message || 'Something went wrong!');

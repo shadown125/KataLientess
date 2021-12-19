@@ -11,6 +11,8 @@ function HomePage () {
     const [state, setState] = useState(false);
     const [addTodoState, setAddTodoState] = useState(false);
     const [todos, setTodos] = useState([]);
+    const [allTodos, setAllTodos] = useState();
+    const [doneTodos, setDoneTodos] = useState();
 
     const onSettingMainNavigationState = (state) => {
         setState(() => {
@@ -30,6 +32,33 @@ function HomePage () {
         })
     }
 
+    const getAllTodosAfterAddingTodo = (todo) => {
+        setAllTodos(() => {
+            return todo
+        })
+    }
+
+    const allTodosAfterDeleteAction = (todo) => {
+        setAllTodos(() => {
+            return todo;
+        })
+    }
+
+    const allTodosAfterCompleteAction = (todos) => {
+        setAllTodos(() => {
+            return todos.todos
+        })
+        setDoneTodos(() => {
+            return todos.doneTodos
+        })
+    }
+
+    const allDoneTodosAfterDeletingDoneTodo = (doneTodos) => {
+        setDoneTodos(() => {
+            return doneTodos
+        })
+    }
+
     const saveTodoDataHandler = (enteredTodoData) => {
         setTodos([enteredTodoData, ...todos])
     }
@@ -41,11 +70,11 @@ function HomePage () {
                     <PageHeader onSettingMainNavigationState={onSettingMainNavigationState} />
                     <PageBody>
                         <MainNavigation currentMainNavigationState={state}/>
-                        <TodosLayout onSettingActiveAddTodo={onSettingActiveAddTodoState} />
+                        <TodosLayout onSettingActiveAddTodo={onSettingActiveAddTodoState} allTodos={allTodos} allTodosAfterDeleteAction={allTodosAfterDeleteAction} allTodosAfterCompleteAction={allTodosAfterCompleteAction} allDoneTodos={doneTodos} allDoneTodosAfterDeletingDoneTodo={allDoneTodosAfterDeletingDoneTodo}/>
                     </PageBody>
                 </div>
             </div>
-            <AddTodo onSaveTodoData={saveTodoDataHandler} removeActive={onRemoveActive} activeTodo={addTodoState} />
+            <AddTodo onSaveTodoData={saveTodoDataHandler} removeActive={onRemoveActive} activeTodo={addTodoState} allTodosAfterAddingTodo={getAllTodosAfterAddingTodo} />
             <Backdrop activeTodo={addTodoState} currentMainNavigationState={state} />
         </Fragment>
     );

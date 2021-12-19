@@ -17,9 +17,14 @@ function TodosLayout(props) {
     const {data, error} = useSWR('/api/user/getDoneTodos', (url) => fetch(url).then(res => res.json()));
 
     useEffect(() => {
-        if (data) {
-            setDoneTodos(data.doneTodos);
-            setDoneTodosLength(data.doneTodos.length);
+        if (props.allDoneTodos) {
+            setDoneTodos(props.allDoneTodos);
+            setDoneTodosLength(props.allDoneTodos.length);
+        } else {
+            if (data) {
+                setDoneTodos(data.doneTodos);
+                setDoneTodosLength(data.doneTodos.length);
+            }
         }
     }, [data, props]);
 
@@ -35,6 +40,18 @@ function TodosLayout(props) {
         });
     }
 
+    const allTodosAfterDeleteAction = (todos) => {
+        props.allTodosAfterDeleteAction(todos);
+    }
+
+    const allTodosAfterCompleteAction = (todos) => {
+        props.allTodosAfterCompleteAction(todos);
+    }
+
+    const allDoneTodosAfterDeletingDoneTodo = (doneTodos) => {
+        props.allDoneTodosAfterDeletingDoneTodo(doneTodos);
+    }
+
     if (!data && routerPath === '/done-todos') {
         return (
             <section className="todos-container">
@@ -48,7 +65,7 @@ function TodosLayout(props) {
         return (
             <section className="todos-container">
                 <ProgressionBar doneTodosData={data} doneTodosLength={doneTodosLength} todoPage={false}/>
-                <DoneTodos doneTodos={doneTodos} />
+                <DoneTodos doneTodos={doneTodos} allDoneTodosAfterDeletingDoneTodo={allDoneTodosAfterDeletingDoneTodo} />
             </section>
         );
     }
@@ -56,7 +73,7 @@ function TodosLayout(props) {
     return (
         <section className="todos-container">
             <ProgressionBar doneTodosData={data} todosAmount={todosLength} doneTodosLength={doneTodosLength} todoPage={true}/>
-            <Todos onSettingActiveAddTodo={onSettingActiveAddTodo} todosAmount={todosAmount} />
+            <Todos onSettingActiveAddTodo={onSettingActiveAddTodo} todosAmount={todosAmount} allTodos={props.allTodos} allTodosAfterDeleteAction={allTodosAfterDeleteAction} allTodosAfterCompleteAction={allTodosAfterCompleteAction} />
         </section>
     );
 }

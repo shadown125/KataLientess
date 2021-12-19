@@ -11,9 +11,12 @@ function TodoItem (props) {
             headers: {
                 'Content-Type': 'application/json',
             }
+        }).then(async response => response.json()).then(async () => {
+            return await fetch('/api/user/getAllTodos');
         });
 
         const data = await response.json();
+        await props.allTodosAfterDeleteAction(data.todos);
 
         if (!response.ok) {
             throw new Error(data.message || 'Something went wrong!');
@@ -29,9 +32,12 @@ function TodoItem (props) {
             headers: {
                 'Content-Type': 'application/json',
             }
+        }).then(async response => response.json()).then(async () => {
+            return await fetch('/api/user/getAllTodosAndDoneTodos');
         });
 
         const data = await response.json();
+        await props.allTodosAfterCompleteAction(data);
 
         if (!response.ok) {
             throw new Error(data.message || 'Something went wrong!');

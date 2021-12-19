@@ -6,15 +6,29 @@ import LoadingTodos from "../loading-skeletons/LoadingTodos";
 function Todos(props) {
     const [activeAddTodo, setIsActiveAddTodo] = useState(true);
     const [newTodos, setNewTodos] = useState([]);
+    const [updatedTodosLength, setUpdatedTodosLength] = useState();
 
-    const {data, error} = useSWR('/api/user/getAllTodos', (url) => fetch(url).then(res => res.json()), { refreshInterval: 10 });
+    const {data, error} = useSWR('/api/user/getAllTodos', (url) => fetch(url).then(res => res.json()));
 
     useEffect(() => {
-        if (data) {
-            setNewTodos(data.todos);
-            props.todosAmount(data.todos.length);
+        if (props.allTodos) {
+            setNewTodos(props.allTodos);
+            props.todosAmount(props.allTodos.length);
+        } else {
+            if (data) {
+                setNewTodos(data.todos);
+                props.todosAmount(data.todos.length)
+            }
         }
-    }, [data, props])
+    }, [data, props]);
+
+    const allTodosAfterDeleteAction = (todos) => {
+        props.allTodosAfterDeleteAction(todos);
+    }
+
+    const allTodosAfterCompleteAction = (todos) => {
+        props.allTodosAfterCompleteAction(todos);
+    }
 
     function setActiveAddTodo() {
         setIsActiveAddTodo(true);
@@ -44,7 +58,7 @@ function Todos(props) {
             <div className="main-container">
                 <ul className="todo-list">
                     {newTodos.map((todo, index) => (
-                        <TodoItem id={todo.id} key={index} title={todo.title} description={todo.description} />
+                        <TodoItem id={todo.id} key={index} title={todo.title} description={todo.description} allTodosAfterDeleteAction={allTodosAfterDeleteAction} allTodosAfterCompleteAction={allTodosAfterCompleteAction} />
                     ))}
                 </ul>
             </div>
