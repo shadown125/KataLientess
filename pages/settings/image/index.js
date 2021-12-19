@@ -11,31 +11,41 @@ import {url, name} from "../../../lib/cloudinaryApi";
 
 function SettingsImage() {
     const [currentImage, setCurrentImage] = useState('');
-    const [imageSource, setImageSource] = useState('');
+    const [profileData, setProfileData] = useState();
+
+    const addProfileImage = async () => {
+        const image = new FormData();
+        image.append("file", currentImage);
+        image.append('upload_preset', name);
+
+        const response = await fetch(url, {
+            method: 'POST',
+            body: image,
+        }).then(async response => response.json()).then(async (data) => {
+            const image = data.secure_url;
+            await fetch('/api/user/uploadImage', {
+                method: 'POST',
+                body: JSON.stringify({image}),
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+            return await fetch('/api/user/getProfile');
+        });
+
+        const data = await response.json();
+        setProfileData(data);
+
+        if (!response.ok) {
+            throw new Error(data.message || 'Something went wrong!');
+        }
+    }
 
     const submitHandler = async (data, {setSubmitting, resetForm}) => {
         setSubmitting(true);
 
         try {
-            const image = new FormData();
-            image.append("file", currentImage);
-            image.append('upload_preset', name);
-
-            await fetch(url, {
-                method: 'POST',
-                body: image,
-            }).then(async response => response.json()).then(async (data) => {
-                const image = data.secure_url;
-                setImageSource(image);
-                return await fetch('/api/user/uploadImage', {
-                    method: 'POST',
-                    body: JSON.stringify({image}),
-                    headers: {
-                        'Content-Type': 'application/json',
-                    }
-                });
-            });
-
+            await addProfileImage();
             setSubmitting(false);
             resetForm(true);
         } catch (error) {
@@ -50,7 +60,7 @@ function SettingsImage() {
                 <Link href='/'>
                     <a className="button button--medium icon-cross" />
                 </Link>
-                <Profile imagePreview={imageSource} />
+                <Profile profileData={profileData} />
                 <Formik initialValues={{ image: ''}} enableReinitialize={true} onSubmit={submitHandler} validationSchema={settingsImageValidationSchema}>
                     {({ isSubmitting , setFieldValue}) => (
                         <Form>

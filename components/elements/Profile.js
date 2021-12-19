@@ -2,18 +2,23 @@ import useSWR from "swr";
 import {useState, useEffect} from "react";
 import Image from "next/image";
 
-function Profile() {
+function Profile(props) {
     const [username, setUsername] = useState([]);
     const [image, setImage] = useState('');
 
-    const {data, error} = useSWR('/api/user/getProfile', async (url) => await fetch(url).then(async res => await res.json()), { refreshInterval: 10 });
+    const {data, error} = useSWR('/api/user/getProfile', async (url) => await fetch(url).then(async res => await res.json()));
 
     useEffect(() => {
-        if (data) {
-            setUsername(data);
-            setImage(data.image);
+        if (props.profileData) {
+            setUsername(props.profileData);
+            setImage(props.profileData.image);
+        } else {
+            if (data) {
+                setUsername(data);
+                setImage(data.image);
+            }
         }
-    }, [data]);
+    }, [data, props]);
 
     if (image) {
         return (
