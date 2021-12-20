@@ -16,11 +16,11 @@
     "sass:watch": "sass src/styles:public --no-source-map --watch",
     "postcss:build": "postcss public/*.css --replace --env production",
     "postcss:watch": "postcss public/*.css --watch --dir public --poll=1000",
-    "test": "jest --env=jsdom"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "private": true,
   "browserslist": [
     "> 0.5%",
@@ -40,12 +40,13 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
-    "babel-jest": "^27.4.5",
     "autoprefixer": "^10.3.1",
+    "babel-jest": "^27.4.5",
     "copyfiles": "^2.4.1",
     "cssnano": "^5.0.13",
     "eslint": "7.32.0",
     "eslint-config-next": "12.0.4",
+    "eslint-plugin-testing-library": "^5.0.1",
     "imagemin": "^7.0.1",
     "imagemin-cli": "^6.0.0",
     "jest": "^27.4.5",
