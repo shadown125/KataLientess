@@ -1,5 +1,6 @@
 import {connectToDatabase} from "../../../lib/db";
 import {ObjectId} from "mongodb";
+import {getSession} from "next-auth/react";
 
 async function addTodoHandler (req, res) {
     if (req.method !== 'POST') {
@@ -11,6 +12,13 @@ async function addTodoHandler (req, res) {
 
     if (!email) {
         res.status(404).json({message: 'User not found'})
+        return;
+    }
+
+    const session = await getSession({req: req});
+
+    if (!session) {
+        res.status(401).json({message: 'Not authenticated!'});
         return;
     }
 
