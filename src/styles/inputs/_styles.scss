@@ -81,12 +81,12 @@ form {
     .row {
         display: flex;
         gap: var(--gap);
+        width: 100%;
         @media only screen and (max-width: 940px) {
             gap: unset;
             flex: {
                 direction: column;
             }
-            width: 100%;
         }
     }
 }
