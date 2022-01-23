@@ -16,7 +16,8 @@
     "sass:watch": "sass src/styles:public --no-source-map --watch",
     "postcss:build": "postcss public/*.css --replace --env production",
     "postcss:watch": "postcss public/*.css --watch --dir public --poll=1000",
-    "test": "jest"
+    "test": "jest --env=jsdom",
+    "test:coverage": "jest --coverage"
   },
   "keywords": [],
   "author": "",
