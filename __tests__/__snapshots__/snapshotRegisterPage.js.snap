@@ -1,0 +1,200 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders register page unchanged 1`] = `
+<section
+  className="intro-panel register"
+>
+  <div
+    className="container"
+  >
+    <h1
+      className="headline h2"
+    >
+      Register
+    </h1>
+    <form
+      action="#"
+      onReset={[Function]}
+      onSubmit={[Function]}
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-half"
+        >
+          <label
+            htmlFor="firstName"
+          >
+            First name:*
+          </label>
+          <input
+            id="firstName"
+            name="firstName"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Name"
+            value=""
+          />
+        </div>
+        <div
+          className="col-half"
+        >
+          <label
+            htmlFor="lastName"
+          >
+            Last name:
+          </label>
+          <input
+            id="lastName"
+            name="lastName"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Last name"
+            type="input"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col-half"
+        >
+          <label
+            htmlFor="email"
+          >
+            E-Mail:*
+          </label>
+          <input
+            id="email"
+            name="email"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="E-Mail"
+            type="email"
+            value=""
+          />
+        </div>
+        <div
+          className="col-half"
+        >
+          <label
+            htmlFor="image"
+          >
+            Profile Image:
+          </label>
+          <input
+            id="image"
+            name="image"
+            onBlur={[Function]}
+            onChange={[Function]}
+            type="file"
+          />
+        </div>
+      </div>
+      <label
+        htmlFor="password"
+      >
+        Password:*
+      </label>
+      <input
+        id="password"
+        name="password"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="Password"
+        type="password"
+        value=""
+      />
+      <label
+        htmlFor="repeatedPassword"
+      >
+        Repeat password
+      </label>
+      <input
+        id="repeatedPassword"
+        name="repeatedPassword"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="Repeat password"
+        type="password"
+        value=""
+      />
+      <div
+        className="buttons-container"
+      >
+        <a
+          className="button button-primary"
+          href="/login"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          Back to login
+        </a>
+        <button
+          className="button button-primary"
+          disabled={false}
+          type="submit"
+        >
+          <span>
+            Submit
+          </span>
+        </button>
+      </div>
+    </form>
+    <div
+      className="footer"
+    >
+      <ul
+        className="social-links"
+      >
+        <li>
+          <a
+            className="link icon-link icon-github"
+            href="https://github.com/shadown125"
+            rel="external noopener noreferrer"
+            target="_blank"
+          >
+            <span>
+              Github
+            </span>
+          </a>
+        </li>
+        <li>
+          <a
+            className="link icon-link icon-twitter"
+            href="https://twitter.com/DawidOleksiuk"
+            rel="external noopener noreferrer"
+            target="_blank"
+          >
+            <span>
+              Twitter
+            </span>
+          </a>
+        </li>
+        <li>
+          <a
+            className="link icon-link icon-linkedin"
+            href="https://www.linkedin.com/in/dawid-ol-2478311a4/"
+            rel="external noopener noreferrer"
+            target="_blank"
+          >
+            <span>
+              Linkedin
+            </span>
+          </a>
+        </li>
+      </ul>
+      <div
+        className="credits"
+      >
+        © 
+        2022
+         All rights reserved by Dawid Oleksiuk
+      </div>
+    </div>
+  </div>
+</section>
+`;
