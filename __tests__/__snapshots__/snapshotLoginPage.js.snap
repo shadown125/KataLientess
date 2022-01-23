@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders login page unchanged 1`] = `
+<main>
+  <section
+    className="intro-panel login"
+  >
+    <div
+      className="container"
+    >
+      <h1
+        className="headline h2"
+      >
+        Login
+      </h1>
+      <form
+        action="#"
+        onReset={[Function]}
+        onSubmit={[Function]}
+      >
+        <label
+          htmlFor="email"
+        >
+          E-Mail:*
+        </label>
+        <input
+          id="email"
+          name="email"
+          onBlur={[Function]}
+          onChange={[Function]}
+          placeholder="E-Mail"
+          type="email"
+          value=""
+        />
+        <label
+          htmlFor="password"
+        >
+          Password:*
+        </label>
+        <input
+          id="password"
+          name="password"
+          onBlur={[Function]}
+          onChange={[Function]}
+          placeholder="Password"
+          type="password"
+          value=""
+        />
+        <div
+          className="buttons-container"
+        >
+          <a
+            className="button button-primary"
+            href="/register"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Register
+          </a>
+          <button
+            className="button button-primary"
+            disabled={false}
+            type="submit"
+          >
+            <span>
+              Login
+            </span>
+          </button>
+        </div>
+      </form>
+      <div
+        className="footer"
+      >
+        <ul
+          className="social-links"
+        >
+          <li>
+            <a
+              className="link icon-link icon-github"
+              href="https://github.com/shadown125"
+              rel="external noopener noreferrer"
+              target="_blank"
+            >
+              <span>
+                Github
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              className="link icon-link icon-twitter"
+              href="https://twitter.com/DawidOleksiuk"
+              rel="external noopener noreferrer"
+              target="_blank"
+            >
+              <span>
+                Twitter
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              className="link icon-link icon-linkedin"
+              href="https://www.linkedin.com/in/dawid-ol-2478311a4/"
+              rel="external noopener noreferrer"
+              target="_blank"
+            >
+              <span>
+                Linkedin
+              </span>
+            </a>
+          </li>
+        </ul>
+        <div
+          className="credits"
+        >
+          © 
+          2022
+           All rights reserved by Dawid Oleksiuk
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+`;
