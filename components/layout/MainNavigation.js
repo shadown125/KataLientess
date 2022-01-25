@@ -2,6 +2,7 @@ import Link from "next/link";
 import Profile from "../elements/Profile";
 import {useRouter} from "next/router";
 import {signOut} from "next-auth/react";
+import Year from "../elements/Year";
 
 function MainNavigation(props) {
     const router = useRouter();
@@ -28,10 +29,6 @@ function MainNavigation(props) {
         await signOut();
     }
 
-    function getFullYear() {
-        return new Date().getFullYear();
-    }
-
     return (
         <aside className={`nav-aside${props.currentMainNavigationState ? ' is-active' : ''}`}>
             <nav className="main-navigation">
@@ -52,7 +49,7 @@ function MainNavigation(props) {
                         </button>
                     </li>
                 </ul>
-                <div className="credits">&copy; {getFullYear()} All rights reserved by Dawid Oleksiuk</div>
+                <div className="credits">&copy; {Year()} All rights reserved by Dawid Oleksiuk</div>
             </nav>
         </aside>
     );

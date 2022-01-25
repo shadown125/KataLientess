@@ -11,17 +11,11 @@ import {registerValidationSchema} from "../../components/validationSchemas/regis
 import {useState} from "react";
 import {name, url} from "../../lib/cloudinaryApi";
 import {useRouter} from "next/router";
+import Year from "../../components/elements/Year";
 
 function Register() {
     const [currentImage, setCurrentImage] = useState('');
     const router = useRouter();
-
-    /**
-     * @returns {number}
-     */
-    function getFullYear() {
-        return new Date().getFullYear();
-    }
 
     const createUser = async (email, password, firstName, lastName) => {
         let image = '';
@@ -182,7 +176,7 @@ function Register() {
                             </a>
                         </li>
                     </ul>
-                    <div className="credits">&copy; {getFullYear()} All rights reserved by Dawid Oleksiuk</div>
+                    <div className="credits">&copy; {Year()} All rights reserved by Dawid Oleksiuk</div>
                 </div>
             </div>
         </section>

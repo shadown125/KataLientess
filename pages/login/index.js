@@ -5,15 +5,10 @@ import {useRouter} from "next/router";
 import EmailField from "../../components/inputs/EmailField";
 import PasswordField from "../../components/inputs/PasswordField";
 import {loginValidationSchema} from "../../components/validationSchemas/loginValidationSchema";
+import Year from "../../components/elements/Year";
 
 function LoginPage () {
     const router = useRouter();
-    /**
-     * @returns {number}
-     */
-    function getFullYear() {
-        return new Date().getFullYear();
-    }
 
     const submitHandler = async (data, {setSubmitting, resetForm}) => {
         setSubmitting(true);
@@ -75,7 +70,7 @@ function LoginPage () {
                                 </a>
                             </li>
                         </ul>
-                        <div className="credits">&copy; {getFullYear()} All rights reserved by Dawid Oleksiuk</div>
+                        <div className="credits">&copy; {Year()} All rights reserved by Dawid Oleksiuk</div>
                     </div>
                 </div>
             </section>
