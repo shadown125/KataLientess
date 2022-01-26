@@ -2,7 +2,7 @@ import Link from "next/link";
 import Profile from "../elements/Profile";
 import {useRouter} from "next/router";
 import {signOut} from "next-auth/react";
-import Year from "../elements/Year";
+import {Year} from "../elements/Year";
 
 function MainNavigation(props) {
     const router = useRouter();

@@ -11,7 +11,7 @@ import {registerValidationSchema} from "../../components/validationSchemas/regis
 import {useState} from "react";
 import {name, url} from "../../lib/cloudinaryApi";
 import {useRouter} from "next/router";
-import Year from "../../components/elements/Year";
+import {Year} from "../../components/elements/Year";
 
 function Register() {
     const [currentImage, setCurrentImage] = useState('');

@@ -5,7 +5,7 @@ import {useRouter} from "next/router";
 import EmailField from "../../components/inputs/EmailField";
 import PasswordField from "../../components/inputs/PasswordField";
 import {loginValidationSchema} from "../../components/validationSchemas/loginValidationSchema";
-import Year from "../../components/elements/Year";
+import {Year} from "../../components/elements/Year";
 
 function LoginPage () {
     const router = useRouter();
@@ -17,18 +17,23 @@ function LoginPage () {
             ...data,
         }
 
-        const result = await signIn('credentials', {
-            redirect: false,
-            email: loginData.email,
-            password: loginData.password,
-        })
+        try {
+            const result = await signIn('credentials', {
+                redirect: false,
+                email: loginData.email,
+                password: loginData.password,
+            })
 
-        if (!result.error) {
-            await router.replace('/');
+            if (!result.error) {
+                await router.replace('/');
+            }
+
+            setSubmitting(false);
+            resetForm(true);
+
+        } catch (error) {
+            throw new Error(error);
         }
-
-        setSubmitting(false);
-        resetForm(true);
     }
 
     return (
