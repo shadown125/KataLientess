@@ -8,10 +8,10 @@ import {getSession} from "next-auth/react";
 import ImageField from "../../../components/inputs/ImageField";
 import {settingsImageValidationSchema} from "../../../components/validationSchemas/settingsImageValidationSchema";
 import {url, name} from "../../../lib/cloudinaryApi";
+import {mutate} from "swr";
 
 function SettingsImage() {
     const [currentImage, setCurrentImage] = useState('');
-    const [profileData, setProfileData] = useState();
 
     const addProfileImage = async () => {
         const image = new FormData();
@@ -34,7 +34,6 @@ function SettingsImage() {
         });
 
         const data = await response.json();
-        setProfileData(data);
 
         if (!response.ok) {
             throw new Error(data.message || 'Something went wrong!');
@@ -48,6 +47,7 @@ function SettingsImage() {
             await addProfileImage();
             setSubmitting(false);
             resetForm(true);
+            await mutate('/api/user/getProfile');
         } catch (error) {
             throw new Error(error);
         }
@@ -60,7 +60,7 @@ function SettingsImage() {
                 <Link href='/'>
                     <a className="button button--medium icon-cross" />
                 </Link>
-                <Profile profileData={profileData} />
+                <Profile />
                 <Formik initialValues={{ image: ''}} enableReinitialize={true} onSubmit={submitHandler} validationSchema={settingsImageValidationSchema}>
                     {({ isSubmitting , setFieldValue}) => (
                         <Form>
