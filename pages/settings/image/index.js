@@ -23,14 +23,13 @@ function SettingsImage() {
             body: image,
         }).then(async response => response.json()).then(async (data) => {
             const image = data.secure_url;
-            await fetch('/api/user/uploadImage', {
+            return await fetch('/api/user/uploadImage', {
                 method: 'POST',
                 body: JSON.stringify({image}),
                 headers: {
                     'Content-Type': 'application/json',
                 }
             });
-            return await fetch('/api/user/getProfile');
         });
 
         const data = await response.json();
