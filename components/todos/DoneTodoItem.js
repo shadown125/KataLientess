@@ -1,4 +1,5 @@
 import {Form, Formik} from "formik";
+import {mutate} from "swr";
 
 function DoneTodoItem(props) {
 
@@ -16,7 +17,6 @@ function DoneTodoItem(props) {
         });
 
         const data = await response.json();
-        props.allDoneTodosAfterDeletingDoneTodo(data.doneTodos);
 
         if (!response.ok) {
             throw new Error(data.message || 'Something went wrong!');
@@ -29,7 +29,8 @@ function DoneTodoItem(props) {
         try {
             await deleteDoneTodo();
             setSubmitting(false);
-
+            await mutate('/api/user/getDoneTodos');
+            await mutate('/api/user/getAllTodosAndDoneTodos');
         } catch (error) {
             throw new Error(error);
         }
