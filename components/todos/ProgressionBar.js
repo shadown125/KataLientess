@@ -1,54 +1,41 @@
 import LoadingProgressionBar from "../loading-skeletons/LoadingProgressionBar";
+import useSWR from "swr";
+import {useRouter} from "next/router";
+import {CurrentDay} from "../elements/CurrentDay";
+import {CurrentMonth} from "../elements/CurrentMonth";
 
 function ProgressionBar(props) {
-    const date = new Date();
-    const doneTodosCounter = props.doneTodosLength;
-    const todosCounter = props.todosAmount;
-    const total = doneTodosCounter + todosCounter;
-    let percent = doneTodosCounter * 100 / total;
-    if (!props.todoPage) {
-        percent = 100;
-    }
+    const router = useRouter();
 
-    /**
-     * @returns {number}
-     */
-    function getCurrentDay() {
-        return date.getDate();
-    }
-
-    /**
-     * @returns {string}
-     */
-    function getCurrentMonth() {
-        return date.toLocaleString('default', { month: 'long' }).substring(0, 3);
-    }
-
-    if (!props.doneTodosData) {
-        return (
-            <LoadingProgressionBar todoPage={props.todoPage} />
-        )
-    }
+    const {isValidating, data, error} = useSWR('/api/user/getAllTodosAndDoneTodos', (url) => fetch(url).then(res => res.json()));
 
     return (
-        <div className="progression-bar">
-            <div className="date">
-                <span className="day">{getCurrentDay()}</span>
-                <span className="month">{getCurrentMonth()}</span>
-            </div>
-            <div className="content">
-                <h2 className="headline h4">Today Tasks</h2>
-                <div className="bar">
-                    <div className="progressed-bar" style={{width: `${percent}%`}}/>
-                </div>
-                <div className="descriptions">
-                    <span className="done-todos">Done Todos: {props.doneTodosLength}</span>
-                    {props.todoPage && (
-                        <span className="in-progress-todos">In progress Todos: {props.todosAmount}</span>
-                    )}
-                </div>
-            </div>
-        </div>
+        <>
+            {isValidating && !error ?
+                (
+                    <LoadingProgressionBar todoPage={props.todoPage} data-testid="progression-bar-is-loading" />
+                ) : (
+                    <div className="progression-bar">
+                        <div className="date">
+                            <span className="day" data-testid='current-day'>{CurrentDay()}</span>
+                            <span className="month" data-testid="current-month">{CurrentMonth()}</span>
+                        </div>
+                        <div className="content">
+                            <h2 className="headline h4">Today Tasks</h2>
+                            <div className="bar">
+                                <div className="progressed-bar" style={{width: `${data.doneTodos.length * 100 / (data.todos.length + data.doneTodos.length)}%`}}/>
+                            </div>
+                            <div className="descriptions">
+                                <span className="done-todos" data-testid="done-todos">Done Todos: {data.doneTodos.length}</span>
+                                {router.pathname === '/' && (
+                                    <span className="in-progress-todos" data-testid="in-progress-todos">In progress Todos: {data.todos.length}</span>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+        </>
     );
 }
 
