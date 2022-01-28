@@ -6,7 +6,7 @@ function LoadingProgressionBar () {
     const router = useRouter();
 
     return (
-        <div className="progression-bar is-loading">
+        <div className="progression-bar is-loading" data-testid="progression-bar-is-loading">
             <div className="date">
                 <span className="day">{CurrentDay()}</span>
                 <span className="month">{CurrentMonth()}</span>
