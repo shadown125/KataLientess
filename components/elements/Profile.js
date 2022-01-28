@@ -8,7 +8,7 @@ function Profile() {
         <>
             {isValidating && !error ?
                 (
-                    <div className="profile is-loading" data-testid="is-loading">
+                    <div className="profile is-loading" data-testid="nav-profile-is-loading">
                         <div className="image-wrapper">
                             <div className="image" />
                         </div>
