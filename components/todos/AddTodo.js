@@ -5,6 +5,7 @@ import TitleField from "../inputs/TitleField";
 import TextareaField from "../inputs/TextareaField";
 import {addTodoValidationSchema} from "../validationSchemas/addTodoValidationSchema";
 import {useSession} from "next-auth/react";
+import {mutate} from "swr";
 
 function AddTodo (props) {
     const [notActive, setNotActive] = useState(false);
@@ -34,7 +35,6 @@ function AddTodo (props) {
         });
 
         const data = await response.json();
-        props.allTodosAfterAddingTodo(data.todos);
 
         if (!response.ok) {
             throw new Error(data.message || 'Something went wrong!');
@@ -56,6 +56,9 @@ function AddTodo (props) {
             setSubmitted(true);
             setSubmitting(false);
             resetForm(true);
+            await mutate('/api/user/getDoneTodos');
+            await mutate('/api/user/getAllTodosAndDoneTodos');
+            await mutate('/api/user/getAllTodos');
         } catch (error) {
             throw new Error(error);
         }
