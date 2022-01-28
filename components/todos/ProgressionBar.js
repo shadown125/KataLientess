@@ -21,7 +21,7 @@ function ProgressionBar() {
                             <span className="month" data-testid="current-month">{CurrentMonth()}</span>
                         </div>
                         <div className="content">
-                            <h2 className="headline h4">Today Tasks</h2>
+                            <h2 className="headline h4" data-testid="progression-bar-heading">Today Tasks</h2>
                             <div className="bar">
                                 <div className="progressed-bar" style={{width: `${data.doneTodos.length * 100 / (data.todos.length + data.doneTodos.length)}%`}}/>
                             </div>
