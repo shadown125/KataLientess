@@ -18,8 +18,8 @@ function PageHeader (props) {
     return (
         <header className="page-header">
             <div className="container">
-                <a href="https://www.akalientess.com/" className="image-wrapper" target="_blank" rel="external noopener noreferrer">
-                    <img src="/brandLogo.png" alt="Logo"/>
+                <a href="https://www.akalientess.com/" className="image-wrapper" target="_blank" rel="external noopener noreferrer" data-testid="portfolio-website-link">
+                    <img src="/brandLogo.png" alt="Logo" data-testid="brand-logo"/>
                 </a>
                 <h1 className="headline h1">KataLientesS</h1>
                 <ul className="actions">
