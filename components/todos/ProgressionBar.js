@@ -4,7 +4,7 @@ import {useRouter} from "next/router";
 import {CurrentDay} from "../elements/CurrentDay";
 import {CurrentMonth} from "../elements/CurrentMonth";
 
-function ProgressionBar(props) {
+function ProgressionBar() {
     const router = useRouter();
 
     const {isValidating, data, error} = useSWR('/api/user/getAllTodosAndDoneTodos', (url) => fetch(url).then(res => res.json()));
@@ -13,7 +13,7 @@ function ProgressionBar(props) {
         <>
             {isValidating && !error ?
                 (
-                    <LoadingProgressionBar todoPage={props.todoPage} data-testid="progression-bar-is-loading" />
+                    <LoadingProgressionBar />
                 ) : (
                     <div className="progression-bar">
                         <div className="date">
