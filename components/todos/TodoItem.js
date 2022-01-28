@@ -1,4 +1,5 @@
 import {Form, Formik} from "formik";
+import {mutate} from "swr";
 
 function TodoItem (props) {
 
@@ -14,9 +15,6 @@ function TodoItem (props) {
         }).then(async response => response.json()).then(async () => {
             return await fetch('/api/user/getAllTodos');
         });
-
-        const data = await response.json();
-        await props.allTodosAfterDeleteAction(data.todos);
 
         if (!response.ok) {
             throw new Error(data.message || 'Something went wrong!');
@@ -36,9 +34,6 @@ function TodoItem (props) {
             return await fetch('/api/user/getAllTodosAndDoneTodos');
         });
 
-        const data = await response.json();
-        await props.allTodosAfterCompleteAction(data);
-
         if (!response.ok) {
             throw new Error(data.message || 'Something went wrong!');
         }
@@ -50,7 +45,9 @@ function TodoItem (props) {
         try {
             await deleteTodo();
             setSubmitting(false);
-
+            await mutate('/api/user/getDoneTodos');
+            await mutate('/api/user/getAllTodosAndDoneTodos');
+            await mutate('/api/user/getAllTodos');
         } catch (error) {
             throw new Error(error);
         }
@@ -62,7 +59,9 @@ function TodoItem (props) {
         try {
             await completeTodo();
             setSubmitting(false);
-
+            await mutate('/api/user/getDoneTodos');
+            await mutate('/api/user/getAllTodosAndDoneTodos');
+            await mutate('/api/user/getAllTodos');
         } catch (error) {
             throw new Error(error);
         }
