@@ -1,20 +1,15 @@
-function LoadingProgressionBar (props) {
-    const date = new Date();
+import {useRouter} from "next/router";
+import {CurrentDay} from "../elements/CurrentDay";
+import {CurrentMonth} from "../elements/CurrentMonth";
 
-    function getCurrentDay() {
-        return date.getDate();
-    }
-
-
-    function getCurrentMonth() {
-        return date.toLocaleString('default', { month: 'long' }).substring(0, 3);
-    }
+function LoadingProgressionBar () {
+    const router = useRouter();
 
     return (
         <div className="progression-bar is-loading">
             <div className="date">
-                <span className="day">{getCurrentDay()}</span>
-                <span className="month">{getCurrentMonth()}</span>
+                <span className="day">{CurrentDay()}</span>
+                <span className="month">{CurrentMonth()}</span>
             </div>
             <div className="content">
                 <h2 className="headline h4">Today Tasks</h2>
@@ -25,7 +20,7 @@ function LoadingProgressionBar (props) {
                     <span className="done-todos">
                         <span>Done Todos: 0</span>
                     </span>
-                    {props.todoPage && (
+                    {router.pathname === '/' && (
                         <span className="in-progress-todos">
                             <span>In progress Todos: 0</span>
                         </span>
