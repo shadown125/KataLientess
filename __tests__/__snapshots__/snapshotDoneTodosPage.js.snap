@@ -16,12 +16,14 @@ Array [
         >
           <a
             className="image-wrapper"
+            data-testid="portfolio-website-link"
             href="https://www.akalientess.com/"
             rel="external noopener noreferrer"
             target="_blank"
           >
             <img
               alt="Logo"
+              data-testid="brand-logo"
               src="/brandLogo.png"
             />
           </a>
@@ -66,6 +68,7 @@ Array [
             >
               <div
                 className="profile is-loading"
+                data-testid="nav-profile-is-loading"
               >
                 <div
                   className="image-wrapper"
@@ -145,6 +148,7 @@ Array [
           >
             <div
               className="progression-bar is-loading"
+              data-testid="progression-bar-is-loading"
             >
               <div
                 className="date"
@@ -152,7 +156,7 @@ Array [
                 <span
                   className="day"
                 >
-                  25
+                  29
                 </span>
                 <span
                   className="month"
@@ -202,6 +206,7 @@ Array [
             </div>
             <div
               className="todos is-loading"
+              data-testid="todos-layout-is-loading"
             >
               <div
                 className="head-container"
@@ -333,6 +338,7 @@ Array [
   </div>,
   <section
     className="new-todo"
+    data-testid="add-todo-popup"
   >
     <div
       className="notification"
@@ -363,6 +369,7 @@ Array [
           Title:*
         </label>
         <input
+          data-testid="add-todo-title"
           id="title"
           name="title"
           onBlur={[Function]}
@@ -386,6 +393,7 @@ Array [
         />
         <button
           className="button button-primary"
+          data-testid="add-todo-submit"
           disabled={false}
           type="submit"
         >
