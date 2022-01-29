@@ -53,6 +53,8 @@ function SettingsName() {
 
             setSubmitting(false);
             resetForm(true);
+
+            await mutate('/api/user/getProfile');
         } catch (error) {
             throw new Error(error);
         }
