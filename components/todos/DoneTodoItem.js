@@ -45,7 +45,9 @@ function DoneTodoItem(props) {
                         <Formik initialValues={{ }} onSubmit={submitDeleteHandler} >
                             {({ isSubmitting }) => (
                                 <Form>
-                                    <button className="button icon-cross" disabled={isSubmitting} type="submit" />
+                                    <button className="button icon-cross" disabled={isSubmitting} type="submit">
+                                        <span>Delete</span>
+                                    </button>
                                 </Form>
                             )}
                         </Formik>
