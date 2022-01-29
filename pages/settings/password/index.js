@@ -68,9 +68,9 @@ function SettingsPassword() {
                             <RepeatedPasswordCustom name="repeatedPassword" />
                             <div className="buttons-container">
                                 <Link href="/settings">
-                                    <a className="button button-primary">Back</a>
+                                    <a className="button button-primary" data-testid="back-to-settings">Back</a>
                                 </Link>
-                                <button className="button button-primary" disabled={isSubmitting} type="submit">
+                                <button className="button button-primary" disabled={isSubmitting} type="submit" data-testid="save">
                                     <span>Save</span>
                                 </button>
                             </div>
