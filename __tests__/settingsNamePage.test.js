@@ -25,7 +25,7 @@ describe('settings name page', () => {
     it ('should handle first name input', async () => {
         view();
 
-        const firstNameInput = screen.getByTestId('settings-first-name');
+        const firstNameInput = screen.getByLabelText('Change name:*');
         const saveButton = screen.getByTestId('save');
 
         expect(firstNameInput).toBeInTheDocument();
@@ -45,7 +45,7 @@ describe('settings name page', () => {
     it ('should render last name input', () => {
         view();
 
-        const lastNameInput = screen.getByTestId('settings-last-name');
+        const lastNameInput = screen.getByLabelText('Change last name:');
 
         expect(lastNameInput).toBeInTheDocument();
     });

@@ -8,7 +8,7 @@ function NameField (props, {placeholder = 'Name', label = 'First name:*'}) {
         return (
             <Fragment>
                 <label htmlFor="firstName">{label}</label>
-                <input id="firstName" className="is-invalid" placeholder={placeholder} {...field} data-testid="settings-first-name"/>
+                <input id="firstName" className="is-invalid" placeholder={placeholder} {...field} />
                 <div className="error-message">{errorText}</div>
             </Fragment>
         );
@@ -17,7 +17,7 @@ function NameField (props, {placeholder = 'Name', label = 'First name:*'}) {
     return (
         <Fragment>
             <label htmlFor="firstName">{label}</label>
-            <input id="firstName" placeholder={placeholder} {...field} data-testid="settings-first-name"/>
+            <input id="firstName" placeholder={placeholder} {...field} />
         </Fragment>
     );
 }
