@@ -76,7 +76,9 @@ function TodoItem (props) {
                         <Formik initialValues={{ }} onSubmit={submitCompleteHandler} >
                             {({ isSubmitting }) => (
                                 <Form>
-                                    <button className="button icon-check" disabled={isSubmitting} type="submit" />
+                                    <button className="button icon-check" disabled={isSubmitting} type="submit" >
+                                        <span>Complete</span>
+                                    </button>
                                 </Form>
                             )}
                         </Formik>
@@ -85,7 +87,9 @@ function TodoItem (props) {
                         <Formik initialValues={{ }} onSubmit={submitDeleteHandler} >
                             {({ isSubmitting }) => (
                                 <Form>
-                                    <button className="button icon-cross" disabled={isSubmitting} type="submit" />
+                                    <button className="button icon-cross" disabled={isSubmitting} type="submit">
+                                        <span>Delete</span>
+                                    </button>
                                 </Form>
                             )}
                         </Formik>
