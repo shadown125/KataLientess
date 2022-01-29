@@ -1,6 +1,6 @@
 function LoadingDoneTodos () {
     return (
-        <div className="todos is-loading">
+        <div className="todos is-loading" data-testid='done-todos-is-loading'>
             <div className="head-container">
                 <h2 className="headline h5">Already done</h2>
             </div>
@@ -19,14 +19,14 @@ function LoadingDoneTodos () {
                         </div>
                         <div className="main">
                             <p>
-                                    <span>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus alias atque culpa
-                                    </span>
+                                <span>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus alias atque culpa
+                                </span>
                             </p>
                             <p>
-                                    <span>
-                                        deleniti dicta ea eius esse ipsa, iusto minus nemo nobis optio quaerat quam, similique sit veniam voluptatibus?
-                                    </span>
+                                <span>
+                                    deleniti dicta ea eius esse ipsa, iusto minus nemo nobis optio quaerat quam, similique sit veniam voluptatibus?
+                                </span>
                             </p>
                         </div>
                     </li>
@@ -43,14 +43,14 @@ function LoadingDoneTodos () {
                         </div>
                         <div className="main">
                             <p>
-                                    <span>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus alias atque culpa
-                                    </span>
+                                <span>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus alias atque culpa
+                                </span>
                             </p>
                             <p>
-                                    <span>
-                                        deleniti dicta ea eius esse ipsa, iusto minus nemo nobis optio quaerat quam, similique sit veniam voluptatibus?
-                                    </span>
+                                <span>
+                                    deleniti dicta ea eius esse ipsa, iusto minus nemo nobis optio quaerat quam, similique sit veniam voluptatibus?
+                                </span>
                             </p>
                         </div>
                     </li>

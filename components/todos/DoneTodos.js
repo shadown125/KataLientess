@@ -14,7 +14,7 @@ function DoneTodos() {
                 ) : (
                     <div className="todos">
                         <div className="head-container">
-                            <h2 className="headline h5">Already done</h2>
+                            <h2 className="headline h5" data-testid="done-todos-heading">Already done</h2>
                         </div>
                         <div className="main-container">
                             <ul className="todo-list is-done">
