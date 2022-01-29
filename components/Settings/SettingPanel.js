@@ -15,28 +15,30 @@ function SettingPanel() {
     return (
         <section className="settings">
             <Link href='/'>
-                <a className="button button--medium icon-cross" />
+                <a className="button button--medium icon-cross" data-testid="close-popup">
+                    <span>Close popup</span>
+                </a>
             </Link>
             <Profile />
             <ul>
                 <li>
                     <Link href='/settings/name' passHref>
-                        <a className="link">Change name</a>
+                        <a className="link" data-testid="change-name">Change name</a>
                     </Link>
                 </li>
                 <li>
                     <Link href='/settings/password' passHref>
-                        <a className="link">Change password</a>
+                        <a className="link" data-testid="change-password">Change password</a>
                     </Link>
                 </li>
                 <li>
                     <Link href='/settings/image' passHref>
-                        <a className="link">Change image</a>
+                        <a className="link" data-testid="change-image">Change image</a>
                     </Link>
                 </li>
                 <li>
                     <Link href='/login' passHref>
-                        <button className="link" onClick={logoutHandler}>Logout</button>
+                        <button className="link" onClick={logoutHandler} data-testid="settings-logout">Logout</button>
                     </Link>
                 </li>
             </ul>
