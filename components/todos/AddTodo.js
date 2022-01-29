@@ -65,7 +65,7 @@ function AddTodo (props) {
     }
 
     return (
-        <section className={`new-todo${props.activeTodo ? ' is-active' : ''}`}>
+        <section className={`new-todo${props.activeTodo ? ' is-active' : ''}`} data-testid="add-todo-popup">
             <Notification successMessage={submitted} />
             <div className="container">
                 <button className="button button--medium icon-cross" onClick={onRemovingActive}>
@@ -76,7 +76,7 @@ function AddTodo (props) {
                         <Form>
                             <TitleField name="title" />
                             <TextareaField name="description" />
-                            <button className="button button-primary" disabled={isSubmitting} type="submit">
+                            <button className="button button-primary" disabled={isSubmitting} type="submit" data-testid="add-todo-submit">
                                 <span>Add Todo</span>
                             </button>
                         </Form>

@@ -1,6 +1,6 @@
 function LoadingTodos (props) {
     return (
-        <div className="todos is-loading">
+        <div className="todos is-loading" data-testid="todos-layout-is-loading">
             <div className="head-container">
                 <h2 className="headline h5">In Progression</h2>
                 <ul>

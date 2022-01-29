@@ -22,13 +22,13 @@ function Todos(props) {
                 ) : (
                     <div className="todos">
                         <div className="head-container">
-                            <h2 className="headline h5">In Progression</h2>
+                            <h2 className="headline h5" data-testid="todos-heading">In Progression</h2>
                             <ul>
                                 <li className="add-todo">
-                                    <button className="button button-primary" type="button" onClick={setActiveAddTodo}>
-                            <span>
-                                Add Todo
-                            </span>
+                                    <button className="button button-primary" type="button" onClick={setActiveAddTodo} data-testid="add-todo-button">
+                                        <span>
+                                            Add Todo
+                                        </span>
                                     </button>
                                 </li>
                             </ul>
