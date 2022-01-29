@@ -1,6 +1,6 @@
 import HomePage from "../../index";
 import FullActiveBackdrop from "../../../components/layout/FullActiveBackdrop";
-import {Fragment, useState} from "react";
+import {Fragment} from "react";
 import Link from "next/link";
 import Profile from "../../../components/elements/Profile";
 import {Formik, Form} from "formik";
