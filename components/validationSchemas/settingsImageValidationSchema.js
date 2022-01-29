@@ -1,5 +1,7 @@
-import * as yup from "yup";
+import {object, string} from "yup";
 
-export const settingsImageValidationSchema = yup.object({
-    image: yup.string().required(),
-});
+export const settingsImageValidationSchema = () => {
+    return object({
+        image: string().required(),
+    });
+}
