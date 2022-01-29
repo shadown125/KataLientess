@@ -8,9 +8,9 @@ import {getSession} from "next-auth/react";
 import NameField from "../../../components/inputs/NameField";
 import LastNameField from "../../../components/inputs/LastNameField";
 import {settingsNameValidationSchema} from "../../../components/validationSchemas/settingsNameValidationSchema";
+import {mutate} from "swr";
 
 function SettingsName() {
-    const [profileData, setProfileData] = useState();
 
     const changeUsername = async (firstName, lastName) => {
         const response = await fetch('/api/user/changeUsername', {
@@ -22,12 +22,9 @@ function SettingsName() {
             headers: {
                 'Content-Type': 'application/json',
             }
-        }).then(async response => response.json()).then(async () => {
-            return await fetch('/api/user/getProfile');
         });
 
         const data = await response.json();
-        setProfileData(data);
 
         if (!response.ok) {
             throw new Error(data.message || 'Something went wrong!');
@@ -68,7 +65,7 @@ function SettingsName() {
                 <Link href='/'>
                     <a className="button button--medium icon-cross" />
                 </Link>
-                <Profile profileData={profileData} />
+                <Profile />
                 <Formik initialValues={{ firstName: '', lastName: '' }} onSubmit={submitHandler} validationSchema={settingsNameValidationSchema} >
                     {({ isSubmitting }) => (
                         <Form>
@@ -76,9 +73,9 @@ function SettingsName() {
                             <LastNameFieldCustom name="lastName" />
                             <div className="buttons-container">
                                 <Link href="/settings">
-                                    <a className="button button-primary">Back</a>
+                                    <a className="button button-primary" data-testid="back-to-settings">Back</a>
                                 </Link>
-                                <button className="button button-primary" disabled={isSubmitting} type="submit">
+                                <button className="button button-primary" disabled={isSubmitting} type="submit" data-testid="save">
                                     <span>Save</span>
                                 </button>
                             </div>

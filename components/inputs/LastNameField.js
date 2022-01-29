@@ -6,7 +6,7 @@ function LastNameField (props, {placeholder = 'Last name', label = 'Last name:'}
     return (
         <Fragment>
             <label htmlFor="lastName">{label}</label>
-            <input type="input" placeholder={placeholder} id="lastName" {...field} />
+            <input type="input" placeholder={placeholder} id="lastName" {...field} data-testid="settings-last-name" />
         </Fragment>
     );
 }
