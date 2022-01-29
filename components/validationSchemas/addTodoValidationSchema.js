@@ -1,5 +1,7 @@
-import * as yup from "yup";
+import {object, string} from "yup";
 
-export const addTodoValidationSchema = yup.object({
-    title: yup.string().required("Title is a required field").max(50),
-});
+export const addTodoValidationSchema = () => {
+    return object({
+        title: string().required("Title is a required field").max(50),
+    });
+}
