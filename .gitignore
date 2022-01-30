@@ -37,8 +37,8 @@ yarn-error.log*
 .idea
 
 #lib
-lib/db.js
-lib/cloudinaryApi.js
+lib/db.ts
+lib/cloudinaryApi.ts
 
 #next
 next.config.js

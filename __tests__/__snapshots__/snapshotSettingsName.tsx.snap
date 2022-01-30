@@ -1,0 +1,498 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders settings name page unchanged 1`] = `
+Array [
+  <div
+    className="wrapper"
+  >
+    <div
+      className="app-container"
+    >
+      <header
+        className="page-header"
+      >
+        <div
+          className="container"
+        >
+          <a
+            className="image-wrapper"
+            data-testid="portfolio-website-link"
+            href="https://www.akalientess.com/"
+            rel="external noopener noreferrer"
+            target="_blank"
+          >
+            <img
+              alt="Logo"
+              data-testid="brand-logo"
+              src="/brandLogo.png"
+            />
+          </a>
+          <h1
+            className="headline h1"
+          >
+            KataLientesS
+          </h1>
+          <ul
+            className="actions"
+          >
+            <li>
+              <a
+                className="button button--big icon-configs"
+                href="/settings"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                type="button"
+              />
+            </li>
+          </ul>
+          <button
+            className="button button--medium icon-menu"
+            onClick={[Function]}
+            type="button"
+          >
+            <span>
+              Menu
+            </span>
+          </button>
+        </div>
+      </header>
+      <main>
+        <div
+          className="page-body"
+        >
+          <aside
+            className="nav-aside"
+          >
+            <nav
+              className="main-navigation"
+            >
+              <div
+                className="profile is-loading"
+                data-testid="nav-profile-is-loading"
+              >
+                <div
+                  className="image-wrapper"
+                >
+                  <div
+                    className="image"
+                  />
+                </div>
+                <div
+                  className="content"
+                >
+                  <div />
+                  <div />
+                </div>
+              </div>
+              <ul
+                className="actions"
+              >
+                <li>
+                  <a
+                    className="link icon-link icon-note is-active"
+                    href="/"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    <span>
+                      Today
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="link icon-link icon-note-checked"
+                    href="/done-todos"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    <span>
+                      Done todos
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="link icon-link icon-configs"
+                    href="/settings"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    <span>
+                      Settings
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <button
+                    className="link icon-link icon-logout"
+                    onClick={[Function]}
+                  >
+                    <span>
+                      Logout
+                    </span>
+                  </button>
+                </li>
+              </ul>
+              <div
+                className="credits"
+              >
+                © 
+                2022
+                 All rights reserved by Dawid Oleksiuk
+              </div>
+            </nav>
+          </aside>
+          <section
+            className="todos-container"
+          >
+            <div
+              className="progression-bar is-loading"
+              data-testid="progression-bar-is-loading"
+            >
+              <div
+                className="date"
+              >
+                <span
+                  className="day"
+                >
+                  30
+                </span>
+                <span
+                  className="month"
+                >
+                  sty
+                </span>
+              </div>
+              <div
+                className="content"
+              >
+                <h2
+                  className="headline h4"
+                >
+                  Today Tasks
+                </h2>
+                <div
+                  className="bar"
+                >
+                  <div
+                    className="progressed-bar"
+                    style={
+                      Object {
+                        "width": "100%",
+                      }
+                    }
+                  />
+                </div>
+                <div
+                  className="descriptions"
+                >
+                  <span
+                    className="done-todos"
+                  >
+                    <span>
+                      Done Todos: 0
+                    </span>
+                  </span>
+                  <span
+                    className="in-progress-todos"
+                  >
+                    <span>
+                      In progress Todos: 0
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              className="todos is-loading"
+              data-testid="todos-layout-is-loading"
+            >
+              <div
+                className="head-container"
+              >
+                <h2
+                  className="headline h5"
+                >
+                  In Progression
+                </h2>
+                <ul>
+                  <li
+                    className="add-todo"
+                  >
+                    <button
+                      className="button button-primary"
+                      onClick={[Function]}
+                      type="button"
+                    >
+                      <span>
+                        Add Todo
+                      </span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+              <div
+                className="main-container"
+              >
+                <ul
+                  className="todo-list"
+                >
+                  <li>
+                    <div
+                      className="header"
+                    >
+                      <div
+                        className="headline-loading"
+                      >
+                        <h3
+                          className="headline h5"
+                        >
+                          Lorem ipsum
+                        </h3>
+                      </div>
+                      <ul
+                        className="actions"
+                      >
+                        <li>
+                          <button
+                            className="button"
+                            type="button"
+                          />
+                        </li>
+                        <li>
+                          <button
+                            className="button"
+                            type="button"
+                          />
+                        </li>
+                      </ul>
+                    </div>
+                    <div
+                      className="main"
+                    >
+                      <p>
+                        <span>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus alias atque culpa
+                        </span>
+                      </p>
+                      <p>
+                        <span>
+                          deleniti dicta ea eius esse ipsa, iusto minus nemo nobis optio quaerat quam, similique sit veniam voluptatibus?
+                        </span>
+                      </p>
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      className="header"
+                    >
+                      <div
+                        className="headline-loading"
+                      >
+                        <h3
+                          className="headline h5"
+                        >
+                          Lorem ipsum
+                        </h3>
+                      </div>
+                      <ul
+                        className="actions"
+                      >
+                        <li>
+                          <button
+                            className="button"
+                            type="button"
+                          />
+                        </li>
+                        <li>
+                          <button
+                            className="button"
+                            type="button"
+                          />
+                        </li>
+                      </ul>
+                    </div>
+                    <div
+                      className="main"
+                    >
+                      <p>
+                        <span>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus alias atque culpa
+                        </span>
+                      </p>
+                      <p>
+                        <span>
+                          deleniti dicta ea eius esse ipsa, iusto minus nemo nobis optio quaerat quam, similique sit veniam voluptatibus?
+                        </span>
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>,
+  <section
+    className="new-todo"
+    data-testid="add-todo-popup"
+  >
+    <div
+      className="notification"
+    >
+      <span>
+        Your new Todo was added successfully
+      </span>
+    </div>
+    <div
+      className="container"
+    >
+      <button
+        className="button button--medium icon-cross"
+        onClick={[Function]}
+      >
+        <span>
+          Close button
+        </span>
+      </button>
+      <form
+        action="#"
+        onReset={[Function]}
+        onSubmit={[Function]}
+      >
+        <label
+          htmlFor="title"
+        >
+          Title:*
+        </label>
+        <input
+          data-testid="add-todo-title"
+          id="title"
+          name="title"
+          onBlur={[Function]}
+          onChange={[Function]}
+          placeholder="Title for your task"
+          type="input"
+          value=""
+        />
+        <label
+          htmlFor="description"
+        >
+          Description:
+        </label>
+        <textarea
+          id="description"
+          name="description"
+          onBlur={[Function]}
+          onChange={[Function]}
+          placeholder="Description text for your Task (optional)"
+          value=""
+        />
+        <button
+          className="button button-primary"
+          data-testid="add-todo-submit"
+          disabled={false}
+          type="submit"
+        >
+          <span>
+            Add Todo
+          </span>
+        </button>
+      </form>
+    </div>
+  </section>,
+  <div
+    className="backdrop"
+  />,
+  <section
+    className="settings"
+  >
+    <a
+      className="button button--medium icon-cross"
+      href="/"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    />
+    <div
+      className="profile is-loading"
+      data-testid="nav-profile-is-loading"
+    >
+      <div
+        className="image-wrapper"
+      >
+        <div
+          className="image"
+        />
+      </div>
+      <div
+        className="content"
+      >
+        <div />
+        <div />
+      </div>
+    </div>
+    <form
+      action="#"
+      onReset={[Function]}
+      onSubmit={[Function]}
+    >
+      <label
+        htmlFor="firstName"
+      >
+        Change name:*
+      </label>
+      <input
+        id="firstName"
+        name="firstName"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="Your new name"
+        value=""
+      />
+      <label
+        htmlFor="lastName"
+      >
+        Change last name:
+      </label>
+      <input
+        id="lastName"
+        name="lastName"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="Your new last name"
+        type="input"
+        value=""
+      />
+      <div
+        className="buttons-container"
+      >
+        <a
+          className="button button-primary"
+          data-testid="back-to-settings"
+          href="/settings"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          Back
+        </a>
+        <button
+          className="button button-primary"
+          data-testid="save"
+          disabled={false}
+          type="submit"
+        >
+          <span>
+            Save
+          </span>
+        </button>
+      </div>
+    </form>
+  </section>,
+  <div
+    className="backdrop is-active-full"
+  />,
+]
+`;
