@@ -4,13 +4,22 @@
 
 .page-header {
     background: {
-        image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
+        image: var(--page-header-background-color);
     }
     border-top-left-radius: grid.$border-radius;
     border-top-right-radius: grid.$border-radius;
     padding: 0 susanoo.rem-calc(24);
+    transition: background-image 0.2s linear;
     .icon-menu {
         display: none;
+    }
+    .actions {
+        display: flex;
+        gap: susanoo.rem-calc(32);
+        &-mobile {
+            display: none;
+            gap: susanoo.convert-to-rem(24);
+        }
     }
     @media only screen and (max-width: 940px) {
         padding: {
@@ -19,6 +28,9 @@
         }
         .actions {
             display: none;
+            &-mobile {
+                display: flex;
+            }
         }
         .icon-menu {
             display: block;
@@ -33,7 +45,7 @@
         }
     }
     .headline {
-        color: #65aaec;
+        color: var(--page-header-color);
     }
     .container {
         display: flex;

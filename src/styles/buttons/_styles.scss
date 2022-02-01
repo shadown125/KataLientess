@@ -13,13 +13,13 @@ button {
 
 .button {
     --circle: #{susanoo.rem-calc(26)};
-    --background-color: #{variables.$background-hover-color};
+    --background-hover-color: #{variables.$background-hover-color};
 
     position: relative;
     width: var(--circle);
     height: var(--circle);
     background: {
-        color: variables.$background-color;
+        color: var(--button-background-color);
     }
     border: {
         radius: 50%;
@@ -28,7 +28,7 @@ button {
     &:hover,
     &--big:hover {
         background: {
-            color: var(--background-color);
+            color: var(--background-hover-color);
         }
     }
     &:hover {
@@ -63,7 +63,7 @@ button {
                 left: {
                     style: solid;
                     width: 2px;
-                    color: variables.$background-color;
+                    color: var(--button-background-color);
                 }
             }
             animation: rotate 0.75s linear infinite;
@@ -80,7 +80,7 @@ button {
     &::before {
         @include susanoo.icon(null, true);
         @include susanoo.absolute-center();
-        color: variables.$before-color;
+        color: var(--button-before-color);
         font: {
             size: map-get(icons.$icon-sizes, 'big');
         }
@@ -96,7 +96,7 @@ button {
         z-index: -1;
         transition: transform 0.4s, opacity 0.3s;
         background: {
-            color: var(--background-color);
+            color: var(--background-hover-color);
         }
     }
     &-primary {
@@ -156,6 +156,22 @@ button {
             @include susanoo.icon(icons.$icon-cross, false);
             font: {
                 size: map-get(icons.$icon-sizes, 'small');
+            }
+        }
+    }
+    &.icon-light-up {
+        &::before {
+            @include susanoo.icon(icons.$icon-light-up, false);
+            font: {
+                size: map-get(icons.$icon-sizes, 'medium');
+            }
+        }
+    }
+    &.icon-moon {
+        &::before {
+            @include susanoo.icon(icons.$icon-moon, false);
+            font: {
+                size: map-get(icons.$icon-sizes, 'medium');
             }
         }
     }

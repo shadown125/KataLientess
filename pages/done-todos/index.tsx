@@ -2,9 +2,13 @@ import HomePage from "../index";
 import {getSession} from "next-auth/react";
 import {GetServerSideProps} from "next";
 
-function DoneTodo () {
+function DoneTodo (props: {onSettingModeState: Function, currentModeState: string}) {
+    const onSettingModeState = (state: string) => {
+        props.onSettingModeState(state);
+    }
+
     return (
-        <HomePage />
+        <HomePage onSettingModeState={onSettingModeState} currentModeState={props.currentModeState} />
     )
 }
 

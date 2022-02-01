@@ -8,7 +8,7 @@ import {Fragment, useState} from "react";
 import {getSession} from "next-auth/react";
 import type {GetServerSideProps} from "next";
 
-function HomePage () {
+function HomePage (props: {onSettingModeState: Function, currentModeState: string}) {
     const [state, setState] = useState<boolean>(false);
     const [addTodoState, setAddTodoState] = useState<boolean>(false);
 
@@ -30,11 +30,15 @@ function HomePage () {
         })
     }
 
+    const onSettingModeState = (state: string) => {
+        props.onSettingModeState(state);
+    }
+
     return (
         <Fragment>
             <div className="wrapper">
                 <div className="app-container">
-                    <PageHeader onSettingMainNavigationState={onSettingMainNavigationState} />
+                    <PageHeader onSettingMainNavigationState={onSettingMainNavigationState} onSettingModeState={onSettingModeState} currentModeState={props.currentModeState} />
                     <PageBody>
                         <MainNavigation currentMainNavigationState={state}/>
                         <TodosLayout onSettingActiveAddTodo={onSettingActiveAddTodoState} />

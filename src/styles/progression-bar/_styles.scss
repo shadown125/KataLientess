@@ -5,7 +5,7 @@
 
 .progression-bar {
     background: {
-        image: linear-gradient(to right bottom, grid.$main-linear-gradient-color-1, grid.$main-linear-gradient-color-2);
+        image: var(--progression-bar-background-color);
     }
     border: {
         radius: grid.$border-radius;
@@ -85,7 +85,7 @@
         height: 100%;
         width: 0;
         background: {
-            color: #68ddd5;
+            color: var(--progression-bar-progressed-bar);
         }
         border-bottom-right-radius: grid.$border-radius;
         border-top-right-radius: grid.$border-radius;

@@ -21,7 +21,7 @@
     }
     padding: susanoo.rem-calc(24);
     background: {
-        image: linear-gradient(to right top, #5fd1ce, #65aaec);
+        image: var(--main-navigation-background-color);
     }
     border-bottom-left-radius: grid.$border-radius;
     width: variables.$navigation-width;

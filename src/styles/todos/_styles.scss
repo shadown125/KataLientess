@@ -6,7 +6,7 @@
 
 .todos {
     background: {
-        image: linear-gradient(to right bottom, grid.$main-linear-gradient-color-1, grid.$main-linear-gradient-color-2);
+        image: var(--todos-background-color);
     }
     border: {
         radius: grid.$border-radius;

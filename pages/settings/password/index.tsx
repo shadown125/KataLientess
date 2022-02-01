@@ -11,7 +11,7 @@ import {settingsPasswordValidationSchema} from "../../../components/validationSc
 import {GetServerSideProps} from "next";
 import {PasswordDataInterface} from "../../../interfaces/PasswordDataInterface";
 
-function SettingsPassword() {
+function SettingsPassword(props: {onSettingModeState: Function, currentModeState: string}) {
 
     const PasswordFieldCustom = (props: {name: string}) => {
         return PasswordField(props, {placeholder: 'New password'})
@@ -19,6 +19,10 @@ function SettingsPassword() {
 
     const RepeatedPasswordCustom = (props: {name: string}) => {
         return RepeatedPassword(props, {placeholder: "Repeat new password"})
+    }
+
+    const onSettingModeState = (state: string) => {
+        props.onSettingModeState(state);
     }
 
     const changeExistingPassword = async (passwordData: PasswordDataInterface) => {
@@ -57,7 +61,7 @@ function SettingsPassword() {
 
     return (
         <Fragment>
-            <HomePage />
+            <HomePage onSettingModeState={onSettingModeState} currentModeState={props.currentModeState} />
             <section className="settings">
                 <Link href='/'>
                     <a className="button button--medium icon-cross" />
