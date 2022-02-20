@@ -3,11 +3,11 @@ import useSWR from "swr";
 import {useRouter} from "next/router";
 import {CurrentDay} from "../elements/CurrentDay";
 import {CurrentMonth} from "../elements/CurrentMonth";
+import {fetcher} from "../../lib/fetcher";
 
 function ProgressionBar() {
     const router = useRouter();
-
-    const {isValidating, data, error} = useSWR('/api/user/getAllTodosAndDoneTodos', (url) => fetch(url).then(res => res.json()));
+    const {isValidating, data, error} = useSWR('/api/user/getAllTodosAndDoneTodos', fetcher);
 
     return (
         <>

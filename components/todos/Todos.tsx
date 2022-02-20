@@ -3,11 +3,12 @@ import TodoItem from "./TodoItem";
 import useSWR from "swr";
 import LoadingTodos from "../loading-skeletons/LoadingTodos";
 import {ObjectId} from "mongodb";
+import {fetcher} from "../../lib/fetcher";
 
 function Todos(props: {onSettingActiveAddTodo: Function}) {
     const [activeAddTodo, setIsActiveAddTodo] = useState<boolean>(true);
 
-    const {isValidating, data, error} = useSWR('/api/user/getAllTodos', (url) => fetch(url).then(res => res.json()));
+    const {isValidating, data, error} = useSWR('/api/user/getAllTodos', fetcher);
 
     function setActiveAddTodo() {
         setIsActiveAddTodo(true);

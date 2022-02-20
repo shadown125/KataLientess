@@ -1,8 +1,9 @@
 import useSWR from "swr";
 import Image from "next/image";
+import {fetcher} from "../../lib/fetcher";
 
 function Profile() {
-    const { isValidating, data, error} = useSWR('/api/user/getProfile', async (url) => await fetch(url).then(async res => await res.json()));
+    const { isValidating, data, error} = useSWR('/api/user/getProfile', fetcher);
 
     return (
         <>

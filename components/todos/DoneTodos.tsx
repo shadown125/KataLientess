@@ -2,10 +2,10 @@ import DoneTodoItem from "./DoneTodoItem";
 import useSWR from "swr";
 import LoadingDoneTodos from "../loading-skeletons/LoadingDoneTodos";
 import {ObjectId} from "mongodb";
+import {fetcher} from "../../lib/fetcher";
 
 function DoneTodos() {
-
-    const {isValidating, data, error} = useSWR('/api/user/getDoneTodos', (url) => fetch(url).then(res => res.json()));
+    const {isValidating, data, error} = useSWR('/api/user/getDoneTodos', fetcher);
 
     return (
         <>
