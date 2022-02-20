@@ -13,8 +13,6 @@ function DoneTodoItem(props: {id: ObjectId, title: string, description: string})
             headers: {
                 'Content-Type': 'application/json',
             }
-        }).then(async response => response.json()).then(async () => {
-            return await fetch('/api/user/getDoneTodos');
         });
 
         const data = await response.json();

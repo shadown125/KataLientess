@@ -30,8 +30,6 @@ function AddTodo (props: {removeActive: Function, activeTodo: boolean}) {
             headers: {
                 'Content-Type': 'application/json',
             }
-        }).then(async response => response.json()).then(async () => {
-            return await fetch('/api/user/getAllTodos');
         });
 
         const data = await response.json();

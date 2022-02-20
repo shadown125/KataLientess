@@ -13,12 +13,12 @@ function TodoItem (props: {id: ObjectId, title: string, description: string}) {
             headers: {
                 'Content-Type': 'application/json',
             }
-        }).then(async response => response.json()).then(async () => {
-            return await fetch('/api/user/getAllTodos');
         });
 
+        const data = await response.json();
+
         if (!response.ok) {
-            throw new Error('Something went wrong!');
+            throw new Error(data.message || 'Something went wrong!');
         }
     }
 
@@ -31,12 +31,12 @@ function TodoItem (props: {id: ObjectId, title: string, description: string}) {
             headers: {
                 'Content-Type': 'application/json',
             }
-        }).then(async response => response.json()).then(async () => {
-            return await fetch('/api/user/getAllTodosAndDoneTodos');
         });
 
+        const data = await response.json();
+
         if (!response.ok) {
-            throw new Error('Something went wrong!');
+            throw new Error(data.message || 'Something went wrong!');
         }
     }
 
