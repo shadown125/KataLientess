@@ -24,8 +24,6 @@ function HeadPage () {
             <link rel="apple-touch-icon" href="/favicon.png" />
 
             <title>KataLientesS</title>
-
-            <link rel="stylesheet" href="/main.css"/>
         </Head>
     );
 }
