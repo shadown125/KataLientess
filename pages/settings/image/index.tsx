@@ -72,9 +72,12 @@ function SettingsImage(props: {onSettingModeState: Function, currentModeState: s
                         <Form>
                             <ImageField name="image" onChange={async (event: Event) => {
                                 const target = event.target as HTMLInputElement;
+
                                 setFieldValue("image", target.files);
+
                                 if (target.files && target.files[0]) {
                                     const file = target.files[0];
+
                                     setCurrentImage(file);
                                 }
                             }} />
