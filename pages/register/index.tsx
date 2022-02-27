@@ -20,12 +20,13 @@ function Register() {
     const router = useRouter();
 
     const createUser = async (email: string, password: string, firstName: string, lastName: string) => {
+        console.log(url);
         if (currentImage !== undefined) {
             const image = new FormData();
             image.append("file", currentImage);
-            image.append('upload_preset', name);
+            image.append('upload_preset', name!);
 
-            const response = await fetch(url, {
+            const response = await fetch(url!, {
                 method: 'POST',
                 body: image,
             }).then(async response => response.json()).then(async (data) => {

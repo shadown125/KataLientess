@@ -22,10 +22,10 @@ function SettingsImage(props: {onSettingModeState: Function, currentModeState: s
         const image = new FormData();
         if (currentImage !== undefined) {
             image.append("file", currentImage);
-            image.append('upload_preset', name);
+            image.append('upload_preset', name!);
         }
 
-        const response = await fetch(url, {
+        const response = await fetch(url!, {
             method: 'POST',
             body: image,
         }).then(async response => response.json()).then(async (data) => {
