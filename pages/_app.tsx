@@ -7,7 +7,7 @@ import {GlobalTheme} from "../components/themes/GlobalTheme";
 import {ThemeProvider} from "styled-components";
 import {useState} from "react";
 
-if (process.env.NEXT_PUBLIC_API_MOCKING !== 'true') {
+if (process.env.NEXT_PUBLIC_API_MOCKING !== 'disabled') {
     import('../mocks').then(async ({setupMocks}) => {
         await setupMocks();
     });
