@@ -76,4 +76,4 @@ If you only want to use Dev server then you can use same MongoDB data for PROD e
 
 You can retrieve the above environment values by referring their docs linked above and once retrieved, paste above accordingly.
 
-###<span style="color:orange;">Note!! This App is in build progress which does not reflect the final state.</span>
+<h3 style="color:orange;">Note!! This App is in build progress which does not reflect the final state.</h3>
