@@ -20,7 +20,6 @@ function Register() {
     const router = useRouter();
 
     const createUser = async (email: string, password: string, firstName: string, lastName: string) => {
-        console.log(url);
         if (currentImage !== undefined) {
             const image = new FormData();
             image.append("file", currentImage);
