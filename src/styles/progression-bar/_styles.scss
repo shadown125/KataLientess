@@ -87,8 +87,9 @@
         background: {
             color: var(--progression-bar-progressed-bar);
         }
-        border-bottom-right-radius: grid.$border-radius;
-        border-top-right-radius: grid.$border-radius;
-        transition: width 0.5s linear;
+        border: {
+            radius: grid.$border-radius;
+        }
+        transition: width 0.5s linear, background-color 0.2s linear;
     }
 }

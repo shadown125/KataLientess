@@ -46,7 +46,7 @@ a {
         width: var(--circle);
         height: var(--circle);
         background: {
-            color: #6cdbeb;
+            color: var(--link-icon-background-color, var(--primary-theme-color));
         }
         border: {
             radius: 50%;

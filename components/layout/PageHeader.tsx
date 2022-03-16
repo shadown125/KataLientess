@@ -1,20 +1,33 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 import Link from "next/link";
+import {ThemeContext, themeActionTypes} from "../context/theme-context";
 
-function PageHeader (props: {onSettingMainNavigationState: Function, onSettingModeState: Function, currentModeState: string}) {
-    const currentState = props.onSettingModeState;
-    const [ modeState, setModeState ] = useState<string>(props.currentModeState);
+function PageHeader (props: {onSettingMainNavigationState: Function}) {
+    const {dispatch, state} = useContext(ThemeContext);
+    const {theme} = state;
+
+    const [ modeState, setModeState ] = useState<string>(theme);
     const [ navigationIsOpen, setNavigationIsOpen ] = useState<boolean>(true);
 
     const modeSwitcher = () => {
         if (modeState !== 'light') {
             setModeState('light');
-            props.onSettingModeState('light');
+            dispatch({
+                type: themeActionTypes.setThemeMode,
+                payload: {
+                    theme: 'light',
+                }
+            })
             return;
         }
 
         setModeState('dark');
-        props.onSettingModeState('dark');
+        dispatch({
+            type: themeActionTypes.setThemeMode,
+            payload: {
+                theme: 'dark',
+            }
+        })
     }
 
     function setOpenNavigation() {

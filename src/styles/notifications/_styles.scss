@@ -1,10 +1,10 @@
 @use '../susanoo';
-@use 'variables';
 
 .notification {
+    display: none;
     padding: susanoo.rem-calc(24);
     background: {
-        color: variables.$background-color;
+        color: var(--notice-background-color, var(--primary-theme-color));
     }
     border: {
         radius: susanoo.rem-calc(10);
@@ -12,11 +12,11 @@
     margin: {
         bottom: susanoo.rem-calc(24);
     }
-    display: none;
+    transition: background-color 0.2s linear;
     > span {
         display: block;
         text-align: center;
-        color: variables.$span-color;
+        color: white;
     }
     &.is-active {
         display: block;

@@ -12,7 +12,7 @@ import {mutate} from "swr";
 import {NameDataInterface} from "../../../interfaces/NameDataInterface";
 import {GetServerSideProps} from "next";
 
-function SettingsName(props: {onSettingModeState: Function, currentModeState: string}) {
+function SettingsName() {
 
     const changeUsername = async (firstName: string, lastName: string) => {
         const response = await fetch('/api/user/changeUsername', {
@@ -43,10 +43,6 @@ function SettingsName(props: {onSettingModeState: Function, currentModeState: st
         return LastNameField(props, {placeholder: 'Your new last name', label: 'Change last name:'})
     }
 
-    const onSettingModeState = (state: string) => {
-        props.onSettingModeState(state);
-    }
-    
     const submitHandler = async (data: NameDataInterface, {setSubmitting, resetForm}: {setSubmitting: Function, resetForm: Function}) => {
         setSubmitting(true);
 
@@ -68,7 +64,7 @@ function SettingsName(props: {onSettingModeState: Function, currentModeState: st
     
     return (
         <Fragment>
-            <HomePage onSettingModeState={onSettingModeState} currentModeState={props.currentModeState} />
+            <HomePage />
             <section className="settings">
                 <Link href='/'>
                     <a className="button button--medium icon-cross" />

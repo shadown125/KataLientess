@@ -5,15 +5,10 @@ import {Fragment} from "react";
 import {getSession} from "next-auth/react";
 import {GetServerSideProps} from "next";
 
-function Settings(props: {onSettingModeState: Function, currentModeState: string}) {
-
-    const onSettingModeState = (state: string) => {
-        props.onSettingModeState(state);
-    }
-
+function Settings() {
     return (
         <Fragment>
-            <HomePage onSettingModeState={onSettingModeState} currentModeState={props.currentModeState} />
+            <HomePage />
             <SettingPanel />
             <FullActiveBackdrop />
         </Fragment>

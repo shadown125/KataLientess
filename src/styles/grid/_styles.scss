@@ -2,6 +2,18 @@
 @use "variables";
 @use '../todos/variables' as todos;
 
+@property --background-color-1 {
+    syntax: '<color>';
+    initial-value: #16ab9a;
+    inherits: false;
+}
+
+@property --background-color-2 {
+    syntax: '<color>';
+    initial-value: #4bc9bb;
+    inherits: false;
+}
+
 html {
     &::-webkit-scrollbar {
         width: susanoo.rem-calc(14);
@@ -21,25 +33,63 @@ html {
     }
 }
 
-body {
+.app {
+    --primary-theme-color: #6cdbeb;
+    --secondary-theme-color: #87e8dd;
+    --background-color-1: #65dfc9;
+    --background-color-2: #6cdbeb;
+    --main-navigation-background-color-1: #5fd1ce;
+    --main-navigation-background-color-2: #65aaec;
+    --main-background-color: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
+    --page-header-color: #65aaec;
+    --page-header-background-color: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
+    --progression-bar-background-color: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
+    --progression-bar-progressed-bar: #68ddd5;
+    --page-body-color: #65aaec;
+    --todos-background-color: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
+    --button-before-color: #62b4e6;
+    --button-hover-background-color: #65dfc9;
+
     font: {
         family: variables.$font-family;
     }
     background: {
-        image: var(--background-color);
+        image: linear-gradient(to right top, var(--background-color-1), var(--background-color-2));
     }
     min: {
         height: 100vh;
     }
+    transition: --background-color-1 0.2s linear, --background-color-2 0.2s linear;
+    &.is-dark {
+        --primary-theme-color: #19afc4;
+        --secondary-theme-color: #4bc9bb;
+        --background-color-1: #16ab9a;
+        --background-color-2: #4bc9bb;
+        --main-navigation-background-color-1: #12538a;
+        --main-navigation-background-color-2: #258386;
+        --main-background-color: linear-gradient(to right top, rgb(18, 83, 138, 0.5), rgb(36, 129, 134, 0.5));
+        --page-header-color: #ffffff;
+        --page-header-background-color: linear-gradient(to right bottom, rgb(18, 83, 138, 0.7), rgb(36, 129, 134, 0.3));
+        --progression-bar-background-color: linear-gradient(to right top, rgb(18, 83, 138, 0.3), rgb(36, 129, 134, 0.3));
+        --progression-bar-progressed-bar: #6756e9;
+        --page-body-color: #ffffff;
+        --todos-background-color: linear-gradient(to right bottom, rgb(18, 83, 138, 0.3), rgb(36, 129, 134, 0.3));
+        --button-before-color: #ffffff;
+        --button-hover-background-color: #43a190;
+    }
 }
 
 .app-container {
-    margin: {
+    padding: {
         top: susanoo.rem-calc(48);
         bottom: susanoo.rem-calc(48);
     }
     @media only screen and (max-width: 640px) {
         margin: unset;
+    }
+    p,
+    span {
+        transition: color 0.2s linear;
     }
 }
 

@@ -11,12 +11,8 @@ import {url, name} from "../../../lib/cloudinaryApi";
 import {mutate} from "swr";
 import {GetServerSideProps} from "next";
 
-function SettingsImage(props: {onSettingModeState: Function, currentModeState: string}) {
+function SettingsImage() {
     const [currentImage, setCurrentImage] = useState<File>();
-
-    const onSettingModeState = (state: string) => {
-        props.onSettingModeState(state);
-    }
 
     const addProfileImage = async () => {
         const image = new FormData();
@@ -61,7 +57,7 @@ function SettingsImage(props: {onSettingModeState: Function, currentModeState: s
 
     return (
         <Fragment>
-            <HomePage onSettingModeState={onSettingModeState} currentModeState={props.currentModeState} />
+            <HomePage />
             <section className="settings">
                 <Link href='/'>
                     <a className="button button--medium icon-cross" />

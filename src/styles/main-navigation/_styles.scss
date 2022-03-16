@@ -21,12 +21,13 @@
     }
     padding: susanoo.rem-calc(24);
     background: {
-        image: var(--main-navigation-background-color);
+        image: linear-gradient(to right top, var(--main-navigation-background-color-1), var(--main-navigation-background-color-2));
     }
     border-bottom-left-radius: grid.$border-radius;
     width: variables.$navigation-width;
     height: 100%;
     color: white;
+    transition: --main-navigation-background-color-1 4.2s linear, --main-navigation-background-color-2 4.2s linear;
     .actions {
         @include lists.reset-list();
         display: flex;

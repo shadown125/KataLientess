@@ -13,13 +13,12 @@ button {
 
 .button {
     --circle: #{susanoo.rem-calc(26)};
-    --background-hover-color: #{variables.$background-hover-color};
 
     position: relative;
     width: var(--circle);
     height: var(--circle);
     background: {
-        color: var(--button-background-color);
+        color: var(--button-background-color, var(--primary-theme-color));
     }
     border: {
         radius: 50%;
@@ -28,7 +27,7 @@ button {
     &:hover,
     &--big:hover {
         background: {
-            color: var(--background-hover-color);
+            color: var(--button-hover-background-color, var(--primary-theme-color));
         }
     }
     &:hover {
@@ -84,6 +83,7 @@ button {
         font: {
             size: map-get(icons.$icon-sizes, 'big');
         }
+        transition: color 0.2s linear;
     }
     &::after {
         content: "";
@@ -96,7 +96,7 @@ button {
         z-index: -1;
         transition: transform 0.4s, opacity 0.3s;
         background: {
-            color: var(--background-hover-color);
+            color: var(--button-hover-background-color, var(--primary-theme-color));
         }
     }
     &-primary {
