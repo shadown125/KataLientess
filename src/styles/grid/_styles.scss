@@ -2,18 +2,6 @@
 @use "variables";
 @use '../todos/variables' as todos;
 
-@property --background-color-1 {
-    syntax: '<color>';
-    initial-value: #16ab9a;
-    inherits: false;
-}
-
-@property --background-color-2 {
-    syntax: '<color>';
-    initial-value: #4bc9bb;
-    inherits: false;
-}
-
 html {
     &::-webkit-scrollbar {
         width: susanoo.rem-calc(14);
