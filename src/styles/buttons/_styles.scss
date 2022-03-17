@@ -62,7 +62,7 @@ button {
                 left: {
                     style: solid;
                     width: 2px;
-                    color: var(--button-background-color);
+                    color: var(--button-background-color, white);
                 }
             }
             animation: rotate 0.75s linear infinite;
