@@ -1,0 +1,13 @@
+@use '../susanoo';
+@use '../lists/mixins' as lists;
+
+.footer {
+    display: flex;
+    flex: {
+        direction: column;
+    }
+    gap: susanoo.rem-calc(12);
+    .legals {
+        @include lists.reset-list();
+    }
+}
