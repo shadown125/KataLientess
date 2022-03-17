@@ -14,10 +14,28 @@ import {useRouter} from "next/router";
 import {Year} from "../../components/elements/Year";
 import {GetServerSideProps} from "next";
 import {CreateUserInterface} from "../../interfaces/CreateUserInterface";
+import DataPrivacy from "../../components/elements/DataPrivacy";
 
 function Register() {
+    const [privacyPopupActive, setPrivacyPopupActive] = useState<boolean>(false);
     const [currentImage, setCurrentImage] = useState<File>();
     const router = useRouter();
+
+    const openPrivacyPopup = () => {
+        if (!privacyPopupActive) {
+            setPrivacyPopupActive(true);
+
+            return;
+        }
+
+        setPrivacyPopupActive(false);
+
+        return;
+    }
+
+    const removePrivacyPopup = () => {
+        setPrivacyPopupActive(false);
+    }
 
     const createUser = async (email: string, password: string, firstName: string, lastName: string) => {
         if (currentImage !== undefined) {
@@ -112,73 +130,81 @@ function Register() {
     }
 
     return (
-        <section className="intro-panel register">
-            <div className="container">
-                <h1 className="headline h2">Register</h1>
-                <Formik initialValues={{ firstName: '', lastName: '', email: '', image: '', password: '', repeatedPassword: '', }} onSubmit={submitHandler} validationSchema={registerValidationSchema}>
-                    {({ isSubmitting , setFieldValue}) => (
-                        <Form>
-                            <div className="row">
-                                <div className="col-half">
-                                    <NameField name="firstName" />
+        <>
+            <section className="intro-panel register">
+                <div className="container">
+                    <h1 className="headline h2">Register</h1>
+                    <Formik initialValues={{ firstName: '', lastName: '', email: '', image: '', password: '', repeatedPassword: '', }} onSubmit={submitHandler} validationSchema={registerValidationSchema}>
+                        {({ isSubmitting , setFieldValue}) => (
+                            <Form>
+                                <div className="row">
+                                    <div className="col-half">
+                                        <NameField name="firstName" />
+                                    </div>
+                                    <div className="col-half">
+                                        <LastNameField name="lastName" />
+                                    </div>
                                 </div>
-                                <div className="col-half">
-                                    <LastNameField name="lastName" />
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-half">
-                                    <EmailField name="email" />
-                                </div>
-                                <div className="col-half">
-                                    <ImageFieldRegister name="image" onChange={async (event: Event) => {
-                                        const target = event.target as HTMLInputElement;
+                                <div className="row">
+                                    <div className="col-half">
+                                        <EmailField name="email" />
+                                    </div>
+                                    <div className="col-half">
+                                        <ImageFieldRegister name="image" onChange={async (event: Event) => {
+                                            const target = event.target as HTMLInputElement;
 
-                                        setFieldValue("image", target.files);
+                                            setFieldValue("image", target.files);
 
-                                        if (target.files && target.files[0]) {
-                                            const file = target.files[0];
+                                            if (target.files && target.files[0]) {
+                                                const file = target.files[0];
 
-                                            setCurrentImage(file);
-                                        }
-                                    }} />
+                                                setCurrentImage(file);
+                                            }
+                                        }} />
+                                    </div>
                                 </div>
-                            </div>
-                            <PasswordField name="password" />
-                            <RepeatedPassword name="repeatedPassword" />
-                            <div className="buttons-container">
-                                <Link href="/login">
-                                    <a className="button button-primary">Back to login</a>
-                                </Link>
-                                <button className="button button-primary" disabled={isSubmitting} type="submit">
-                                    <span>Submit</span>
-                                </button>
-                            </div>
-                        </Form>
-                    )}
-                </Formik>
-                <div className="footer">
-                    <ul className="social-links">
-                        <li>
-                            <a href="https://github.com/shadown125" rel="external noopener noreferrer" target="_blank" className="link icon-link icon-github">
-                                <span>Github</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://twitter.com/DawidOleksiuk" rel="external noopener noreferrer" target="_blank" className="link icon-link icon-twitter">
-                                <span>Twitter</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.linkedin.com/in/dawid-ol-2478311a4/" rel="external noopener noreferrer" target="_blank" className="link icon-link icon-linkedin">
-                                <span>Linkedin</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <div className="credits">&copy; {Year()} All rights reserved by Dawid Oleksiuk</div>
+                                <PasswordField name="password" />
+                                <RepeatedPassword name="repeatedPassword" />
+                                <div className="buttons-container">
+                                    <Link href="/login">
+                                        <a className="button button-primary">Back to login</a>
+                                    </Link>
+                                    <button className="button button-primary" disabled={isSubmitting} type="submit">
+                                        <span>Submit</span>
+                                    </button>
+                                </div>
+                            </Form>
+                        )}
+                    </Formik>
+                    <div className="footer">
+                        <ul className="social-links">
+                            <li>
+                                <a href="https://github.com/shadown125" rel="external noopener noreferrer" target="_blank" className="link icon-link icon-github">
+                                    <span>Github</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/DawidOleksiuk" rel="external noopener noreferrer" target="_blank" className="link icon-link icon-twitter">
+                                    <span>Twitter</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/dawid-ol-2478311a4/" rel="external noopener noreferrer" target="_blank" className="link icon-link icon-linkedin">
+                                    <span>Linkedin</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div className="credits">&copy; {Year()} All rights reserved by Dawid Oleksiuk</div>
+                        <ul className="legals">
+                            <li>
+                                <button className="link" onClick={openPrivacyPopup}>Privacy Policy</button>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+            <DataPrivacy active={privacyPopupActive} onRemovingActive={removePrivacyPopup} />
+        </>
     );
 }
 

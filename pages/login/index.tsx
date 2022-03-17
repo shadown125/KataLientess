@@ -8,9 +8,28 @@ import {loginValidationSchema} from "../../components/validationSchemas/loginVal
 import {Year} from "../../components/elements/Year";
 import {GetServerSideProps} from "next";
 import {LoginDataInterface} from "../../interfaces/LoginDataInterface";
+import {useState} from "react";
+import DataPrivacy from "../../components/elements/DataPrivacy";
 
 function LoginPage () {
+    const [privacyPopupActive, setPrivacyPopupActive] = useState<boolean>(false);
     const router = useRouter();
+
+    const openPrivacyPopup = () => {
+        if (!privacyPopupActive) {
+            setPrivacyPopupActive(true);
+
+            return;
+        }
+
+        setPrivacyPopupActive(false);
+
+        return;
+    }
+
+    const removePrivacyPopup = () => {
+        setPrivacyPopupActive(false);
+    }
 
     const submitHandler = async (data: LoginDataInterface, {setSubmitting, resetForm}: {setSubmitting: Function, resetForm: Function}) => {
         setSubmitting(true);
@@ -76,9 +95,15 @@ function LoginPage () {
                             </li>
                         </ul>
                         <div className="credits">&copy; {Year()} All rights reserved by Dawid Oleksiuk</div>
+                        <ul className="legals">
+                            <li>
+                                <button className="link" onClick={openPrivacyPopup}>Privacy Policy</button>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </section>
+            <DataPrivacy active={privacyPopupActive} onRemovingActive={removePrivacyPopup} />
         </main>
     )
 }
