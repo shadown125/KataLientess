@@ -1,3 +1,4 @@
+import "../public/main.css";
 import HeadPage from '../components/layout/HeadPage';
 import {SessionProvider} from "next-auth/react";
 import {AppProps} from "next/app";
