@@ -15,6 +15,11 @@ h6 {
 }
 
 .headline {
+    &:not(:first-child) {
+        margin: {
+            top: susanoo.rem-calc(16);
+        }
+    }
     margin: {
         bottom: susanoo.rem-calc(24);
     }
