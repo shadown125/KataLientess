@@ -24,9 +24,9 @@ describe('Home Page', () => {
         );
     }
 
-    it ('renders a heading', async () => {
+    it ('renders a heading', () => {
         view();
-        const heading = await screen.findByText(/KataLientesS/i);
+        const heading = screen.getByTestId('katalientess');
 
         expect(heading).toBeDefined()
     });
@@ -241,7 +241,7 @@ describe('Home Page', () => {
                 expect(getErrorTitleMessage).not.toBeInTheDocument();
             });
 
-            const popupCloseButton = screen.getByText('Close button');
+            const popupCloseButton = screen.getByTestId('add-todo-close-button');
 
             expect(popupCloseButton).toBeInTheDocument();
         });

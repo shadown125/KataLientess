@@ -47,7 +47,7 @@ function PageHeader (props: {onSettingMainNavigationState: Function}) {
                 <a href="https://www.akalientess.com/" className="image-wrapper" target="_blank" rel="external noopener noreferrer" data-testid="portfolio-website-link">
                     <img src="/brandLogo.png" alt="Logo" data-testid="brand-logo"/>
                 </a>
-                <h1 className="headline h1">KataLientesS</h1>
+                <h1 className="headline h1" data-testid="katalientess">KataLientesS</h1>
                 <ul className="actions">
                     <li>
                         <button className={`button button--big${modeState === 'dark' ? ' icon-moon' : ' icon-light-up'}`} type="button" onClick={modeSwitcher}>

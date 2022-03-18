@@ -66,7 +66,7 @@ function AddTodo (props: {removeActive: Function, activeTodo: boolean}) {
         <section className={`new-todo${props.activeTodo ? ' is-active' : ''}`} data-testid="add-todo-popup">
             <Notification successMessage={submitted} />
             <div className="container">
-                <button className="button button--medium icon-cross" onClick={onRemovingActive}>
+                <button className="button button--medium icon-cross" data-testid="add-todo-close-button" onClick={onRemovingActive}>
                     <span>Close button</span>
                 </button>
                 <Formik initialValues={{ title: '', description: '' }} onSubmit={submitHandler} validationSchema={addTodoValidationSchema}>

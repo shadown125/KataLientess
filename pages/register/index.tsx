@@ -133,7 +133,7 @@ function Register() {
         <>
             <section className="intro-panel register">
                 <div className="container">
-                    <h1 className="headline h2">Register</h1>
+                    <h1 className="headline h2" data-testid="register">Register</h1>
                     <Formik initialValues={{ firstName: '', lastName: '', email: '', image: '', password: '', repeatedPassword: '', }} onSubmit={submitHandler} validationSchema={registerValidationSchema}>
                         {({ isSubmitting , setFieldValue}) => (
                             <Form>

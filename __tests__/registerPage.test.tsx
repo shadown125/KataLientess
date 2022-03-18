@@ -17,7 +17,7 @@ describe('Register', () => {
 
     it ('renders a heading', () => {
         render(<Register />);
-        const heading = screen.getByText(/Register/i);
+        const heading = screen.getByTestId('register');
 
         expect(heading).toBeDefined()
     });
