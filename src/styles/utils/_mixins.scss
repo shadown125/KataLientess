@@ -9,6 +9,7 @@
 ) {
     &::-webkit-scrollbar {
         width: susanoo.rem-calc($width);
+        overflow-x: hidden;
     }
     &::-webkit-scrollbar-thumb {
         background: {
