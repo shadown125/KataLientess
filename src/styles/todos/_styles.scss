@@ -1,8 +1,9 @@
 @use '../susanoo';
 @use '../lists';
 @use '../grid/variables' as grid;
-@use 'variables';
 @use '../loading-states' as loading;
+@use '../utils';
+@use 'variables';
 
 .todos {
     background: {
@@ -49,24 +50,7 @@
             }
         }
     }
-    &::-webkit-scrollbar {
-        width: susanoo.rem-calc(36);
-    }
-    &::-webkit-scrollbar-thumb {
-        border: susanoo.rem-calc(12) solid rgba(0, 0, 0, 0);
-        background-clip: padding-box;
-        background: {
-            color: variables.$scrollbar-background-color;
-        }
-        border: {
-            radius: susanoo.rem-calc(30);
-        }
-        &:hover {
-            background: {
-                color: variables.$scrollbar-hover-background-color;
-            }
-        }
-    }
+    @include utils.scrollbar();
     ul {
         @include lists.reset-list();
     }

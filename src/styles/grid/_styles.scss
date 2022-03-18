@@ -1,24 +1,16 @@
 @use "../susanoo";
-@use "variables";
 @use '../todos/variables' as todos;
+@use '../utils';
+@use "variables";
 
 html {
-    &::-webkit-scrollbar {
-        width: susanoo.rem-calc(14);
-    }
-    &::-webkit-scrollbar-thumb {
-        background: {
-            color: todos.$scrollbar-hover-background-color;
-        }
-        border: {
-            radius: susanoo.rem-calc(15);
-        }
-        &:hover {
-            background: {
-                color: variables.$html-scrollbar-hover-background-color;
-            }
-        }
-    }
+    @include utils.scrollbar(
+            $width: 14,
+            $border-width: 0,
+            $border-color: unset,
+            $background-color: todos.$scrollbar-hover-background-color,
+            $hover-background-color: variables.$html-scrollbar-hover-background-color
+    );
 }
 
 .app {

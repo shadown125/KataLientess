@@ -1,5 +1,6 @@
 @use '../susanoo';
 @use '../grid/variables' as grid;
+@use '../utils';
 @use 'variables';
 
 .popup {
@@ -44,24 +45,7 @@
         max: {
             height: calc(#{susanoo.rem-calc(800)} - #{variables.$padding} * 4);
         }
-        &::-webkit-scrollbar {
-            width: susanoo.rem-calc(36);
-        }
-        &::-webkit-scrollbar-thumb {
-            border: susanoo.rem-calc(12) solid rgba(0, 0, 0, 0);
-            background-clip: padding-box;
-            background: {
-                color: #68ddd5;
-            }
-            border: {
-                radius: susanoo.rem-calc(30);
-            }
-            &:hover {
-                background: {
-                    color: #65aaec;
-                }
-            }
-        }
+        @include utils.scrollbar();
     }
     .button {
         margin: {
