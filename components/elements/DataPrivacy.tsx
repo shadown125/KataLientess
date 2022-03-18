@@ -5,10 +5,10 @@ const DataPrivacy = (props: {active: boolean, onRemovingActive: MouseEventHandle
     return(
         <>
             <section className={`popup legals${props.active ? ' is-active' : ''}`}>
+                <button className="button button--medium icon-cross" onClick={props.onRemovingActive}>
+                    <span>Close button</span>
+                </button>
                 <div className="container">
-                    <button className="button button--medium icon-cross" onClick={props.onRemovingActive}>
-                        <span>Close button</span>
-                    </button>
                     <h2 className="headline h4">Privacy Policy</h2>
                     <p>Last updated: March 17, 2022</p>
                     <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
