@@ -2,32 +2,10 @@
 @use '../grid/variables' as grid;
 @use '../utils';
 @use 'variables';
+@use 'mixins';
 
 .popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.3);
-    background: {
-        image: linear-gradient(to right bottom, grid.$main-linear-gradient-color-1, grid.$main-linear-gradient-color-2);
-    }
-    padding: variables.$padding;
-    border: {
-        radius: calc(#{grid.$border-radius} / 2);
-    }
-    width: 90vw;
-    max: {
-        width: susanoo.rem-calc(1000);
-        height: variables.$height;
-    }
-    opacity: 0;
-    z-index: -1;
-    transition: opacity 0.2s linear, transform 0.3s linear;
-    &.is-active {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-        z-index: 2;
-    }
+    @include mixins.popup();
     &.legals {
         .headline {
             color: #2891f5;
@@ -41,10 +19,10 @@
         }
     }
     .container {
-        overflow-y: scroll;
         max: {
-            height: calc(#{susanoo.rem-calc(800)} - #{variables.$padding} * 4);
+            height: calc(80vh - #{variables.$padding} * 4);
         }
+        overflow-y: scroll;
         @include utils.scrollbar();
     }
     .button {
