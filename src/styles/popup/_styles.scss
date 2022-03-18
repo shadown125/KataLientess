@@ -22,7 +22,10 @@
         max: {
             height: calc(80vh - #{variables.$padding} * 4);
         }
-        overflow-y: scroll;
+        overflow: {
+            y: scroll;
+            x: hidden;
+        }
         @include utils.scrollbar();
     }
     .button {
