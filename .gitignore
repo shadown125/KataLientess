@@ -38,3 +38,6 @@ yarn-error.log*
 
 #msw
 /public/mockServiceWorker.js
+
+#styles
+src/build
