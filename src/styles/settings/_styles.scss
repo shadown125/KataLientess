@@ -22,6 +22,20 @@
     }
     padding: susanoo.rem-calc(24);
     z-index: 2;
+    &.delete-account {
+        .notification {
+            display: block;
+            color: white;
+        }
+        .buttons-container {
+            --button-background-color: #{variables.$button-delete-color};
+            --button-hover-background-color: #{variables.$button-delete-color};
+            a {
+                --button-background-color: var(--primary-theme-color);
+                --button-hover-background-color: #43a190ff;
+            }
+        }
+    }
     .icon-cross {
         position: absolute;
         top: susanoo.rem-calc(-16);
@@ -35,7 +49,14 @@
     }
     a,
     button {
-        &:not(.button) {
+        &:not(.button, .link-delete) {
+            &:hover {
+                background: {
+                    color: variables.$anchor-background-color;
+                }
+            }
+        }
+        &:not(.button, .icon-cross) {
             padding: susanoo.rem-calc(16);
             border: {
                 radius: var(--border-radius);
@@ -43,15 +64,18 @@
         }
         text-align: center;
         transition: color 0.2s linear, background-color 0.2s linear;
-        &:hover {
-            background: {
-                color: variables.$anchor-background-color;
-            }
-        }
     }
     button {
         &.link {
             width: 100%;
+        }
+    }
+    .link-delete {
+        color: white;
+        &:hover {
+            background: {
+                color: #{variables.$button-delete-color};
+            }
         }
     }
     .profile {

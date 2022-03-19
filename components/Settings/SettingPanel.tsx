@@ -4,7 +4,6 @@ import {signOut} from "next-auth/react";
 import {useRouter} from "next/router";
 
 function SettingPanel() {
-
     const router = useRouter();
 
     const logoutHandler = async () => {
@@ -34,6 +33,11 @@ function SettingPanel() {
                 <li>
                     <Link href='/settings/image' passHref>
                         <a className="link" data-testid="change-image">Change image</a>
+                    </Link>
+                </li>
+                <li>
+                    <Link href='/settings/delete-account' passHref>
+                        <a className="link link-delete" data-testid="delete-account">Delete Account</a>
                     </Link>
                 </li>
                 <li>
