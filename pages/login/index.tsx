@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {Formik, Form} from "formik";
-import {getSession, signIn} from "next-auth/react";
+import {getSession, signIn } from "next-auth/react";
 import {useRouter} from "next/router";
 import EmailField from "../../components/inputs/EmailField";
 import PasswordField from "../../components/inputs/PasswordField";

@@ -1,7 +1,6 @@
 import {NextApiRequest, NextApiResponse} from "next";
 import {getSession} from "next-auth/react";
 import {connectToDatabase} from "../../../lib/db";
-import {serialize} from "cookie";
 
 const deleteAccount = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method !== 'DELETE') {
@@ -37,17 +36,6 @@ const deleteAccount = async (req: NextApiRequest, res: NextApiResponse) => {
     await usersCollection.deleteOne({
         "_id": user!._id
     });
-
-    res.setHeader('Set-Cookie', [
-        serialize('next-auth.session-token', '', {
-            maxAge: -1,
-            path: '/'
-        }),
-        serialize('__Secure-next-auth.session-token', '', {
-            maxAge: -1,
-            path: '/'
-        })
-    ]);
 
     res.status(200).json({
         message: "User deleted!"

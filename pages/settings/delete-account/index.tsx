@@ -1,5 +1,5 @@
 import {GetServerSideProps} from "next";
-import {getSession} from "next-auth/react";
+import {getSession, signOut} from "next-auth/react";
 import HomePage from "../../index";
 import Link from "next/link";
 import {Form, Formik} from "formik";
@@ -22,6 +22,8 @@ const DeleteAccount = () => {
         if (!response.ok) {
             throw new Error(data.message || 'Something went wrong!');
         }
+
+        await signOut();
     }
 
     const submitHandler = async () => {
