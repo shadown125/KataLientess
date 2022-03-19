@@ -1,11 +1,17 @@
-import {MouseEventHandler} from "react";
-import FullActiveBackdrop from "../layout/FullActiveBackdrop";
+import {useContext} from "react";
+import {BackgroundFilterContext} from "../context/backgroundFilterContext";
 
-const DataPrivacy = (props: {active: boolean, onRemovingActive: MouseEventHandler<HTMLButtonElement>}) => {
+const DataPrivacy = (props: {active: boolean}) => {
+    const {setState} = useContext(BackgroundFilterContext);
+
+    const removePrivacyPopup = () => {
+        setState(false);
+    }
+
     return(
         <>
             <section className={`popup legals${props.active ? ' is-active' : ''}`}>
-                <button className="button button--medium icon-cross" onClick={props.onRemovingActive}>
+                <button className="button button--medium icon-cross" onClick={removePrivacyPopup}>
                     <span>Close button</span>
                 </button>
                 <div className="container">
@@ -137,7 +143,6 @@ const DataPrivacy = (props: {active: boolean, onRemovingActive: MouseEventHandle
                     </ul>
                 </div>
             </section>
-            {props.active ? <FullActiveBackdrop /> : ''}
         </>
     )
 }

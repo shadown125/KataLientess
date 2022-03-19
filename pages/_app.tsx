@@ -4,6 +4,7 @@ import {SessionProvider} from "next-auth/react";
 import {AppProps} from "next/app";
 import {ThemeContextProvider} from "../components/context/themeContext";
 import ThemeWrapper from "../components/elements/ThemeWrapper";
+import {BackgroundFilterContextProvider} from "../components/context/backgroundFilterContext";
 
 if (process.env.NEXT_PUBLIC_API_MOCKING !== 'disabled') {
     import('../mocks').then(async ({setupMocks}) => {
@@ -18,7 +19,9 @@ function MyApp({ Component, pageProps: {session, ...pageProps} }: AppProps) {
             <HeadPage />
             <ThemeContextProvider>
                 <ThemeWrapper>
-                    <Component {...pageProps} />
+                    <BackgroundFilterContextProvider>
+                        <Component {...pageProps} />
+                    </BackgroundFilterContextProvider>
                 </ThemeWrapper>
             </ThemeContextProvider>
         </SessionProvider>

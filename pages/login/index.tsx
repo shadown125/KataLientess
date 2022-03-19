@@ -5,31 +5,17 @@ import {useRouter} from "next/router";
 import EmailField from "../../components/inputs/EmailField";
 import PasswordField from "../../components/inputs/PasswordField";
 import {loginValidationSchema} from "../../components/validationSchemas/loginValidationSchema";
-import {Year} from "../../components/elements/Year";
 import {GetServerSideProps} from "next";
 import {LoginDataInterface} from "../../interfaces/LoginDataInterface";
-import {useState} from "react";
+import Footer from "../../components/layout/Footer";
+import {BackgroundFilterContext} from "../../components/context/backgroundFilterContext";
+import {useContext} from "react";
+import FullActiveBackdrop from "../../components/layout/FullActiveBackdrop";
 import DataPrivacy from "../../components/elements/DataPrivacy";
 
 function LoginPage () {
-    const [privacyPopupActive, setPrivacyPopupActive] = useState<boolean>(false);
+    const {state} = useContext(BackgroundFilterContext);
     const router = useRouter();
-
-    const openPrivacyPopup = () => {
-        if (!privacyPopupActive) {
-            setPrivacyPopupActive(true);
-
-            return;
-        }
-
-        setPrivacyPopupActive(false);
-
-        return;
-    }
-
-    const removePrivacyPopup = () => {
-        setPrivacyPopupActive(false);
-    }
 
     const submitHandler = async (data: LoginDataInterface, {setSubmitting, resetForm}: {setSubmitting: Function, resetForm: Function}) => {
         setSubmitting(true);
@@ -76,34 +62,11 @@ function LoginPage () {
                             </Form>
                         )}
                     </Formik>
-                    <div className="footer">
-                        <ul className="social-links">
-                            <li>
-                                <a href="https://github.com/shadown125" rel="external noopener noreferrer" target="_blank" className="link icon-link icon-github">
-                                    <span>Github</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://twitter.com/DawidOleksiuk" rel="external noopener noreferrer" target="_blank" className="link icon-link icon-twitter">
-                                    <span>Twitter</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.linkedin.com/in/dawid-ol-2478311a4/" rel="external noopener noreferrer" target="_blank" className="link icon-link icon-linkedin">
-                                    <span>Linkedin</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <div className="credits">&copy; {Year()} All rights reserved by Dawid Oleksiuk</div>
-                        <ul className="legals">
-                            <li>
-                                <button className="link" onClick={openPrivacyPopup}>Privacy Policy</button>
-                            </li>
-                        </ul>
-                    </div>
+                    <Footer />
                 </div>
             </section>
-            <DataPrivacy active={privacyPopupActive} onRemovingActive={removePrivacyPopup} />
+            <DataPrivacy active={state} />
+            {state ? <FullActiveBackdrop /> : ''}
         </main>
     )
 }

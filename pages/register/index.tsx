@@ -8,34 +8,20 @@ import PasswordField from "../../components/inputs/PasswordField";
 import RepeatedPassword from "../../components/inputs/RepeatedPassword";
 import ImageFieldRegister from "../../components/inputs/ImageFieldRegister";
 import {registerValidationSchema} from "../../components/validationSchemas/registerValidationSchema";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {name, url} from "../../lib/cloudinaryApi";
 import {useRouter} from "next/router";
-import {Year} from "../../components/elements/Year";
 import {GetServerSideProps} from "next";
 import {CreateUserInterface} from "../../interfaces/CreateUserInterface";
 import DataPrivacy from "../../components/elements/DataPrivacy";
+import FullActiveBackdrop from "../../components/layout/FullActiveBackdrop";
+import {BackgroundFilterContext} from "../../components/context/backgroundFilterContext";
+import Footer from "../../components/layout/Footer";
 
 function Register() {
-    const [privacyPopupActive, setPrivacyPopupActive] = useState<boolean>(false);
+    const {state} = useContext(BackgroundFilterContext);
     const [currentImage, setCurrentImage] = useState<File>();
     const router = useRouter();
-
-    const openPrivacyPopup = () => {
-        if (!privacyPopupActive) {
-            setPrivacyPopupActive(true);
-
-            return;
-        }
-
-        setPrivacyPopupActive(false);
-
-        return;
-    }
-
-    const removePrivacyPopup = () => {
-        setPrivacyPopupActive(false);
-    }
 
     const createUser = async (email: string, password: string, firstName: string, lastName: string) => {
         if (currentImage !== undefined) {
@@ -176,34 +162,11 @@ function Register() {
                             </Form>
                         )}
                     </Formik>
-                    <div className="footer">
-                        <ul className="social-links">
-                            <li>
-                                <a href="https://github.com/shadown125" rel="external noopener noreferrer" target="_blank" className="link icon-link icon-github">
-                                    <span>Github</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://twitter.com/DawidOleksiuk" rel="external noopener noreferrer" target="_blank" className="link icon-link icon-twitter">
-                                    <span>Twitter</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.linkedin.com/in/dawid-ol-2478311a4/" rel="external noopener noreferrer" target="_blank" className="link icon-link icon-linkedin">
-                                    <span>Linkedin</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <div className="credits">&copy; {Year()} All rights reserved by Dawid Oleksiuk</div>
-                        <ul className="legals">
-                            <li>
-                                <button className="link" onClick={openPrivacyPopup}>Privacy Policy</button>
-                            </li>
-                        </ul>
-                    </div>
+                    <Footer/>
                 </div>
             </section>
-            <DataPrivacy active={privacyPopupActive} onRemovingActive={removePrivacyPopup} />
+            <DataPrivacy active={state} />
+            {state ? <FullActiveBackdrop /> : ''}
         </>
     );
 }

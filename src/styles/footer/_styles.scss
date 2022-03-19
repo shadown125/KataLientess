@@ -7,7 +7,7 @@
         direction: column;
     }
     gap: susanoo.rem-calc(12);
-    .legals {
+    .meta-nav {
         @include lists.reset-list();
     }
 }

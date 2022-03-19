@@ -62,5 +62,9 @@
         margin: {
             top: auto;
         }
+        align-items: flex-start;
+        .credits {
+            order: 1;
+        }
     }
 }

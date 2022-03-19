@@ -2,12 +2,14 @@ import Link from "next/link";
 import Profile from "../elements/Profile";
 import {useRouter} from "next/router";
 import {signOut} from "next-auth/react";
-import {Year} from "../elements/Year";
-import {useState} from "react";
+import {useContext} from "react";
 import DataPrivacy from "../elements/DataPrivacy";
+import FullActiveBackdrop from "./FullActiveBackdrop";
+import {BackgroundFilterContext} from "../context/backgroundFilterContext";
+import Footer from "./Footer";
 
 function MainNavigation(props: {currentMainNavigationState: boolean}) {
-    const [privacyPopupActive, setPrivacyPopupActive] = useState<boolean>(false);
+    const {state} = useContext(BackgroundFilterContext);
     const router = useRouter();
     const navLinks = [
         {
@@ -32,22 +34,6 @@ function MainNavigation(props: {currentMainNavigationState: boolean}) {
         await signOut();
     }
 
-    const openPrivacyPopup = () => {
-        if (!privacyPopupActive) {
-            setPrivacyPopupActive(true);
-
-            return;
-        }
-
-        setPrivacyPopupActive(false);
-
-        return;
-    }
-
-    const removePrivacyPopup = () => {
-        setPrivacyPopupActive(false);
-    }
-
     return (
         <>
             <aside className={`nav-aside${props.currentMainNavigationState ? ' is-active' : ''}`}>
@@ -69,17 +55,11 @@ function MainNavigation(props: {currentMainNavigationState: boolean}) {
                             </button>
                         </li>
                     </ul>
-                    <div className="footer">
-                        <div className="credits">&copy; {Year()} All rights reserved by Dawid Oleksiuk</div>
-                        <ul className="legals">
-                            <li>
-                                <button className="link" onClick={openPrivacyPopup}>Privacy Policy</button>
-                            </li>
-                        </ul>
-                    </div>
+                    <Footer/>
                 </nav>
             </aside>
-            <DataPrivacy active={privacyPopupActive} onRemovingActive={removePrivacyPopup} />
+            <DataPrivacy active={state} />
+            {state ? <FullActiveBackdrop /> : ''}
         </>
     );
 }
