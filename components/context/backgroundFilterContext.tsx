@@ -13,8 +13,6 @@ export const BackgroundFilterContext = createContext<{
 export const BackgroundFilterContextProvider: FC = ({ children }) => {
     const [state, setState] = useState(initialState);
 
-    console.log(state);
-
     return (
         <BackgroundFilterContext.Provider value={{state, setState}}>
             {children}
