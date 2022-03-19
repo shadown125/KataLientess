@@ -14,7 +14,6 @@ import {useRouter} from "next/router";
 import {GetServerSideProps} from "next";
 import {CreateUserInterface} from "../../interfaces/CreateUserInterface";
 import DataPrivacy from "../../components/elements/DataPrivacy";
-import FullActiveBackdrop from "../../components/layout/FullActiveBackdrop";
 import {BackgroundFilterContext} from "../../components/context/backgroundFilterContext";
 import Footer from "../../components/layout/Footer";
 
@@ -166,7 +165,7 @@ function Register() {
                 </div>
             </section>
             <DataPrivacy active={state} />
-            {state ? <FullActiveBackdrop /> : ''}
+            <div className={`backdrop${state ? ' is-active-full' : ''}`} />
         </>
     );
 }

@@ -1,17 +1,23 @@
 @use '../susanoo';
 
 .backdrop {
+    @supports ((backdrop-filter: none)) {
+        backdrop-filter: blur(#{susanoo.rem-calc(16)});
+        background: {
+            color: rgba(0,0,0,.3);
+        }
+    }
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(#{susanoo.rem-calc(16)});
+    filter: blur(#{susanoo.rem-calc(16)});
     background: {
-        color: rgba(0,0,0,.3);
+        color: rgba(0,0,0,.6);
     }
     opacity: 0;
-    transition: opacity 0.2s linear;
+    transition: opacity 0.2s linear, z-index 0s 0.2s;
     z-index: -1;
     &.is-active {
         opacity: 1;
@@ -19,5 +25,6 @@
     &.is-active-full {
         opacity: 1;
         z-index: 1;
+        transition: opacity 0.2s linear;
     }
 }

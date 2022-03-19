@@ -10,7 +10,6 @@ import {LoginDataInterface} from "../../interfaces/LoginDataInterface";
 import Footer from "../../components/layout/Footer";
 import {BackgroundFilterContext} from "../../components/context/backgroundFilterContext";
 import {useContext} from "react";
-import FullActiveBackdrop from "../../components/layout/FullActiveBackdrop";
 import DataPrivacy from "../../components/elements/DataPrivacy";
 
 function LoginPage () {
@@ -66,7 +65,7 @@ function LoginPage () {
                 </div>
             </section>
             <DataPrivacy active={state} />
-            {state ? <FullActiveBackdrop /> : ''}
+            <div className={`backdrop${state ? ' is-active-full' : ''}`} />
         </main>
     )
 }

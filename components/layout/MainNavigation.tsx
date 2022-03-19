@@ -4,7 +4,6 @@ import {useRouter} from "next/router";
 import {signOut} from "next-auth/react";
 import {useContext} from "react";
 import DataPrivacy from "../elements/DataPrivacy";
-import FullActiveBackdrop from "./FullActiveBackdrop";
 import {BackgroundFilterContext} from "../context/backgroundFilterContext";
 import Footer from "./Footer";
 
@@ -59,7 +58,7 @@ function MainNavigation(props: {currentMainNavigationState: boolean}) {
                 </nav>
             </aside>
             <DataPrivacy active={state} />
-            {state ? <FullActiveBackdrop /> : ''}
+            <div className={`backdrop${state ? ' is-active-full' : ''}`} />
         </>
     );
 }
