@@ -1,6 +1,6 @@
 import {useContext, useState} from "react";
 import Link from "next/link";
-import {ThemeContext, themeActionTypes} from "../context/theme-context";
+import {ThemeContext, themeActionTypes} from "../context/themeContext";
 
 function PageHeader (props: {onSettingMainNavigationState: Function}) {
     const {dispatch, state} = useContext(ThemeContext);
