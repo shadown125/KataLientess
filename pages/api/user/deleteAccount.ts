@@ -42,6 +42,10 @@ const deleteAccount = async (req: NextApiRequest, res: NextApiResponse) => {
         serialize('next-auth.session-token', '', {
             maxAge: -1,
             path: '/'
+        }),
+        serialize('__Secure-next-auth.session-token', '', {
+            maxAge: -1,
+            path: '/'
         })
     ]);
 
