@@ -116,56 +116,62 @@ function Register() {
 
     return (
         <>
-            <section className="intro-panel register">
-                <div className="container">
-                    <h1 className="headline h2" data-testid="register">Register</h1>
-                    <Formik initialValues={{ firstName: '', lastName: '', email: '', image: '', password: '', repeatedPassword: '', }} onSubmit={submitHandler} validationSchema={registerValidationSchema}>
-                        {({ isSubmitting , setFieldValue}) => (
-                            <Form>
-                                <div className="row">
-                                    <div className="col-half">
-                                        <NameField name="firstName" />
-                                    </div>
-                                    <div className="col-half">
-                                        <LastNameField name="lastName" />
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-half">
-                                        <EmailField name="email" />
-                                    </div>
-                                    <div className="col-half">
-                                        <ImageFieldRegister name="image" onChange={async (event: Event) => {
-                                            const target = event.target as HTMLInputElement;
+            <div className="wrapper">
+                <div className="app-container">
+                    <main className="intro-panel">
+                        <section className="register">
+                            <div className="container">
+                                <h1 className="headline h2" data-testid="register">Register</h1>
+                                <Formik initialValues={{ firstName: '', lastName: '', email: '', image: '', password: '', repeatedPassword: '', }} onSubmit={submitHandler} validationSchema={registerValidationSchema}>
+                                    {({ isSubmitting , setFieldValue}) => (
+                                        <Form>
+                                            <div className="row">
+                                                <div className="col-half">
+                                                    <NameField name="firstName" />
+                                                </div>
+                                                <div className="col-half">
+                                                    <LastNameField name="lastName" />
+                                                </div>
+                                            </div>
+                                            <div className="row">
+                                                <div className="col-half">
+                                                    <EmailField name="email" />
+                                                </div>
+                                                <div className="col-half">
+                                                    <ImageFieldRegister name="image" onChange={async (event: Event) => {
+                                                        const target = event.target as HTMLInputElement;
 
-                                            setFieldValue("image", target.files);
+                                                        setFieldValue("image", target.files);
 
-                                            if (target.files && target.files[0]) {
-                                                const file = target.files[0];
+                                                        if (target.files && target.files[0]) {
+                                                            const file = target.files[0];
 
-                                                setCurrentImage(file);
-                                            }
-                                        }} />
-                                    </div>
-                                </div>
-                                <PasswordField name="password" />
-                                <RepeatedPassword name="repeatedPassword" />
-                                <div className="buttons-container">
-                                    <Link href="/login">
-                                        <a className="button button-primary">Back to login</a>
-                                    </Link>
-                                    <button className="button button-primary" disabled={isSubmitting} type="submit">
-                                        <span>Submit</span>
-                                    </button>
-                                </div>
-                            </Form>
-                        )}
-                    </Formik>
-                    <Footer/>
+                                                            setCurrentImage(file);
+                                                        }
+                                                    }} />
+                                                </div>
+                                            </div>
+                                            <PasswordField name="password" />
+                                            <RepeatedPassword name="repeatedPassword" />
+                                            <div className="buttons-container">
+                                                <Link href="/login">
+                                                    <a className="button button-primary">Back to login</a>
+                                                </Link>
+                                                <button className="button button-primary" disabled={isSubmitting} type="submit">
+                                                    <span>Submit</span>
+                                                </button>
+                                            </div>
+                                        </Form>
+                                    )}
+                                </Formik>
+                                <Footer/>
+                            </div>
+                        </section>
+                        <DataPrivacy active={state} />
+                        <div className={`backdrop${state ? ' is-active-full' : ''}`} />
+                    </main>
                 </div>
-            </section>
-            <DataPrivacy active={state} />
-            <div className={`backdrop${state ? ' is-active-full' : ''}`} />
+            </div>
         </>
     );
 }

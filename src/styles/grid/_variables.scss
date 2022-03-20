@@ -7,6 +7,7 @@ $body-linear-gradient-color-2: #6cdbeb;
 $main-linear-gradient-color-1: rgba(255, 255, 255, 0.7);
 $main-linear-gradient-color-2: rgba(255, 255, 255, 0.3);
 $html-scrollbar-hover-background-color: #ff6767;
+$grid-columns: 12;
 
 @property --background-color-1 {
     syntax: '<color>';

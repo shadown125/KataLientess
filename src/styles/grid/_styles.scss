@@ -2,6 +2,7 @@
 @use '../todos/variables' as todos;
 @use '../utils';
 @use "variables";
+@use "mixins";
 
 html {
     @include utils.scrollbar(
@@ -60,10 +61,7 @@ html {
 }
 
 .app-container {
-    padding: {
-        top: susanoo.rem-calc(48);
-        bottom: susanoo.rem-calc(48);
-    }
+    @include mixins.grid-centered();
     @media only screen and (max-width: 640px) {
         margin: unset;
     }
@@ -73,13 +71,42 @@ html {
     }
 }
 
+header {
+    grid: {
+        column: span variables.$grid-columns;
+    }
+}
+
+.container-wrapper {
+    @include mixins.grid-item();
+    @include utils.scrollbar();
+    overflow-y: scroll;
+    @media only screen and (max-width: 640px) {
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        scrollbar-width: none;
+    }
+}
+
 main {
+    overflow-y: scroll;
+    scrollbar-width: none;
     background: {
         image: var(--main-background-color);
     }
     border-bottom-left-radius: variables.$border-radius;
     border-bottom-right-radius: variables.$border-radius;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    &:not(&.intro-panel) {
+        @include mixins.grid-item();
+    }
     @media only screen and (max-width: 640px) {
+        &::-webkit-scrollbar {
+            display: none;
+        }
         border: {
             radius: unset;
         }

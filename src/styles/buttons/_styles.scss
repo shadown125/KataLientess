@@ -188,6 +188,9 @@ button {
 .buttons-container {
     display: flex;
     justify-content: space-between;
+    margin: {
+        top: susanoo.rem-calc(16);
+    }
 }
 
 .circle {

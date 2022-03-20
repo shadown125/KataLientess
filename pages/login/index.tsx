@@ -41,32 +41,36 @@ function LoginPage () {
     }
 
     return (
-        <main>
-            <section className="intro-panel login">
-                <div className="container">
-                    <h1 className="headline h2">Login</h1>
-                    <Formik initialValues={{ email: '', password: '' }} onSubmit={submitHandler} validationSchema={loginValidationSchema}>
-                        {({ isSubmitting }) => (
-                            <Form>
-                                <EmailField name="email" />
-                                <PasswordField name="password" />
-                                <div className="buttons-container">
-                                    <Link href="/register">
-                                        <a className="button button-primary">Register</a>
-                                    </Link>
-                                    <button className="button button-primary" disabled={isSubmitting} type="submit">
-                                        <span>Login</span>
-                                    </button>
-                                </div>
-                            </Form>
-                        )}
-                    </Formik>
-                    <Footer />
-                </div>
-            </section>
-            <DataPrivacy active={state} />
-            <div className={`backdrop${state ? ' is-active-full' : ''}`} />
-        </main>
+        <div className="wrapper">
+            <div className="app-container">
+                <main className="intro-panel">
+                    <section className="login">
+                        <div className="container">
+                            <h1 className="headline h2">Login</h1>
+                            <Formik initialValues={{ email: '', password: '' }} onSubmit={submitHandler} validationSchema={loginValidationSchema}>
+                                {({ isSubmitting }) => (
+                                    <Form>
+                                        <EmailField name="email" />
+                                        <PasswordField name="password" />
+                                        <div className="buttons-container">
+                                            <Link href="/register">
+                                                <a className="button button-primary">Register</a>
+                                            </Link>
+                                            <button className="button button-primary" disabled={isSubmitting} type="submit">
+                                                <span>Login</span>
+                                            </button>
+                                        </div>
+                                    </Form>
+                                )}
+                            </Formik>
+                            <Footer />
+                        </div>
+                    </section>
+                    <DataPrivacy active={state} />
+                    <div className={`backdrop${state ? ' is-active-full' : ''}`} />
+                </main>
+            </div>
+        </div>
     )
 }
 

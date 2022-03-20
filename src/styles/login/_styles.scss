@@ -2,17 +2,6 @@
 @use '../grid/variables' as grid;
 
 .intro-panel {
-    &.login {
-        @media only screen and (max-width: 640px) {
-            position: fixed;
-            width: 90vw;
-            height: unset;
-            transform: translate(-50%, -50%);
-            border: {
-                radius: grid.$border-radius;
-            }
-        }
-    }
     .login-input {
         &:not(&.is-invalid) {
             margin: {

@@ -1,23 +1,21 @@
 @use '../susanoo';
 
-.intro-panel {
-    &.register {
-        .container {
-            display: flex;
-            flex: {
-                direction: column;
-            }
+.register {
+    .container {
+        display: flex;
+        flex: {
+            direction: column;
         }
-        form {
-            flex: {
-                wrap: wrap;
-            }
+    }
+    form {
+        flex: {
+            wrap: wrap;
         }
-        input {
-            &:not(&.is-invalid) {
-                margin: {
-                    bottom: susanoo.rem-calc(16);
-                }
+    }
+    input {
+        &:not(&.is-invalid) {
+            margin: {
+                bottom: susanoo.rem-calc(16);
             }
         }
     }

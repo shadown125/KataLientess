@@ -34,11 +34,13 @@ function HomePage () {
         <Fragment>
             <div className="wrapper">
                 <div className="app-container">
-                    <PageHeader onSettingMainNavigationState={onSettingMainNavigationState} />
-                    <PageBody>
-                        <MainNavigation currentMainNavigationState={state}/>
-                        <TodosLayout onSettingActiveAddTodo={onSettingActiveAddTodoState} />
-                    </PageBody>
+                    <div className="container-wrapper">
+                        <PageHeader onSettingMainNavigationState={onSettingMainNavigationState} />
+                        <PageBody>
+                            <MainNavigation currentMainNavigationState={state}/>
+                            <TodosLayout onSettingActiveAddTodo={onSettingActiveAddTodoState} />
+                        </PageBody>
+                    </div>
                 </div>
             </div>
             <AddTodo removeActive={onRemoveActive} activeTodo={addTodoState} />
