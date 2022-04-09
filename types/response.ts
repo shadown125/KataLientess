@@ -1,6 +1,6 @@
 export type response = {
     error: string,
-    status: 200,
+    status: number,
     ok: boolean,
     url: string | null
 }
