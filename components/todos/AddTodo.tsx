@@ -64,7 +64,9 @@ function AddTodo (props: {removeActive: Function, activeTodo: boolean}) {
 
     return (
         <section className={`new-todo${props.activeTodo ? ' is-active' : ''}`} data-testid="add-todo-popup">
-            <Notification successMessage={submitted} />
+            {submitted && (
+                <Notification successMessage={'Your new Todo was added successfully'} />
+            )}
             <div className="container">
                 <button className="button button--medium icon-cross" data-testid="add-todo-close-button" onClick={onRemovingActive}>
                     <span>Close button</span>

@@ -1,7 +1,7 @@
-function Notification(props: {successMessage: boolean}) {
+const Notification = (props: {successMessage: string}) => {
     return (
-        <div className={`notification${props.successMessage ? ' is-active' : ''}`}>
-            <span>Your new Todo was added successfully</span>
+        <div className={`notification is-active`}>
+            <span>{props.successMessage}</span>
         </div>
     );
 }
