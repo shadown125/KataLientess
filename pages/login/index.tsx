@@ -9,12 +9,15 @@ import {GetServerSideProps} from "next";
 import {LoginDataInterface} from "../../interfaces/LoginDataInterface";
 import Footer from "../../components/layout/Footer";
 import {BackgroundFilterContext} from "../../components/context/backgroundFilterContext";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import DataPrivacy from "../../components/elements/DataPrivacy";
+import {response} from "../../types/response";
+import Notification from "../../components/elements/Notification";
 
 function LoginPage () {
     const {state} = useContext(BackgroundFilterContext);
     const router = useRouter();
+    const [notification, setNotification] = useState<string>('');
 
     const submitHandler = async (data: LoginDataInterface, {setSubmitting, resetForm}: {setSubmitting: Function, resetForm: Function}) => {
         setSubmitting(true);
@@ -24,11 +27,17 @@ function LoginPage () {
         }
 
         try {
-            await signIn('credentials', {
+            const response = await signIn('credentials', {
                 redirect: false,
                 email: loginData.email,
-                password: loginData.password,
-            })
+                password: loginData.password
+            }).then(response => response as unknown as response);
+
+            const error = response.error;
+
+            if (error !== '') {
+                setNotification(error)
+            }
 
             await router.replace('/');
 
@@ -47,6 +56,9 @@ function LoginPage () {
                     <section className="login">
                         <div className="container">
                             <h1 className="headline h2">Login</h1>
+                            {notification && (
+                                <Notification successMessage={notification} />
+                            )}
                             <Formik initialValues={{ email: '', password: '' }} onSubmit={submitHandler} validationSchema={loginValidationSchema}>
                                 {({ isSubmitting }) => (
                                     <Form>
