@@ -26,7 +26,7 @@ export default NextAuth({
 
                 if (!user) {
                     await client.close();
-                    throw new Error('No user found!');
+                    throw new Error('Email or password are invalid. Please try again');
                 }
 
                 const isValid = await verifyPassword(
@@ -36,7 +36,7 @@ export default NextAuth({
 
                 if (!isValid) {
                     await client.close();
-                    throw new Error('Could not log you in!');
+                    throw new Error('Error occurred. Could not log you in! Please try again');
                 }
 
                 await client.close();
