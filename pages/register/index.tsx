@@ -16,11 +16,13 @@ import {CreateUserInterface} from "../../interfaces/CreateUserInterface";
 import DataPrivacy from "../../components/elements/DataPrivacy";
 import {BackgroundFilterContext} from "../../components/context/backgroundFilterContext";
 import Footer from "../../components/layout/Footer";
+import Notification from "../../components/elements/Notification";
 
 function Register() {
     const {state} = useContext(BackgroundFilterContext);
     const [currentImage, setCurrentImage] = useState<File>();
     const router = useRouter();
+    const [notification, setNotification] = useState<string>('');
 
     const createUser = async (email: string, password: string, firstName: string, lastName: string) => {
         if (currentImage !== undefined) {
@@ -46,11 +48,12 @@ function Register() {
                         'Content-Type': 'application/json',
                     }
                 });
-            });
+            })
 
             const data = await response.json();
 
             if (!response.ok) {
+                setNotification(data.message);
                 throw new Error(data.message || 'Something went wrong!');
             }
 
@@ -83,6 +86,7 @@ function Register() {
         const data = await response.json();
 
         if (!response.ok) {
+            setNotification(data.message);
             throw new Error(data.message || 'Something went wrong!');
         }
 
@@ -122,6 +126,9 @@ function Register() {
                         <section className="register">
                             <div className="container">
                                 <h1 className="headline h2" data-testid="register">Register</h1>
+                                {notification && (
+                                    <Notification successMessage={notification} />
+                                )}
                                 <Formik initialValues={{ firstName: '', lastName: '', email: '', image: '', password: '', repeatedPassword: '', }} onSubmit={submitHandler} validationSchema={registerValidationSchema}>
                                     {({ isSubmitting , setFieldValue}) => (
                                         <Form>
